@@ -81,7 +81,7 @@ $footHasSms = strlen($footSms) >= 10;
         <div class="footer-col">
           <h4>Contact</h4>
           <div class="footer-nap">
-            <div><?php icon('phone', 18); ?><a href="<?php echo h($footTel); ?>"><?php echo h($phone); ?></a></div>
+            <div><?php icon('phone', 18); ?><a href="tel:<?php echo h($phoneE164); ?>"><?php echo h($phone); ?></a></div>
             <div><?php icon('mail', 18); ?><a href="mailto:<?php echo h($email); ?>"><?php echo h($email); ?></a></div>
             <div><?php icon('map-pin', 18); ?><span><?php echo h($footAddr); ?></span></div>
             <div class="footer-hours"><?php icon('clock', 18); ?>
@@ -102,6 +102,16 @@ $footHasSms = strlen($footSms) >= 10;
         <meta itemprop="name" content="<?php echo h($siteName); ?>">
         <meta itemprop="url" content="<?php echo h(rtrim($siteUrl, '/') . '/'); ?>">
         <meta itemprop="telephone" content="<?php echo h($phoneE164); ?>">
+        <meta itemprop="email" content="<?php echo h($email); ?>">
+        <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress" hidden>
+<?php if (!empty($addressPublic) && !empty($address['street'])): ?>
+          <meta itemprop="streetAddress" content="<?php echo h($address['street']); ?>">
+<?php endif; ?>
+          <meta itemprop="addressLocality" content="<?php echo h($address['city']); ?>">
+          <meta itemprop="addressRegion" content="<?php echo h($address['state']); ?>">
+          <meta itemprop="postalCode" content="<?php echo h($address['zip']); ?>">
+          <meta itemprop="addressCountry" content="US">
+        </span>
         <p><?php echo h($siteName); ?> is an <?php echo h(strtolower($industryLabel)); ?> based in <?php echo h($footPlace); ?>, serving <?php echo h($address['city']); ?> and the surrounding area with <?php echo h($footSvcList); ?>. Call <a href="<?php echo h($footTel); ?>"><?php echo h($phone); ?></a> or email <a href="mailto:<?php echo h($email); ?>"><?php echo h($email); ?></a>.</p>
       </div>
     </div>
@@ -153,7 +163,7 @@ $footHasSms = strlen($footSms) >= 10;
 </dialog>
 
 <div class="mobile-cta-bar<?php echo $footHasSms ? ' mobile-cta-bar--3' : ''; ?>" role="region" aria-label="Quick contact">
-  <a class="mobile-cta-bar__call" href="<?php echo h($footTel); ?>"><?php icon('phone', 18); ?>Call Now</a>
+  <a class="mobile-cta-bar__call" href="tel:<?php echo h($phoneE164); ?>"><?php icon('phone', 18); ?>Call Now</a>
 <?php if ($footHasSms): ?>
   <a class="mobile-cta-bar__text" href="sms:<?php echo h($footSms); ?>"><?php icon('mail', 18); ?>Text Us</a>
 <?php endif; ?>

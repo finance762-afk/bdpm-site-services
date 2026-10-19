@@ -15,7 +15,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/p1-form-helpers.php';
 
 $svc             = serviceBySlug('helical-piers');
-$pageTitle       = 'Helical Piers Plymouth MA | BDPM Site Services';
+$pageTitle       = 'Helical Pier Installation Plymouth MA | BDPM Site Services';
 $pageDescription = 'Helical pier installation in Plymouth, MA for new foundations, additions, decks and porches, with far less digging than footings. Call (508) 989-7101.';
 $canonicalUrl    = $siteUrl . '/services/helical-piers/';
 $ogImage         = '/assets/images/og-default.jpg';

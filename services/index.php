@@ -9,7 +9,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
  * No client photos exist yet, so the cards are icon cards (same as the homepage). The estimate tool is NOT authorized
  * (build-plan integrations.estimate_tool.authorized = false), so it is not referenced here.
  */
-$pageTitle       = 'Excavation & Septic Services Plymouth MA | BDPM Site Services';
+$pageTitle       = 'Excavation Services Plymouth MA | BDPM Site Services';
 $pageDescription = 'Site excavation, septic installation, Title 5 inspections, sea walls and helical piers in Plymouth, MA from BDPM Site Services. Call (508) 989-7101.';
 $canonicalUrl    = $siteUrl . '/services/';
 $ogImage         = '/assets/images/og-default.jpg';

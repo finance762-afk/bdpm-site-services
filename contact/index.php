@@ -14,7 +14,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/p1-form-helpers.php';
 
 $pageTitle       = 'Contact ' . $siteName . ' | Excavation in Plymouth, MA';
-$pageDescription = 'Call ' . $phone . ' or send the estimate form to ' . $siteName . ' at ' . $address['street'] . ', Plymouth, MA. Excavation, septic, sea walls, helical piers and Title 5.';
+$pageDescription = 'Call ' . $phone . ' or send the estimate form to ' . $siteName . ' at ' . $address['street'] . ', Plymouth, MA. Excavation, septic, sea walls, piers and Title 5.';
 $canonicalUrl    = $siteUrl . '/contact/';
 $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'contact';

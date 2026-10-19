@@ -108,6 +108,10 @@ $schemaMarkup = [
 .bp-gate { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-sm); margin: var(--space-md) 0; padding: 0; list-style: none; }
 .bp-gate li { padding: var(--space-md); border-radius: var(--radius); background: var(--color-dark); color: color-mix(in srgb, var(--color-white) 84%, transparent); font-size: var(--fs-small); }
 .bp-gate b { display: block; font-family: var(--font-heading); color: var(--color-white); margin-bottom: var(--space-1); }
+.bp-steps { counter-reset: bpstep; list-style: none; padding: 0; margin: var(--space-md) 0; }
+.bp-steps li { counter-increment: bpstep; position: relative; padding: var(--space-md) var(--space-lg) var(--space-md) 3.5rem; border-radius: var(--radius); background: var(--color-card-tint-1); border-left: 4px solid var(--color-accent); }
+.bp-steps li:nth-child(even) { background: var(--color-card-tint-3); }
+.bp-steps li::before { content: counter(bpstep); position: absolute; left: var(--space-md); top: var(--space-md); width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border-radius: var(--radius-full); background: var(--color-primary); color: var(--color-white); font-family: var(--font-accent); font-weight: 700; }
 @media (max-width: 700px) { .bp-gate { grid-template-columns: 1fr; } }
 </style>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php'; ?>

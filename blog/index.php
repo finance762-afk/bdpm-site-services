@@ -8,7 +8,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/blog-data.php';
  * /blog/ — Phase 6 blog index. Registry-driven: every card comes from $blogPosts (includes/blog-data.php). Adding a post to the registry
  * adds it here, on the homepage preview, in related-article blocks and in sitemap.php. The newest post is the featured card.
  */
-$pageTitle       = 'Excavation & Septic Blog | BDPM Site Services';
+$pageTitle       = 'Excavation & Septic Blog Plymouth, MA | BDPM Site Services';
 $pageDescription = 'Plain-English answers on excavation costs, Dig Safe, wetlands permits, septic systems and coastal banks in Plymouth, MA, from BDPM Site Services.';
 $canonicalUrl    = $siteUrl . '/blog/';
 $ogImage         = '/assets/images/og-default.jpg';

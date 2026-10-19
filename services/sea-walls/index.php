@@ -17,7 +17,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/p1-form-helpers.php';
 
 $svc             = serviceBySlug('sea-walls');
-$pageTitle       = 'Sea Walls Plymouth MA | BDPM Site Services';
+$pageTitle       = 'Sea Wall Construction Plymouth MA | BDPM Site Services';
 $pageDescription = 'Sea wall construction for Plymouth, MA waterfront property, planned around the coastal bank, the tides and Conservation Commission permits. Call (508) 989-7101.';
 $canonicalUrl    = $siteUrl . '/services/sea-walls/';
 $ogImage         = '/assets/images/og-default.jpg';

@@ -14,7 +14,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/p1-form-helpers.php';
 
 $pageTitle       = 'FAQ: Excavation, Septic & Title 5 | ' . $siteName;
-$pageDescription = 'Answers from ' . $siteName . ' on Dig Safe, wetlands permits, excavation cost, septic systems, Title 5 inspections, sea walls and helical piers in Plymouth, MA.';
+$pageDescription = 'Answers from ' . $siteName . ' on Dig Safe, wetlands permits, excavation cost, septic, Title 5 inspections, sea walls and helical piers in Plymouth, MA.';
 $canonicalUrl    = $siteUrl . '/faq/';
 $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'faq';
@@ -98,7 +98,11 @@ $faqCats = [
 
 // Flat list for the FAQPage schema — every visible question, same wording
 $faqAll = [];
-foreach ($faqCats as $faqCatRow) foreach ($faqCatRow['items'] as $faqItemRow) $faqAll[] = ['q' => $faqItemRow['q'], 'a' => $faqItemRow['a']];
+// 'Are estimates ... free?' is left out of the schema: intake does not confirm free estimates yet (content-confirmations.json). Visible copy is unchanged.
+foreach ($faqCats as $faqCatRow) foreach ($faqCatRow['items'] as $faqItemRow) {
+    if (preg_match('/estimates?\b.*\bfree\b/i', $faqItemRow['q'])) continue;
+    $faqAll[] = ['q' => $faqItemRow['q'], 'a' => $faqItemRow['a']];
+}
 
 $schemaMarkup = [
     generateFAQSchema($faqAll),

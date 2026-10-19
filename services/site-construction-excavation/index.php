@@ -18,7 +18,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/p1-form-helpers.php';
 
 $svc             = serviceBySlug('site-construction-excavation');
-$pageTitle       = 'Site Construction / Excavation Plymouth MA | BDPM Site Services';
+$pageTitle       = 'Site Excavation Contractor Plymouth MA | BDPM Site Services';
 $pageDescription = 'Site construction and excavation in Plymouth, MA: foundation digs, grading and trenches planned around Dig Safe, ledge and wetlands. Call (508) 989-7101.';
 $canonicalUrl    = $siteUrl . '/services/site-construction-excavation/';
 $ogImage         = '/assets/images/og-default.jpg';

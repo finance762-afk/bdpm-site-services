@@ -16,7 +16,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/p1-form-helpers.php';
 
 $pageTitle       = 'About ' . $siteName . ' | Excavation in Plymouth, MA';
-$pageDescription = $siteName . ' is an owner-run excavation contractor in Plymouth, MA, led by ' . $ownerName . '. Septic systems, sea walls, helical piers and Title 5 inspections.';
+$pageDescription = $siteName . ' is an excavation contractor in Plymouth, MA, owned by ' . $ownerName . '. Septic systems, sea walls, helical piers and Title 5 inspections.';
 $canonicalUrl    = $siteUrl . '/about/';
 $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'about';
