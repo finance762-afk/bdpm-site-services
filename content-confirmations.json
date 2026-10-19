@@ -276,6 +276,163 @@
           "where": "hero, closing CTA"
         }
       ]
+    },
+    {
+      "path": "/about/",
+      "useful_because": "Gives a Plymouth property owner the company behind the estimate in one place: who owns it (Patrick Howard), what it does and why the five services share the same ground, the four habits it works by (site visit before quote, Dig Safe first, approvals before the dig, final grade), a founded-to-your-lot timeline and a credentials block that only prints what can be verified. The homepage says 'owner-run' and 'Est. 2021' in one card; this page explains what that means for the job.",
+      "needs_confirmation": [
+        {
+          "fact": "Founder story",
+          "question": "Why did Patrick start BDPM Site Services, and what was his background before it (prior excavation or septic work, other trades)? The story section describes the company and its work but has no personal history because intake holds none.",
+          "where": "Our story section"
+        },
+        {
+          "fact": "Licenses",
+          "question": "Which Massachusetts licenses or registrations does BDPM hold (for example a construction supervisor license, a Title 5 System Inspector approval, a septic installer license), and what are the numbers? The credentials block adds a License card as soon as a number is added to config.php.",
+          "where": "Credentials section"
+        },
+        {
+          "fact": "Insurance",
+          "question": "Is BDPM insured (general liability, workers' compensation)? Tell us what can be stated. The credentials block adds an Insurance card once config.php holds text.",
+          "where": "Credentials section"
+        },
+        {
+          "fact": "Certifications and memberships",
+          "question": "Any manufacturer certifications (septic components, helical piers), trade associations or BBB listing, with a profile link we can point to?",
+          "where": "Credentials section"
+        },
+        {
+          "fact": "Company milestones",
+          "question": "Which milestones can the timeline show besides 2021 (first septic install, first sea wall, equipment purchases, a notable job)? Only 'Founded', 'Today' and 'Next' are shown because intake lists nothing else.",
+          "where": "Timeline section"
+        },
+        {
+          "fact": "Crew",
+          "question": "How many people work on a typical job, and are any of them worth naming (a project manager, the Title 5 inspector, the operator)? The page names only the owner.",
+          "where": "How we work section"
+        },
+        {
+          "fact": "Photos",
+          "question": "Can you send original photos of your own work and of Patrick, the crew and the trucks? The page runs without photos and has no image columns until real ones exist.",
+          "where": "Hero, story, how we work"
+        }
+      ]
+    },
+    {
+      "path": "/contact/",
+      "useful_because": "Gets a Plymouth owner from 'I need a dig' to a logged lead in one screen: the full estimate form with the three unbundled consent boxes, a direct phone number, the exact callback sequence (call, site visit, written estimate), and the address and hours with a one-tap directions link.",
+      "needs_confirmation": [
+        {
+          "fact": "Google Maps embed",
+          "question": "Can you paste the Embed a map code from your Google Business Profile (Share > Embed a map)? The contact page shows the address, hours and a Get Directions link now and adds the live map as soon as the embed URL is in config.php.",
+          "where": "Find us section"
+        },
+        {
+          "fact": "Callback time",
+          "question": "How quickly do you usually return calls and forms (same day, next business day)? The page says 'during office hours' only, because no response time is in intake.",
+          "where": "Hero, what happens next"
+        },
+        {
+          "fact": "Estimates are free",
+          "question": "Confirming again: are estimates free for every service, including a Title 5 inspection? The contact page says 'Free estimates' in the hero chips.",
+          "where": "Hero chips"
+        },
+        {
+          "fact": "Job address field",
+          "question": "Do you want the job street address and town on the form? They are optional fields so owners can leave them blank; say if you would rather drop them.",
+          "where": "Contact form"
+        }
+      ]
+    },
+    {
+      "path": "/faq/",
+      "useful_because": "Answers 18 questions Plymouth owners ask before an excavation, septic, Title 5, sea wall or pier job, grouped General, Services, Pricing and Process, with the Dig Safe 72-hour rule, the wetlands review, the Title 5 timing window, the 1978 coastal rule and how a septic system is sized by bedroom. The homepage FAQ shows five; this page covers the rest in one place and links each answer to its service page.",
+      "needs_confirmation": [
+        {
+          "fact": "Licensed and insured",
+          "question": "Do you want a 'Are you licensed and insured?' question? It is left out because intake holds no license or insurance details; send them and we add it.",
+          "where": "General category"
+        },
+        {
+          "fact": "Pricing questions",
+          "question": "Which real prices or ranges (septic system, Title 5 inspection, a typical foundation dig) can be published? The pricing answers explain what moves the cost but give no figures.",
+          "where": "Pricing category"
+        },
+        {
+          "fact": "Payment and financing",
+          "question": "Do you take deposits, offer payment schedules or financing? Left out until you tell us.",
+          "where": "Pricing category"
+        },
+        {
+          "fact": "Service area beyond Plymouth",
+          "question": "Which nearby towns do you work in? The answer says 'Plymouth and the surrounding area' and invites a call.",
+          "where": "General category"
+        },
+        {
+          "fact": "Questions customers ask you",
+          "question": "What do callers ask you most that is not on this page? Send three and we add them.",
+          "where": "All categories"
+        }
+      ]
+    },
+    {
+      "path": "/privacy-policy/",
+      "useful_because": "States in plain language what the site actually collects (estimate-form fields, consent records, a 30-day first-visit cookie, Google Analytics) and who receives it (the Page One lead system, Google, the host), plus Massachusetts and California rights and the text/email consent terms, so the form checkboxes and the policy say the same thing.",
+      "needs_confirmation": [
+        {
+          "fact": "Business entity type",
+          "question": "Is BDPM Site Services an LLC, a corporation, a sole proprietorship or a partnership? The legal pages use the plain company name until config.php $companyEntityType is filled in.",
+          "where": "All four legal pages"
+        },
+        {
+          "fact": "State of formation",
+          "question": "Was the business formed in Massachusetts? The Terms use Massachusetts law and Plymouth County courts.",
+          "where": "Terms of Service, governing law"
+        },
+        {
+          "fact": "Paid advertising",
+          "question": "Do you run or plan Google Ads or Meta Ads? Ad pixels would need to be added to the Privacy and Cookie policies.",
+          "where": "Privacy Policy, Cookie Policy"
+        },
+        {
+          "fact": "States you work in",
+          "question": "Do you work only in Massachusetts? The policy lists California and a few other states' rights by default.",
+          "where": "Privacy Policy"
+        }
+      ]
+    },
+    {
+      "path": "/terms/",
+      "useful_because": "Sets the ground rules for estimates and work in the language of excavation (conditions that change a price once the ground is open, permits that gate the schedule) without inventing warranty, deposit or cancellation figures; those stay in the written contract.",
+      "needs_confirmation": [
+        {
+          "fact": "Warranty, deposit and cancellation terms",
+          "question": "What does your written contract say about workmanship warranty length, deposits and cancellation? The Terms point to the contract instead of stating numbers.",
+          "where": "Terms sections 6 and 7"
+        }
+      ]
+    },
+    {
+      "path": "/cookie-policy/",
+      "useful_because": "Lists each item the site stores on a visitor's device by name (p1_ft, the cookie-notice flag, the two Google Analytics cookies), what it does and how long it lasts.",
+      "needs_confirmation": [
+        {
+          "fact": "Google Analytics measurement ID",
+          "question": "Send the GA4 measurement ID (G-XXXXXXXX). The policy already describes GA4; the tracking code stays commented out until config.php holds a real ID.",
+          "where": "Cookie Policy table, head.php"
+        }
+      ]
+    },
+    {
+      "path": "/accessibility/",
+      "useful_because": "States the WCAG 2.1 AA target, the accessibility features the site really ships (skip link, focus outline, keyboard menu, reduced motion) and how to report a barrier by phone or email.",
+      "needs_confirmation": [
+        {
+          "fact": "Accessibility contact and response time",
+          "question": "Is patrick@bdpmma.com the right address for accessibility reports, and is there a response time you can commit to? The page says reports are read during office hours.",
+          "where": "Accessibility Statement section 5"
+        }
+      ]
     }
   ],
   "consolidate": []

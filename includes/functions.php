@@ -364,6 +364,48 @@ if (!function_exists('serviceBySlug')) {
     }
 }
 
+/* ---- Legal pages (privacy-policy, terms, cookie-policy, accessibility) ---------------------------- */
+
+if (!function_exists('legalName')) {
+    /** Company name plus the entity type from intake when one exists ("BDPM Site Services LLC"); just the name while it is blank. */
+    function legalName(): string {
+        $name = (string) ($GLOBALS['companyName'] ?? '');
+        $type = trim((string) ($GLOBALS['companyEntityType'] ?? ''));
+        return $type === '' ? $name : $name . ' ' . $type;
+    }
+}
+
+if (!function_exists('legalPageSchema')) {
+    /** WebPage node for a legal page (BreadcrumbList comes from $breadcrumbs in head.php). */
+    function legalPageSchema(string $title, string $description, string $url): array {
+        $base = rtrim($GLOBALS['siteUrl'], '/');
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebPage',
+            '@id' => $url . '#webpage',
+            'url' => $url,
+            'name' => $title,
+            'description' => $description,
+            'isPartOf' => ['@type' => 'WebSite', 'url' => $base . '/'],
+            'publisher' => ['@id' => $base . '/#organization'],
+        ];
+    }
+}
+
+if (!function_exists('legalContactBlock')) {
+    /** The standard "Contact Us" block that closes every legal page. Pulls everything from config.php. */
+    function legalContactBlock(): string {
+        $e = $GLOBALS['companyEmail'];
+        $p = $GLOBALS['companyPhone'];
+        $t = $GLOBALS['companyPhoneE164'];
+        return '<p><strong>' . h(legalName()) . '</strong><br>'
+            . 'Email: <a href="mailto:' . h($e) . '">' . h($e) . '</a><br>'
+            . 'Phone: <a href="tel:' . h($t) . '">' . h($p) . '</a><br>'
+            . 'Address: ' . h($GLOBALS['companyAddress']) . '<br>'
+            . 'Hours: ' . h($GLOBALS['businessHours']) . '</p>';
+    }
+}
+
 /* ---- Lead forms --------------------------------------------------------------------------------- */
 
 if (!function_exists('renderEstimateForm')) {
