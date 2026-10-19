@@ -78,7 +78,7 @@ $services = [
      'keywords' => ['title 5 inspections Plymouth MA', 'title inspections']],
 ];
 
-// ---- Service areas (Premium: /areas/{slug}/ per town) ------------------------------------------
+// ---- Service areas (Premium: /service-areas/{slug}/ per town; the hub is /service-areas/) -------
 $serviceAreas = ['Plymouth, MA'];                      // build-plan service_areas
 $areaPages = [
     ['slug' => 'plymouth', 'name' => 'Plymouth', 'state' => 'MA'],

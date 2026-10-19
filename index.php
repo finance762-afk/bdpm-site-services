@@ -11,6 +11,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
  * config.php; facts the page wants but intake does not supply are listed in /content-confirmations.json.
  */
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/p1-form-helpers.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/blog-data.php';
 
 $pageTitle       = 'Site Excavation in Plymouth, MA | ' . $siteName;
 $pageDescription = $siteName . ' handles site excavation, septic system installation, Title 5 inspections, sea walls and helical piers in Plymouth, MA. Call ' . $phone . '.';
@@ -253,6 +254,13 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
   .home-services .services-grid--featured > :first-child .service-card__body { padding: calc(var(--space-3xl)) var(--space-lg) var(--space-lg); }
   .home-hero .hero-chips li { font-size: var(--font-size-xs); }
 }
+
+/* ---- From the blog (latest registry post, featured card) ---- */
+<?php echo blogCardStyles(); ?>
+.home-blog { background: var(--color-paper); }
+.home-blog__feature { margin-top: var(--space-md); }
+.home-blog__more { margin-top: var(--space-xl); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md); }
+.home-blog__more p { margin: 0; font-size: var(--fs-small); color: var(--color-ink-2); }
 </style>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php'; ?>
 <div class="home">
@@ -477,6 +485,26 @@ if ($homeReviews !== ''): ?>
     </div>
   </div>
 </section>
+
+<!-- ============ FROM THE BLOG (auto-pulls $blogPosts[0]) ============ -->
+<?php if (!empty($blogPosts)): ?>
+<section class="section home-blog" aria-labelledby="home-blog-title">
+  <div class="container">
+    <div class="section-title reveal-up">
+      <span class="eyebrow-label">From the Blog</span>
+      <h2 id="home-blog-title">What do Plymouth property owners need to know before they dig?</h2>
+      <p>Plain answers on excavation costs, permits and coastal banks from BDPM Site Services' Plymouth blog.</p>
+    </div>
+    <div class="home-blog__feature">
+<?php echo blogCard($blogPosts[0], ['featured' => true, 'tint' => 3, 'delay' => 1, 'heading' => 'h3']); ?>
+    </div>
+    <div class="home-blog__more reveal-up">
+      <a class="btn btn-secondary" href="/blog/">View All Articles</a>
+      <p><?php echo count($blogPosts); ?> articles so far, each answering one question about ground work in Plymouth.</p>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
 
 <!-- ============ ESTIMATE SECTION (closing CTA, full form) ============ -->
 <section class="section slant-top home-estimate" id="estimate" aria-labelledby="home-estimate-title">

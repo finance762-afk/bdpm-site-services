@@ -67,10 +67,10 @@ if (!function_exists('getAreaSlug')) {
 /* ---- Link integrity ----------------------------------------------------------------------------- */
 
 if (!function_exists('areaHref')) {
-    /** /areas/{slug}/ once that page exists on disk, otherwise the service-areas hub anchor. Never links to a 404. */
+    /** /service-areas/{slug}/ once that page exists on disk, otherwise the service-areas hub anchor. Never links to a 404. */
     function areaHref(string $slug): string {
-        $dir = rtrim((string) ($_SERVER['DOCUMENT_ROOT'] ?? ''), '/') . '/areas/' . $slug;
-        return is_dir($dir) ? '/areas/' . $slug . '/' : '/service-areas/#' . $slug;
+        $dir = rtrim((string) ($_SERVER['DOCUMENT_ROOT'] ?? ''), '/') . '/service-areas/' . $slug;
+        return is_file($dir . '/index.php') ? '/service-areas/' . $slug . '/' : '/service-areas/#' . $slug;
     }
 }
 
