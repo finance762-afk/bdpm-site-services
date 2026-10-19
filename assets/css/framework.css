@@ -62,7 +62,7 @@
   --color-gray-light: var(--color-line); --color-gray-dark: var(--color-ink-2);
   --color-bg: var(--color-paper); --color-bg-alt: var(--color-paper-2); --color-bg-dark: var(--color-dark);
   --color-border: var(--color-line); --color-text: var(--color-ink); --color-text-light: var(--color-muted);
-  --color-success: #2f7d4a; --color-warning: #c98a1a; --color-danger: #b83232; --color-star: #f2b84b;
+  --color-success: #2f7d4a; --color-warning: #c98a1a; --color-danger: #b83232; --color-star: #f2b84b; --color-info: #2d6fb7;
   --color-card-tint-1: color-mix(in srgb, var(--color-primary) 8%, white);
   --color-card-tint-2: color-mix(in srgb, var(--color-secondary) 9%, white);
   --color-card-tint-3: color-mix(in srgb, var(--color-accent) 10%, white);

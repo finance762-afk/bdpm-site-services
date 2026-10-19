@@ -293,6 +293,77 @@ if (!function_exists('generateFAQSchema')) {
     }
 }
 
+if (!function_exists('servicePageSchema')) {
+    /**
+     * Schema list for a /services/{slug}/ page (head.php echoes each item; BreadcrumbList comes from $breadcrumbs):
+     * Service (@id {url}#service-{slug}, provider = the homepage #organization entity), WebPage with Speakable
+     * (h1, .hero-answer, .answer-block). Pages with real FAQs add generateFAQSchema($faqs) themselves.
+     */
+    function servicePageSchema(array $service, string $summary): array {
+        global $siteUrl, $address, $primaryCounty, $pageTitle;
+        $base = rtrim($siteUrl, '/');
+        $url  = $base . '/services/' . $service['slug'] . '/';
+        $svcId = $url . '#service-' . $service['slug'];
+        $out = [[
+            '@context' => 'https://schema.org',
+            '@type' => 'Service',
+            '@id' => $svcId,
+            'name' => $service['name'],
+            'serviceType' => $service['name'],
+            'description' => $summary,
+            'url' => $url,
+            'provider' => ['@id' => $base . '/#organization'],
+            'areaServed' => [
+                ['@type' => 'City', 'name' => $address['city'] . ', ' . $address['state']],
+                ['@type' => 'AdministrativeArea', 'name' => $primaryCounty . ', ' . $address['state']],
+            ],
+        ], [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebPage',
+            '@id' => $url . '#webpage',
+            'url' => $url,
+            'name' => (string) $pageTitle,
+            'about' => ['@id' => $svcId],
+            'isPartOf' => ['@type' => 'WebSite', 'url' => $base . '/'],
+            'speakable' => ['@type' => 'SpeakableSpecification', 'cssSelector' => ['h1', '.hero-answer', '.answer-block']],
+        ]];
+        return $out;
+    }
+}
+
+if (!function_exists('serviceCards')) {
+    /** Card copy for the required services-grid component (services hub + "other services" rows). Keyed by slug. */
+    function serviceCards(): array {
+        return [
+            'site-construction-excavation' => ['icon' => 'tractor',
+                'desc' => 'Excavation, grading and site preparation for residential and commercial lots.',
+                'bullets' => ['Site prep and final grading', 'Foundation and footing digs', 'Drainage and utility trenches']],
+            'septic-system-installation' => ['icon' => 'droplets',
+                'desc' => 'New and replacement septic systems installed to the approved design.',
+                'bullets' => ['Built to the approved plan', 'Board of Health inspections', 'New and replacement systems']],
+            'sea-walls' => ['icon' => 'waves',
+                'desc' => 'Sea wall construction for waterfront and coastal property.',
+                'bullets' => ['Built for waterfront lots', 'Planned around coastal permits', 'Holds back shoreline erosion']],
+            'helical-piers' => ['icon' => 'building-2',
+                'desc' => 'Steel piers screwed down past loose soil to carry a structure.',
+                'bullets' => ['Support for new foundations', 'Additions, decks and porches', 'Far less digging than footings']],
+            'title-5-inspections' => ['icon' => 'clipboard-list',
+                'desc' => 'Massachusetts Title 5 septic inspections for sales and system checks.',
+                'bullets' => ['Required before most sales', 'Completed state inspection form', 'Same team installs septic systems']],
+        ];
+    }
+}
+
+if (!function_exists('serviceBySlug')) {
+    /** The $services entry for a slug (config.php), or null. */
+    function serviceBySlug(string $slug): ?array {
+        foreach ((array) ($GLOBALS['services'] ?? []) as $svcRow) {
+            if ($svcRow['slug'] === $slug) return $svcRow;
+        }
+        return null;
+    }
+}
+
 /* ---- Lead forms --------------------------------------------------------------------------------- */
 
 if (!function_exists('renderEstimateForm')) {
