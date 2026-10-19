@@ -138,6 +138,20 @@ $footHasSms = strlen($footSms) >= 10;
   <button type="button" class="cookie-banner__dismiss">Got it</button>
 </div>
 
+<?php /* Estimate dialog — every [data-open-estimate] button opens it (main.js). One instance per page, form_location="dialog". */ ?>
+<dialog class="estimate-dialog" id="estimate-dialog" aria-labelledby="estimate-dialog-title">
+  <div class="dialog-head">
+    <div>
+      <h3 id="estimate-dialog-title">Get a free estimate</h3>
+      <p class="footnote">We reply during business hours, <?php echo h($businessHours); ?>.</p>
+    </div>
+    <button type="button" class="dialog-close" aria-label="Close" data-close-estimate><?php icon('x', 20); ?></button>
+  </div>
+  <div class="dialog-body">
+<?php echo renderEstimateForm('dialog', 'dlg', 'Request my estimate'); ?>
+  </div>
+</dialog>
+
 <div class="mobile-cta-bar<?php echo $footHasSms ? ' mobile-cta-bar--3' : ''; ?>" role="region" aria-label="Quick contact">
   <a class="mobile-cta-bar__call" href="<?php echo h($footTel); ?>"><?php icon('phone', 18); ?>Call Now</a>
 <?php if ($footHasSms): ?>

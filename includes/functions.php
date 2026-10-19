@@ -292,3 +292,52 @@ if (!function_exists('generateFAQSchema')) {
         return ['@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $entities];
     }
 }
+
+/* ---- Lead forms --------------------------------------------------------------------------------- */
+
+if (!function_exists('renderEstimateForm')) {
+    /**
+     * The FULL estimate form (references/contact-form-standard.md): name, email, phone, service, job address, message,
+     * three unbundled consent checkboxes, plus every hidden field from p1_lead_hidden_fields(). Used by the estimate
+     * dialog in footer.php (formId 'dialog'), the homepage estimate section and the contact page.
+     * $formId must be unique on the page (it becomes form_location + form_id); $idPrefix prefixes every element id.
+     */
+    function renderEstimateForm(string $formId, string $idPrefix, string $submitLabel = 'Request my estimate'): string {
+        global $formAction, $siteName, $contactEmail, $address;
+        require_once rtrim((string) $_SERVER['DOCUMENT_ROOT'], '/') . '/includes/p1-form-helpers.php';
+        $p = h($idPrefix);
+        ob_start();
+        ?>
+<form action="<?php echo h($formAction); ?>" method="POST" class="estimate-form" id="<?php echo $p; ?>-form">
+<?php echo p1_lead_hidden_fields($formId); ?>
+<input type="hidden" name="address_state" value="<?php echo h($address['state']); ?>">
+  <div class="form-grid">
+    <div class="field"><label for="<?php echo $p; ?>-name">Your name *</label><input id="<?php echo $p; ?>-name" type="text" name="name" autocomplete="name" required></div>
+    <div class="field"><label for="<?php echo $p; ?>-phone">Phone *</label><input id="<?php echo $p; ?>-phone" type="tel" name="phone" autocomplete="tel" required></div>
+    <div class="field full"><label for="<?php echo $p; ?>-email">Email *</label><input id="<?php echo $p; ?>-email" type="email" name="email" autocomplete="email" required></div>
+    <div class="field full"><label for="<?php echo $p; ?>-service">Service needed</label><select id="<?php echo $p; ?>-service" name="service"><?php echo p1_service_options(); ?></select></div>
+    <div class="field"><label for="<?php echo $p; ?>-street">Job street address</label><input id="<?php echo $p; ?>-street" type="text" name="address_street" autocomplete="street-address"></div>
+    <div class="field"><label for="<?php echo $p; ?>-city">Town</label><input id="<?php echo $p; ?>-city" type="text" name="address_city" autocomplete="address-level2"></div>
+    <div class="field full"><label for="<?php echo $p; ?>-message">About the job</label><textarea id="<?php echo $p; ?>-message" name="message" rows="4"></textarea></div>
+  </div>
+  <fieldset class="form-consent-fieldset">
+    <legend class="form-consent-legend">Communication Consent</legend>
+    <label class="form-consent-item" for="<?php echo $p; ?>-email-opt">
+      <input id="<?php echo $p; ?>-email-opt" type="checkbox" name="email_opt_in" value="yes" class="consent-checkbox">
+      <span class="consent-label"><strong>Email updates (optional):</strong> I agree to receive emails from <?php echo h($siteName); ?> about my inquiry, services, promotions, and news. I understand I can unsubscribe anytime via the link in any email or by emailing <?php echo h($contactEmail); ?>. Message frequency varies.</span>
+    </label>
+    <label class="form-consent-item" for="<?php echo $p; ?>-sms-opt">
+      <input id="<?php echo $p; ?>-sms-opt" type="checkbox" name="sms_opt_in" value="yes" class="consent-checkbox">
+      <span class="consent-label"><strong>SMS/Text messages (optional):</strong> I agree to receive text messages from <?php echo h($siteName); ?> at the phone number I provided. Message types may include appointment reminders, service updates, and promotional offers. Message frequency varies. Message and data rates may apply. Reply STOP to unsubscribe, HELP for help. <strong>Consent is not a condition of purchase.</strong></span>
+    </label>
+    <label class="form-consent-item form-consent-required" for="<?php echo $p; ?>-terms">
+      <input id="<?php echo $p; ?>-terms" type="checkbox" name="terms_accepted" value="yes" class="consent-checkbox" required>
+      <span class="consent-label">I have read and agree to the <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms/">Terms of Service</a>. <span class="required-star">*</span></span>
+    </label>
+  </fieldset>
+  <button type="submit" class="btn btn-primary btn-lg btn-block"><?php echo h($submitLabel); ?></button>
+</form>
+<?php
+        return (string) ob_get_clean();
+    }
+}

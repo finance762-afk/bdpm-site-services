@@ -81,12 +81,14 @@ $headGaLive = !empty($googleAnalyticsId) && $googleAnalyticsId !== 'G-XXXXXXXXXX
 <?php endif; ?>
 
 <?php
-echo schemaJson(['@context' => 'https://schema.org', '@graph' => $headGraph]);
 if (!empty($schemaMarkup)) {
     foreach ((is_array($schemaMarkup) && isset($schemaMarkup[0])) ? $schemaMarkup : [$schemaMarkup] as $headSchemaItem) {
         echo schemaJson($headSchemaItem);
     }
 }
 ?>
+<script type="application/ld+json">
+<?php echo json_encode(['@context' => 'https://schema.org', '@graph' => $headGraph], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_PRETTY_PRINT); ?>
+</script>
 </head>
 <body class="page-<?php echo h($pageType); ?>">

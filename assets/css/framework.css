@@ -652,3 +652,7 @@ p { overflow-wrap: anywhere; }
 .footer-bottom-bar { border-top: 1px solid rgba(255,255,255,.12); padding: 1rem 0; }
 .footer-bottom-bar .footer-bottom-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 1.5rem; font-size: .8rem; color: rgba(255,255,255,.65); }
 .back-to-top svg.rot-180 { transform: rotate(180deg); }
+
+/* Phase 3 — full estimate form: `.estimate-form input` (min-height 48px + padding) also hit the consent checkboxes,
+   making each a 48px box that sat below its label. Restore the 20px checkbox. */
+.estimate-form input[type="checkbox"] { min-height: 0; padding: 0; width: 20px; height: 20px; }

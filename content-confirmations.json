@@ -1,0 +1,25 @@
+{
+  "pages": [
+    {
+      "path": "/",
+      "useful_because": "The homepage tells a Plymouth property owner, before they call, what actually moves an excavation price on their lot: which ground conditions (sand and gravel, clay and old fill, ledge) change equipment and schedule, and which three approvals can apply (the Dig Safe 811 notice with its 72-hour rule, Plymouth Conservation Commission review near wetlands, Plymouth Board of Health septic inspections). It also lays out BDPM Site Services' four-step job sequence and points home sellers to booking the Title 5 inspection before listing. None of that is on a generic competitor homepage.",
+      "needs_confirmation": [
+        { "fact": "Client job-site photos", "question": "Can you send 10-20 original photos of your own jobs (excavation, septic installs, sea walls, helical piers)? The homepage hero, service cards and a recent-work gallery are built to use them and currently run without photos.", "where": "hero, services grid, about section, gallery" },
+        { "fact": "Logo file", "question": "Can you send your logo, ideally as an SVG or a large PNG? The site currently shows a text logo.", "where": "header and footer" },
+        { "fact": "Established 2021 / 5 years in business", "question": "Intake lists 5 years in business, so the site says 'Est. 2021'. Is 2021 the correct founding year?", "where": "about section stat card" },
+        { "fact": "Estimates are free", "question": "Are your estimates free? The site says 'Get a free estimate' throughout.", "where": "hero form, buttons, estimate section" },
+        { "fact": "Job process: site visit, written estimate, Dig Safe and approvals, then dig/build/grade", "question": "Is this how a typical job runs: site visit, written estimate (scope, price, schedule), Dig Safe and any permits, then the work and final grade? Anything to change or add?", "where": "about section process steps, estimate section 'What happens next'" },
+        { "fact": "BDPM confirms Dig Safe markings before digging", "question": "Do you place the Dig Safe (811) request yourselves and confirm the markings before every dig?", "where": "FAQ, process step 3" },
+        { "fact": "Excavation job types (foundations/footings, drainage and utility trenches, final grading)", "question": "Which excavation jobs do you take on: foundations and footings, drainage, utility or sewer trenches, ponds, ledge/rock removal, land clearing? We will list only the ones you confirm.", "where": "Site Construction / Excavation service card" },
+        { "fact": "Residential and commercial work", "question": "Do you work on both residential and commercial properties?", "where": "hero chips, ticker, service card" },
+        { "fact": "Septic: new and replacement systems", "question": "Do you install both new septic systems and full replacements? Do you also do repairs (for example a failed leach field)?", "where": "Septic System Installation service card" },
+        { "fact": "Sea wall details", "question": "What kinds of sea walls do you build (stone, concrete, steel or vinyl sheet piling), and do you handle the Conservation Commission / coastal permit filings or work with the owner's engineer?", "where": "Sea Walls service card" },
+        { "fact": "Helical pier uses (new foundations, additions, decks, porches)", "question": "What do you typically set helical piers for: new foundations, additions, decks, porches, repairs to settling foundations?", "where": "Helical Piers service card" },
+        { "fact": "Response time for estimate requests", "question": "How quickly do you usually return an estimate request (same day, next business day)? We left out any response-time promise until you confirm one.", "where": "hero form tagline, estimate dialog" },
+        { "fact": "Licenses and insurance", "question": "Which licenses do you hold (Massachusetts Hoisting license, Title 5 System Inspector, Plymouth septic installer permit, Construction Supervisor / HIC) and are you insured? Please share numbers we can publish.", "where": "hero chips, proof strip (left out until confirmed)" },
+        { "fact": "Towns served beyond Plymouth", "question": "Which towns besides Plymouth do you regularly work in? Each one can get its own area page.", "where": "estimate section service-area sentence, service areas" }
+      ]
+    }
+  ],
+  "consolidate": []
+}
