@@ -1,0 +1,282 @@
+{
+  "seo": {
+    "serp_context": null,
+    "target_radius": 25,
+    "primary_keyword": "Site Excavation",
+    "secondary_keywords": [
+      "title inspections",
+      "septic systems",
+      "helical piers",
+      "Excavation Contractor",
+      "Excavation Services",
+      "Excavation Company",
+      "Excavation Services Near Me",
+      "Professional Excavation Contractor",
+      "Residential Excavation",
+      "Commercial Excavation",
+      "Land Excavation",
+      "Earthwork Contractor",
+      "Drainage Excavation",
+      "Sewer Excavation",
+      "Soil Excavation",
+      "Rock Excavation",
+      "Pond Excavation",
+      "sea wall construction",
+      "Excavation Contractor "
+    ]
+  },
+  "tier": "premium",
+  "email": "patrick@bdpmma.com",
+  "pages": [
+    {
+      "slug": "site-construction-excavation",
+      "type": "service",
+      "title": "Site Construction / Excavation in Plymouth, MA",
+      "sections": "hero, service_details, process, testimonials, cta",
+      "services": [
+        "Site Construction / Excavation"
+      ],
+      "primary_keyword": "site construction / excavation Plymouth MA"
+    },
+    {
+      "slug": "septic-system-installation",
+      "type": "service",
+      "title": "Septic System Installation in Plymouth, MA",
+      "sections": "hero, service_details, process, testimonials, cta",
+      "services": [
+        "Septic System Installation"
+      ],
+      "primary_keyword": "septic system installation Plymouth MA"
+    },
+    {
+      "slug": "sea-walls",
+      "type": "service",
+      "title": "Sea Walls in Plymouth, MA",
+      "sections": "hero, service_details, process, testimonials, cta",
+      "services": [
+        "Sea Walls"
+      ],
+      "primary_keyword": "sea walls Plymouth MA"
+    },
+    {
+      "slug": "helical-piers",
+      "type": "service",
+      "title": "Helical Piers in Plymouth, MA",
+      "sections": "hero, service_details, process, testimonials, cta",
+      "services": [
+        "Helical Piers"
+      ],
+      "primary_keyword": "helical piers Plymouth MA"
+    },
+    {
+      "slug": "title-5-inspections",
+      "type": "service",
+      "title": "Title 5 Inspections in Plymouth, MA",
+      "sections": "hero, service_details, process, testimonials, cta",
+      "services": [
+        "Title 5 Inspections"
+      ],
+      "primary_keyword": "title 5 inspections Plymouth MA"
+    }
+  ],
+  "phone": "(508) 989-7101",
+  "assets": {
+    "logo": null,
+    "images": [],
+    "page_allocations": null,
+    "recommended_hero_image": null
+  },
+  "design": {
+    "fonts": {},
+    "notes": "",
+    "style": "modern",
+    "colors": {
+      "extracted_from_logo": true
+    },
+    "logo_analysis": {}
+  },
+  "domain": "bdpm-site-services",
+  "phases": [
+    {
+      "name": "scaffold",
+      "phase": 1,
+      "status": "pending"
+    },
+    {
+      "name": "nav_footer_head",
+      "phase": 2,
+      "status": "pending"
+    },
+    {
+      "name": "homepage",
+      "phase": 3,
+      "status": "pending"
+    },
+    {
+      "name": "inner_pages",
+      "phase": 4,
+      "status": "pending"
+    },
+    {
+      "name": "seo_aeo_deploy",
+      "phase": 5,
+      "status": "pending"
+    }
+  ],
+  "address": {
+    "zip": "02360",
+    "city": "Plymouth",
+    "state": "MA",
+    "street": "168 Beaver Dam Rd"
+  },
+  "content": {
+    "usps": [],
+    "years": 5,
+    "insurance": "",
+    "description": "BDPM Site Services is a local business serving Plymouth, MA and the surrounding area. Services include site construction and excavation, septic system installation, sea walls, helical piers and Title 5 inspections. Contact BDPM Site Services at (508) 989-7101 for availability and pricing.",
+    "certifications": []
+  },
+  "reviews": [],
+  "tagline": "",
+  "industry": "Excavation Contractor",
+  "services": [
+    "Site Construction / Excavation",
+    "Septic System Installation",
+    "Sea Walls",
+    "Helical Piers",
+    "Title 5 Inspections"
+  ],
+  "owner_name": "Patrick Howard",
+  "client_slug": "bdpm-site-services",
+  "form_action": "https://db.pageone.cloud/functions/v1/leads/bdpm-site-services",
+  "github_repo": "",
+  "web_sources": [
+    "https://maps.google.com/?cid=16000072889164023170&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "https://www.bdpmsiteservices.com/"
+  ],
+  "company_name": "BDPM Site Services",
+  "integrations": {
+    "geo": null,
+    "bbb_url": null,
+    "booking": {
+      "days": [],
+      "windows": [],
+      "authorized": false
+    },
+    "spanish": false,
+    "financing": null,
+    "photo_day": null,
+    "accepts_sms": false,
+    "gbp_place_id": "ChIJnTb84wix5IkRgsX6SoWtC94",
+    "estimate_tool": {
+      "pricing": [],
+      "authorized": false
+    },
+    "gbp_map_embed": null,
+    "directions_url": "https://www.google.com/maps/dir/?api=1&destination=place_id:ChIJnTb84wix5IkRgsX6SoWtC94",
+    "elfsight_embed": null,
+    "financing_note": null,
+    "scheduling_url": null,
+    "text_us_number": null,
+    "review_request_url": "https://search.google.com/local/writereview?placeid=ChIJnTb84wix5IkRgsX6SoWtC94",
+    "certification_links": []
+  },
+  "service_areas": [
+    "Plymouth"
+  ],
+  "address_public": true,
+  "business_hours": "Mon-Fri 7am-5pm, Sat-Sun closed",
+  "image_curation": null,
+  "research_brief": {
+    "gbp": null,
+    "brief": {
+      "faqs": [
+        {
+          "a": "Yes. In Massachusetts, you must contact Dig Safe by calling 811 or 1-888-344-7233 before any excavation. Utility companies then mark their underground lines. Dig Safe requires notice at least 72 hours before digging, not counting weekends and holidays. Our crews confirm markings before any work begins.",
+          "q": "Do I need to call Dig Safe before digging in Plymouth?"
+        },
+        {
+          "a": "It may. Work within wetland resource areas or their buffer zones is regulated under the Massachusetts Wetlands Protection Act and local bylaws, which often means review by the Plymouth Conservation Commission. Tell us about the property during your estimate and we will explain what review is likely before any work is scheduled.",
+          "q": "Will my project need a wetlands or conservation permit in Plymouth?"
+        },
+        {
+          "a": "Pricing depends on the size of the job, soil and ledge conditions, site access, how much material must be hauled away, and the timeline. We provide a written estimate after a site visit, with the scope, price, and schedule itemized so there are no surprises.",
+          "q": "How much does excavation cost in Plymouth?"
+        },
+        {
+          "a": "We can support septic projects by coordinating excavation with your licensed septic designer and installer and with the Plymouth Board of Health requirements. Septic designs and Title 5 soil testing are handled by licensed professionals, and we work to their plans and inspection schedule.",
+          "q": "Do you work on septic system excavation?"
+        },
+        {
+          "a": "Plymouth sites vary widely, from sandy and gravelly soils to clay, fill, and exposed ledge. Each site is assessed during the estimate so the right equipment, drainage, and disposal plan are included in the quote before work begins.",
+          "q": "What types of soil and site conditions do you deal with?"
+        }
+      ],
+      "about_angle": "Position the company as a local Plymouth operation that knows the ground: sandy and glacial soils, ledge, wetlands, and the permitting steps that come with them. Tell the story of who runs the business and why they do this work, then back it up with verifiable details such as years operating, licenses, insurance, and completed projects. Avoid unverified claims about years in business or certifications until the owner confirms them.",
+      "hero_headline": "Plymouth Excavation Done Right, From the First Dig to Final Grade",
+      "differentiators": [
+        "No competitor or Google Business Profile data was provided, so every differentiator below is a hypothesis to verify with the owner before publishing. Confirm each one with the business.",
+        "Local Plymouth, MA focus: if the crews are based in Plymouth and work mainly in Plymouth and the South Shore, say so plainly and name the towns served.",
+        "Dig Safe compliance: state that the company handles Dig Safe (811) locate requests and works within marked utility lines, which reassures homeowners and commercial clients.",
+        "Permit and conservation know-how (verify): if the team has worked with the Plymouth Conservation Commission or Board of Health, describe those projects in general terms. Plymouth has extensive wetland buffers and septic requirements.",
+        "Clear, written estimates and scope: a documented scope of work, a timeline, and a change-order process are a common gap among small excavation contractors and a credible trust signal.",
+        "Equipment and crew capacity (verify): list the machines that match typical residential and light commercial jobs, such as excavators, skid steers, and dump trucks, only if the company actually owns them.",
+        "Responsiveness: a stated response window for estimate requests and a named point of contact.",
+        "Licensing, insurance, and references (verify): publish the license numbers, insurance, and a small set of real project references with photos and locations."
+      ],
+      "hero_subheadline": "Site prep, grading, and excavation for homes and businesses across Plymouth. Clear estimates, Dig Safe compliance, and crews who show up when they say they will.",
+      "tone_recommendation": "Professional and approachable, with an authoritative, plain-spoken edge. Use concrete local detail and short sentences, avoid jargon where a homeowner would not know it, and let the permitting and safety content carry the authority. Keep claims verifiable and avoid hype."
+    },
+    "competitors": [],
+    "generated_at": "2026-10-19T22:26:32.162Z",
+    "existing_site": null
+  },
+  "competitor_urls": [],
+  "phone_secondary": "",
+  "service_grouping": {
+    "cap": 16,
+    "tier": "premium",
+    "groups": [
+      {
+        "page": "Site Construction / Excavation",
+        "solo": true,
+        "services": [
+          "Site Construction / Excavation"
+        ]
+      },
+      {
+        "page": "Septic System Installation",
+        "solo": true,
+        "services": [
+          "Septic System Installation"
+        ]
+      },
+      {
+        "page": "Sea Walls",
+        "solo": true,
+        "services": [
+          "Sea Walls"
+        ]
+      },
+      {
+        "page": "Helical Piers",
+        "solo": true,
+        "services": [
+          "Helical Piers"
+        ]
+      },
+      {
+        "page": "Title 5 Inspections",
+        "solo": true,
+        "services": [
+          "Title 5 Inspections"
+        ]
+      }
+    ],
+    "grouped_count": 5,
+    "original_count": 5
+  },
+  "lead_notification_email": "patrick@bdpmma.com",
+  "lead_notification_phone": "(508) 989-7101",
+  "google_business_profile_url": "https://maps.google.com/?cid=16000072889164023170&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+}
