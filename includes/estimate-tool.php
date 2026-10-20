@@ -68,7 +68,7 @@ if (!function_exists('p1_estimate_tool')) {
   <div class="p1-estimate__inner">
     <div class="p1-estimate__copy">
       <h2 id="<?= $h($id) ?>-h"><?= $h($heading) ?></h2>
-      <p>Pick the service and the size of the job to see <?= $h($siteName) ?>'s typical price range. Your free on-site estimate gives a firm written price.</p>
+      <p>Pick the service and the size of the job to see <?= $h($siteName) ?>'s typical price range. Your free on-site estimate gives you the price for your job before any work starts.</p>
       <p class="p1-estimate__phone">Prefer to talk? <a href="tel:<?= $h($phoneRaw ?: preg_replace('/\D/', '', (string) $phone)) ?>"><?= $h($phone) ?></a></p>
     </div>
     <div class="p1-estimate__card">
