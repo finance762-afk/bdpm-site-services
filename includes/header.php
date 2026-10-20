@@ -12,7 +12,7 @@ $navOnServices = isActivePage('services');
 ?>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<header class="site-header" data-header>
+<header class="site-header site-header--dark site-header--brand" data-header>
   <nav class="navbar" aria-label="Main navigation">
     <div class="navbar-inner container">
       <a class="site-logo" href="/" aria-label="<?php echo h($siteName); ?> — home">

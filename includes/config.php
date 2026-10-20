@@ -159,7 +159,7 @@ $textUsNumber   = '';   // integrations.text_us_number is null (accepts_sms fals
 $financing      = [];   // integrations.financing is null
 $serviceZips    = [];   // integrations.service_zips not provided
 
-$cssVersion = '6';      // the SINGLE framework.css cache-bust; bump here on every framework.css / critical.css change
+$cssVersion = '7';      // the SINGLE framework.css cache-bust; bump here on every framework.css / critical.css change
 
 // ---- Lead attribution (first-touch cookie + p1_attribution_fields()) — must stay last, before any output ----
 require_once __DIR__ . '/attribution.php';

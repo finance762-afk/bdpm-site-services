@@ -219,6 +219,27 @@ section, .section { position: relative; padding-block: var(--section-pad); overf
 .site-header--dark .hamburger .hamburger-line { background: #fff; }
 .site-header--dark .hamburger span { background: #fff; }
 .site-header .navbar, .site-header .header-inner, .site-header .navbar-inner { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; } /* the bar is painted by .site-header only — a phase-2 critical.css shipped .navbar{background:rgba(255,255,255,.72)} that turned a dark header light gray (A&S 2026-09-08) */
+
+/* === BDPM brand bar (2026-10-20): the logo ships on an opaque #222831 box, so the bar is painted SOLID in that exact
+   colour (no glass) and the box disappears into it. Links set in the accent condensed face to echo the logo's
+   "SITE SERVICES" lettering; underline + CTA in the logo's yellow; phone as a white outline like the "BDPM" mark. === */
+.site-header--brand, .site-header--brand.scrolled { background: var(--color-dark); backdrop-filter: none; -webkit-backdrop-filter: none; border-bottom: 1px solid rgba(255,255,255,.08); box-shadow: none; }
+.site-header--brand.scrolled { box-shadow: 0 6px 24px rgba(0,0,0,.28); }
+.site-header--brand .navbar-links > li > a { font-family: var(--font-accent); font-weight: 700; font-size: 1.12rem; letter-spacing: .07em; text-transform: uppercase; color: #fff; padding: .55rem .7rem; }
+.site-header--brand .navbar-links > li > a:hover, .site-header--brand .navbar-links > li > a[aria-current] { color: var(--color-accent); }
+.site-header--brand .navbar-links > li > a::after { background: var(--color-accent); left: .7rem; right: .7rem; }
+.site-header--brand .navbar-links svg.chev { color: var(--color-accent); }
+.site-header--brand .dropdown { background: var(--color-dark); border-color: rgba(255,255,255,.12); box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+.site-header--brand .dropdown a { color: rgba(255,255,255,.88); font-family: var(--font-accent); font-weight: 700; font-size: 1.02rem; letter-spacing: .05em; text-transform: uppercase; }
+.site-header--brand .dropdown a:hover { background: rgba(255,255,255,.08); color: var(--color-accent); }
+.site-header--brand .navbar-cta .btn { font-family: var(--font-accent); font-weight: 700; font-size: 1.05rem; letter-spacing: .06em; text-transform: uppercase; }
+.site-header--brand .navbar-cta .btn.navbar-phone { color: #fff; border-color: rgba(255,255,255,.55); background: transparent; }
+.site-header--brand .navbar-cta .btn.navbar-phone:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+.site-header--brand .navbar-cta .btn.navbar-phone svg { color: var(--color-accent); }
+.site-header--brand .navbar-cta .btn-primary { background: var(--color-accent); color: var(--color-dark); border-color: var(--color-accent); }
+.site-header--brand .navbar-cta .btn-primary:hover { background: #fff; border-color: #fff; color: var(--color-dark); }
+.site-header--brand .hamburger .hamburger-line { background: #fff; }
+.site-header--brand .site-logo img { background: var(--color-dark); }
 .header-inner, .navbar-inner { height: 100%; display: flex; align-items: center; gap: 1rem; white-space: nowrap; }
 .site-logo, .navbar-logo, .brand { display: flex; align-items: center; gap: .7rem; text-decoration: none; color: var(--color-ink); margin-right: auto; }
 .site-logo img, .navbar-logo img { height: 96px; width: auto; max-width: 260px; object-fit: contain; transition: height .25s var(--ease); }
