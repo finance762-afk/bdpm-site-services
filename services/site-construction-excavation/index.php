@@ -5,8 +5,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 <?php
 /**
  * /services/site-construction-excavation/ — Phase 4 service page (premium editorial structure, warm-human archetype).
- * No client photos exist yet (build-plan assets.images = []), so the page is typographic: no hero image, no gallery,
- * no before/after. Facts trace to build-plan.json / config.php or to the public sources below; anything the page
+ * Photos (2026-10-20): photo hero (.hero--photo, LCP preloaded), a three-photo .sp-gallery-grid strip and a registry photo on
+ * every related-service card, all from includes/photos.php. Facts trace to build-plan.json / config.php or to the public sources below; anything the page
  * wanted but intake did not supply is listed in /content-confirmations.json.
  * Sources (checked 2026-10-19):
  *   Dig Safe 72 hours, weekends/holidays excluded — build-plan research_brief.faqs
@@ -25,7 +25,8 @@ $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'services';
 $pageType        = 'service';
 $serviceSlug     = 'site-construction-excavation';
-$heroPreload     = [];   // no hero photo yet -> no image preload, no fetchpriority element
+$exHeroPhoto = 'excavator-backhoe-loader-dirt-site';
+$heroPreload     = photoHeroPreload($exHeroPhoto, '100vw');
 $breadcrumbs     = [
     ['name' => 'Home', 'url' => '/'],
     ['name' => 'Services', 'url' => '/services/'],
@@ -210,6 +211,17 @@ $exCards = serviceCards();
 .ex-faq .faq summary { min-height: 44px; }
 .ex-faq .faq[open] summary { color: var(--color-accent-dark); }
 
+.ex-hero .hero-bg img { object-position: 50% 55%; }
+
+/* ---- Photo strip (three registry photos) ---- */
+.ex-photos { background: var(--color-surface); }
+.ex-photos__grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.ex-photos__intro { display: grid; gap: var(--space-md); }
+.ex-photos__intro .answer-block { margin: 0; background: var(--color-paper); }
+.ex-photos .sp-gallery-grid { margin: 0; }
+.ex-photos .sp-gallery-item { box-shadow: var(--shadow); }
+@media (max-width: 1000px) { .ex-photos__grid { grid-template-columns: 1fr; } }
+
 /* ---- Other services ---- */
 .ex-related { background: var(--color-surface); }
 .ex-related .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -244,7 +256,9 @@ $exCards = serviceCards();
 <div class="ex">
 
 <!-- ============ HERO (interior, compact form card) ============ -->
-<section class="hero hero--interior ex-hero" aria-labelledby="ex-hero-title">
+<section class="hero hero--interior hero--photo ex-hero" aria-labelledby="ex-hero-title">
+  <div class="hero-bg"><?php echo photoPicture($exHeroPhoto, '100vw', ['eager' => true]); ?></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <span class="ex-hero__earth" aria-hidden="true"></span>
   <div class="container">
     <div class="hero-grid hero-grid--form">
@@ -396,6 +410,24 @@ $exCards = serviceCards();
   </div>
 </section>
 
+<!-- ============ PHOTOS (three registry photos) ============ -->
+<section class="section ex-photos" aria-labelledby="ex-photos-title">
+  <div class="container-wide">
+    <div class="ex-photos__grid">
+      <div class="ex-photos__intro reveal-left">
+        <span class="eyebrow-label">On the job</span>
+        <h2 id="ex-photos-title">What does a BDPM Site Services <span class="text-accent">excavation job</span> look like?</h2>
+        <p class="answer-block">BDPM Site Services excavation work in Plymouth runs from the open foundation hole to the formwork that goes in it. These photos show a foundation dig with the crew in the excavation, footing forms with rebar set before the pour, and a crew checking a crane lift on site.</p>
+      </div>
+      <div class="sp-gallery-grid reveal-right">
+      <figure class="sp-gallery-item reveal-up reveal-delay-1"><?php echo photoPicture('excavator-foundation-dig-worker-plymouth', '(max-width: 700px) 92vw, 520px'); ?><figcaption>Foundation dig with the crew in the hole</figcaption></figure>
+      <figure class="sp-gallery-item reveal-up reveal-delay-2"><?php echo photoPicture('foundation-formwork-rebar-site-construction', '(max-width: 700px) 92vw, 380px'); ?><figcaption>Footing formwork and rebar before the pour</figcaption></figure>
+      <figure class="sp-gallery-item reveal-up reveal-delay-3"><?php echo photoPicture('site-crew-inspecting-crane-lift', '(max-width: 700px) 92vw, 380px'); ?><figcaption>Checking the lift plan on site</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ GROUND CONDITIONS (comparison table) ============ -->
 <section class="section ex-ground" aria-labelledby="ex-ground-title">
   <div class="container-wide">
@@ -457,6 +489,7 @@ if ($exReviews !== ''): ?>
     $exRelSvc = serviceBySlug($exRelSlug);
     $exRelCard = $exCards[$exRelSlug]; ?>
       <article class="service-card-with-image card-tint-<?php echo ($exRelI % 3) + 1; ?> reveal-up reveal-delay-<?php echo ($exRelI % 3) + 1; ?>">
+        <div class="service-card__image"><?php echo photoPicture($exRelCard['photo'], '(max-width: 900px) 92vw, 380px'); ?></div>
         <div class="service-card__body">
           <div class="service-card__icon"><?php icon($exRelCard['icon'], 26); ?></div>
           <h3><?php echo h($exRelSvc['name']); ?></h3>

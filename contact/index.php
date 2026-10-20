@@ -8,8 +8,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
  * Form contract: posts to $formAction (build-plan form_action, verbatim) with _next, _honey, attribution, consent_version/consent_page,
  * and the legacy-named twins _consent_version/_consent_page/_honeypot the Phase 5 brief asked for (harmless extras; the leads endpoint
  * reads the unprefixed names). The service select is named `service` (the field the endpoint stores), not service_requested.
- * Map: integrations.gbp_map_embed is null, so no iframe is printed; the Find Us band shows the address, hours and a Get Directions link
- * and renders .map-embed automatically once config.php $gbp['embed_src'] holds the embed URL.
+ * Map: the Find Us band renders .map-embed (iframe, lazy, titled) whenever config.php $gbp['embed_src'] holds the embed URL, and always
+ * shows the address, hours and a Get Directions link.
+ * Photos (2026-10-20): photo hero (.hero--photo, LCP preloaded) and a planning photo in the aside, both from includes/photos.php.
  */
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/p1-form-helpers.php';
 
@@ -19,7 +20,8 @@ $canonicalUrl    = $siteUrl . '/contact/';
 $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'contact';
 $pageType        = 'contact';
-$heroPreload     = [];
+$ctHeroPhoto     = 'contractor-client-handshake-estimate';
+$heroPreload     = photoHeroPreload($ctHeroPhoto, '100vw');
 $breadcrumbs     = [
     ['name' => 'Home', 'url' => '/'],
     ['name' => 'Contact', 'url' => '/contact/'],
@@ -68,6 +70,7 @@ $schemaMarkup = [[
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .3; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
 }
+.contact-hero .hero-bg img { object-position: 55% 45%; }
 .contact-hero__contours {
   position: absolute; inset: 0 0 0 45%; z-index: -1; pointer-events: none;
   background: repeating-radial-gradient(ellipse 60% 48% at 70% 50%, transparent 0 26px, color-mix(in srgb, var(--color-white) 7%, transparent) 26px 27px);
@@ -111,6 +114,9 @@ $schemaMarkup = [[
 .contact-call a { color: var(--color-white); font-family: var(--font-heading); font-weight: 800; font-size: var(--fs-h2); line-height: 1.1; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
 .contact-call a:hover { color: var(--color-accent-bright); }
 .contact-call p { margin: 0; font-size: var(--fs-small); color: color-mix(in srgb, var(--color-white) 78%, transparent); }
+.contact-aside__fig { margin: 0; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); background: var(--color-surface); border: 1px solid var(--color-line); }
+.contact-aside__fig img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.contact-aside__fig figcaption { padding: var(--space-sm) var(--space-md); font-size: var(--font-size-xs); color: var(--color-muted); }
 
 /* ---- Find us: dark band, plotted address + hours (+ map once an embed exists) ---- */
 .contact-find .section-head { max-width: 62ch; }
@@ -153,7 +159,9 @@ $schemaMarkup = [[
 <div class="contact">
 
 <!-- ============ HERO (interior, no form: the full form is the next section) ============ -->
-<section class="hero hero--interior contact-hero" aria-labelledby="contact-hero-title">
+<section class="hero hero--interior hero--photo contact-hero" aria-labelledby="contact-hero-title">
+  <div class="hero-bg"><?php echo photoPicture($ctHeroPhoto, '100vw', ['eager' => true]); ?></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <span class="contact-hero__contours" aria-hidden="true"></span>
   <div class="container">
     <div class="hero-copy">
@@ -251,6 +259,10 @@ $schemaMarkup = [[
           <div><?php icon('mail', 18); ?><a href="mailto:<?php echo h($email); ?>"><?php echo h($email); ?></a></div>
           <div><?php icon('map-pin', 18); ?><span><?php echo h($ctAddr); ?></span></div>
         </div>
+        <figure class="contact-aside__fig">
+          <?php echo photoPicture('site-team-planning-blueprints-table', '(max-width: 1000px) 92vw, 380px'); ?>
+          <figcaption>The site visit and the written estimate start with the plans on the table.</figcaption>
+        </figure>
       </aside>
 
     </div>

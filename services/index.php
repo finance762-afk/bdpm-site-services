@@ -6,7 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 /**
  * /services/ — Phase 4 services hub (warm-human archetype). Lists all five services from config.php $services with the
  * required services-grid component, a "which service do I need" table and the typical multi-service sequence.
- * No client photos exist yet, so the cards are icon cards (same as the homepage). The estimate tool is NOT authorized
+ * Photos (2026-10-20): photo hero (.hero--photo) and a registry photo on every card via serviceCards()['photo']. The estimate tool is NOT authorized
  * (build-plan integrations.estimate_tool.authorized = false), so it is not referenced here.
  */
 $pageTitle       = 'Excavation Services Plymouth MA | BDPM Site Services';
@@ -16,7 +16,8 @@ $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'services';
 $pageType        = 'other';
 $serviceSlug     = '';
-$heroPreload     = [];
+$svHeroPhoto     = 'construction-crew-scaffolding-site-review';
+$heroPreload     = photoHeroPreload($svHeroPhoto, '100vw');
 $breadcrumbs     = [
     ['name' => 'Home', 'url' => '/'],
     ['name' => 'Services', 'url' => '/services/'],
@@ -73,6 +74,7 @@ $svChain = [
 
 /* ---- Hero: layered gradient + noise + survey grid ---- */
 .sv-hero { padding-bottom: clamp(2.5rem, 5vw, 4rem); }
+.sv-hero .hero-bg img { object-position: 50% 40%; }
 .sv-hero::before {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: radial-gradient(ellipse 55% 90% at 90% 20%, color-mix(in srgb, var(--color-accent) 22%, transparent), transparent 70%);
@@ -101,16 +103,16 @@ $svChain = [
 .sv-index a::before { content: counter(svidx, decimal-leading-zero); font-family: var(--font-accent); font-size: var(--font-size-sm); color: var(--color-accent-bright); letter-spacing: .08em; }
 .sv-index a:hover { color: var(--color-accent-bright); padding-left: var(--space-xs); }
 
-/* ---- Services grid (featured, 5 icon cards) ---- */
+/* ---- Services grid (featured, 5 photo cards) ---- */
 .sv-services { background: var(--color-paper); }
 .sv-services .section-title { max-width: 66ch; }
 .sv-services .section-subtitle { color: var(--color-accent-dark); }
 .sv-services .service-card-with-image { box-shadow: var(--shadow-sm); }
 .sv-services .service-card__body { padding: var(--space-xl) var(--space-lg) var(--space-lg); }
 .sv-services .service-card__icon { width: 52px; height: 52px; border-radius: var(--radius-lg); background: var(--color-surface); color: var(--color-accent-dark); box-shadow: var(--shadow); }
-.sv-services .services-grid--featured > :first-child { display: flex; color: var(--color-white); border-color: transparent; isolation: isolate; background: linear-gradient(150deg, var(--color-dark) 0%, var(--color-dark-alt) 60%, var(--color-primary-deep) 120%); }
+.sv-services .services-grid--featured > :first-child { color: var(--color-white); border-color: transparent; isolation: isolate; background: linear-gradient(150deg, var(--color-dark) 0%, var(--color-dark-alt) 60%, var(--color-primary-deep) 120%); }
 .sv-services .services-grid--featured > :first-child::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background-image: linear-gradient(var(--sv-grid) 1px, transparent 1px), linear-gradient(90deg, var(--sv-grid) 1px, transparent 1px); background-size: 36px 36px; }
-.sv-services .services-grid--featured > :first-child .service-card__body { padding: calc(var(--space-3xl) + var(--space-lg)) var(--space-xl) var(--space-xl); align-content: end; gap: var(--space-sm); }
+.sv-services .services-grid--featured > :first-child .service-card__body { padding: var(--space-xl); align-content: end; gap: var(--space-sm); }
 .sv-services .services-grid--featured > :first-child h3 { color: var(--color-white); font-size: var(--fs-h2); }
 .sv-services .services-grid--featured > :first-child .service-card__desc,
 .sv-services .services-grid--featured > :first-child ul li { color: color-mix(in srgb, var(--color-white) 82%, transparent); font-size: var(--fs-body); }
@@ -171,7 +173,9 @@ $svChain = [
 <div class="sv">
 
 <!-- ============ HERO (interior, no form: the hub routes to the service pages) ============ -->
-<section class="hero hero--interior sv-hero" aria-labelledby="sv-hero-title">
+<section class="hero hero--interior hero--photo sv-hero" aria-labelledby="sv-hero-title">
+  <div class="hero-bg"><?php echo photoPicture($svHeroPhoto, '100vw', ['eager' => true]); ?></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <span class="sv-hero__grid" aria-hidden="true"></span>
   <div class="container">
     <div class="sv-hero__inner">
@@ -223,6 +227,7 @@ $svChain = [
 <?php foreach ($services as $svI => $svSvc):
     $svCard = $svCards[$svSvc['slug']]; ?>
       <article class="service-card-with-image card-tint-<?php echo ($svI % 3) + 1; ?> reveal-up reveal-delay-<?php echo ($svI % 3) + 1; ?>"<?php echo $svI === 0 ? ' data-featured-label="Core service"' : ''; ?>>
+        <div class="service-card__image"><?php echo photoPicture($svCard['photo'], $svI === 0 ? '(max-width: 1000px) 92vw, 760px' : '(max-width: 720px) 92vw, (max-width: 1000px) 46vw, 380px'); ?></div>
         <div class="service-card__body">
           <div class="service-card__icon"><?php icon($svCard['icon'], 26); ?></div>
           <h3><?php echo h($svSvc['name']); ?></h3>

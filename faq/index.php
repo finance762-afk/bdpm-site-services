@@ -19,7 +19,8 @@ $canonicalUrl    = $siteUrl . '/faq/';
 $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'faq';
 $pageType        = 'faq';
-$heroPreload     = [];
+$faqHeroPhoto = 'site-team-planning-blueprints-table';   // registry name (includes/photos.php) — photo hero, LCP preloaded
+$heroPreload     = photoHeroPreload($faqHeroPhoto, '100vw');
 $breadcrumbs     = [
     ['name' => 'Home', 'url' => '/'],
     ['name' => 'FAQ', 'url' => '/faq/'],
@@ -128,6 +129,7 @@ $schemaMarkup = [
 .faqpage p, .faqpage summary { text-wrap: pretty; }
 
 /* ---- Hero: layered gradient + noise + ruled lines ---- */
+.faq-hero .hero-bg img { object-position: 50% 40%; }
 .faq-hero::before {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: radial-gradient(ellipse 50% 70% at 0% 0%, color-mix(in srgb, var(--color-accent) 20%, transparent), transparent 70%),
@@ -217,7 +219,9 @@ $schemaMarkup = [
 <div class="faqpage">
 
 <!-- ============ HERO (interior, no form — the estimate band sits after the first category) ============ -->
-<section class="hero hero--interior faq-hero" aria-labelledby="faq-hero-title">
+<section class="hero hero--interior hero--photo faq-hero" aria-labelledby="faq-hero-title">
+  <div class="hero-bg"><?php echo photoPicture($faqHeroPhoto, '100vw', ['eager' => true]); ?></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <span class="faq-hero__lines" aria-hidden="true"></span>
   <div class="container">
     <div class="hero-copy">

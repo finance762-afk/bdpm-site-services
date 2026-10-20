@@ -16,7 +16,8 @@ $canonicalUrl    = $siteUrl . '/service-areas/';
 $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'service-areas';
 $pageType        = 'other';
-$heroPreload     = [];
+$saHeroPhoto = 'aerial-bulldozer-grading-rock-shoreline';   // registry name (includes/photos.php) — photo hero, LCP preloaded
+$heroPreload     = photoHeroPreload($saHeroPhoto, '100vw');
 $breadcrumbs     = [
     ['name' => 'Home', 'url' => '/'],
     ['name' => 'Service Areas', 'url' => '/service-areas/'],
@@ -62,6 +63,7 @@ $schemaMarkup = [[
 .sa p { text-wrap: pretty; }
 
 /* ---- Hero ---- */
+.sa-hero .hero-bg img { object-position: 50% 50%; }
 .sa-hero::before {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: repeating-radial-gradient(circle at 85% 20%, transparent 0 34px, color-mix(in srgb, var(--color-white) 6%, transparent) 34px 35px),
@@ -127,7 +129,9 @@ $schemaMarkup = [[
 <div class="sa">
 
 <!-- ============ HERO ============ -->
-<section class="hero hero--interior sa-hero" aria-labelledby="sa-hero-title">
+<section class="hero hero--interior hero--photo sa-hero" aria-labelledby="sa-hero-title">
+  <div class="hero-bg"><?php echo photoPicture($saHeroPhoto, '100vw', ['eager' => true]); ?></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <ol>

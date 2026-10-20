@@ -5,7 +5,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 <?php
 /**
  * /services/title-5-inspections/ — Phase 4 service page (premium editorial structure, warm-human archetype).
- * No client photos exist yet, so the page is typographic; its signature section is a sale-timeline ruler.
+ * Photos (2026-10-20): photo hero (.hero--photo, LCP preloaded), a three-photo .sp-gallery-grid strip and a registry photo on every
+ * related-service card, all from includes/photos.php. The signature section is a sale-timeline ruler.
  * No FAQ section: intake / research_brief holds no customer question specific to Title 5 inspections (zero is fine),
  * so this page carries no FAQPage schema.
  * Sources (checked 2026-10-19):
@@ -27,7 +28,8 @@ $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'services';
 $pageType        = 'service';
 $serviceSlug     = 'title-5-inspections';
-$heroPreload     = [];
+$t5HeroPhoto = 'title-5-inspector-clipboard-open-septic-tank';
+$heroPreload     = photoHeroPreload($t5HeroPhoto, '100vw');
 $breadcrumbs     = [
     ['name' => 'Home', 'url' => '/'],
     ['name' => 'Services', 'url' => '/services/'],
@@ -192,6 +194,17 @@ $t5Cards = serviceCards();
 .t5-tip { margin: 0; padding: var(--space-lg); border-radius: var(--radius-lg); background: var(--color-dark); color: color-mix(in srgb, var(--color-white) 86%, transparent); font-size: var(--fs-small); }
 .t5-tip strong { color: var(--color-accent-bright); }
 
+.t5-hero .hero-bg img { object-position: 60% 40%; }
+
+/* ---- Photo strip (three registry photos) ---- */
+.t5-photos { background: var(--color-surface); }
+.t5-photos__grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.t5-photos__intro { display: grid; gap: var(--space-md); }
+.t5-photos__intro .answer-block { margin: 0; background: var(--color-paper); }
+.t5-photos .sp-gallery-grid { margin: 0; }
+.t5-photos .sp-gallery-item { box-shadow: var(--shadow); }
+@media (max-width: 1000px) { .t5-photos__grid { grid-template-columns: 1fr; } }
+
 /* ---- Other services ---- */
 .t5-related { background: var(--color-surface); }
 .t5-related .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -231,7 +244,9 @@ $t5Cards = serviceCards();
 <div class="t5">
 
 <!-- ============ HERO (interior, compact form card) ============ -->
-<section class="hero hero--interior t5-hero" aria-labelledby="t5-hero-title">
+<section class="hero hero--interior hero--photo t5-hero" aria-labelledby="t5-hero-title">
+  <div class="hero-bg"><?php echo photoPicture($t5HeroPhoto, '100vw', ['eager' => true]); ?></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <span class="t5-hero__lines" aria-hidden="true"></span>
   <div class="container">
     <div class="hero-grid hero-grid--form">
@@ -327,6 +342,24 @@ $t5Cards = serviceCards();
   </div>
 </section>
 
+<!-- ============ PHOTOS (three registry photos) ============ -->
+<section class="section t5-photos" aria-labelledby="t5-photos-title">
+  <div class="container-wide">
+    <div class="t5-photos__grid">
+      <div class="t5-photos__intro reveal-left">
+        <span class="eyebrow-label">On the job</span>
+        <h2 id="t5-photos-title">What does a <span class="text-accent">Title 5 inspection</span> look like on the day?</h2>
+        <p class="answer-block">A BDPM Site Services Title 5 inspection in Plymouth starts by finding and opening the system. These photos show a riser cover being lifted to check the tank, the access covers and control box located in a landscaped yard, and a treatment tank set in sandy ground.</p>
+      </div>
+      <div class="sp-gallery-grid reveal-right">
+      <figure class="sp-gallery-item reveal-up reveal-delay-1"><?php echo photoPicture('lifting-septic-tank-cover-inspection', '(max-width: 700px) 92vw, 520px'); ?><figcaption>Opening the riser to check the tank</figcaption></figure>
+      <figure class="sp-gallery-item reveal-up reveal-delay-2"><?php echo photoPicture('septic-covers-control-box-landscaped-yard', '(max-width: 700px) 92vw, 380px'); ?><figcaption>Access covers and control box located in the yard</figcaption></figure>
+      <figure class="sp-gallery-item reveal-up reveal-delay-3"><?php echo photoPicture('green-lid-septic-tank-sandy-lot', '(max-width: 700px) 92vw, 380px'); ?><figcaption>Treatment tank set in sandy Plymouth ground</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ RESULTS (table) ============ -->
 <section class="section t5-results" aria-labelledby="t5-results-title">
   <div class="container-wide">
@@ -397,6 +430,7 @@ if ($t5Reviews !== ''): ?>
     $t5RelSvc = serviceBySlug($t5RelSlug);
     $t5RelCard = $t5Cards[$t5RelSlug]; ?>
       <article class="service-card-with-image card-tint-<?php echo ($t5RelI % 3) + 1; ?> reveal-up reveal-delay-<?php echo ($t5RelI % 3) + 1; ?>">
+        <div class="service-card__image"><?php echo photoPicture($t5RelCard['photo'], '(max-width: 900px) 92vw, 380px'); ?></div>
         <div class="service-card__body">
           <div class="service-card__icon"><?php icon($t5RelCard['icon'], 26); ?></div>
           <h3><?php echo h($t5RelSvc['name']); ?></h3>

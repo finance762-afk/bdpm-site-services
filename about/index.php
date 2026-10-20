@@ -5,8 +5,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 <?php
 /**
  * /about/ — Phase 5 About page (premium editorial structure, warm-human archetype).
- * Intake supplies NO client photos, NO logo, NO license / insurance / certifications and no team beyond the owner, so this page is typographic:
- * no split-image columns, no gradient stand-ins for photos. Every fact traces to build-plan.json / config.php or repeats a claim the homepage
+ * Photos (2026-10-20): photo hero (.hero--photo, LCP preloaded), a plans photo beside the story, a crew figure beside the owner card and an
+ * "at work" three-photo strip, all real photos from includes/photos.php. Intake supplies NO license / insurance / certifications and no team
+ * names beyond the owner, so nothing is invented about the people in the photos. Every fact traces to build-plan.json / config.php or repeats a claim the homepage
  * already makes (owner-run, Est. 2021, residential + commercial, site visit -> written estimate -> Dig Safe/approvals -> dig/build/grade). Anything
  * the page wants but intake lacks (founder story, milestones, license, insurance, crew, photos) is listed in /content-confirmations.json.
  * The Credentials section is data-driven: licence / insurance / certification rows print only when config.php holds a value, so nothing is invented
@@ -21,7 +22,8 @@ $canonicalUrl    = $siteUrl . '/about/';
 $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'about';
 $pageType        = 'about';
-$heroPreload     = [];
+$abHeroPhoto     = 'site-crew-inspecting-crane-lift';
+$heroPreload     = photoHeroPreload($abHeroPhoto, '100vw');
 $breadcrumbs     = [
     ['name' => 'Home', 'url' => '/'],
     ['name' => 'About', 'url' => '/about/'],
@@ -123,6 +125,7 @@ foreach ((array) $certifications as $abCert) {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .3; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
 }
+.about-hero .hero-bg img { object-position: 50% 35%; }
 .about-hero__contours {
   position: absolute; inset: 0 0 0 40%; z-index: -1; pointer-events: none;
   background: repeating-radial-gradient(ellipse 60% 48% at 70% 50%, transparent 0 26px, color-mix(in srgb, var(--color-white) 7%, transparent) 26px 27px);
@@ -155,7 +158,11 @@ foreach ((array) $certifications as $abCert) {
 .ab-story__copy > p:not(.answer-block) { margin: 0; max-width: 62ch; color: var(--color-ink-2); }
 .ab-story__copy a { color: var(--color-accent-dark); font-weight: 600; text-decoration: underline; text-underline-offset: .15em; }
 .ab-story__copy > p:nth-of-type(2)::first-letter { font-family: var(--font-heading); font-weight: 800; font-size: 3.4em; line-height: .85; float: left; padding: .08em .12em 0 0; color: var(--color-accent-dark); }
-.ab-notes { position: sticky; top: calc(var(--nav-height) + var(--space-xl)); display: grid; gap: var(--space-md); margin: 0; padding: 0; list-style: none; }
+.ab-story__side { position: sticky; top: calc(var(--nav-height) + var(--space-xl)); display: grid; gap: var(--space-lg); }
+.ab-story__fig { margin: 0; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); background: var(--color-surface); }
+.ab-story__fig img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.ab-story__fig figcaption { padding: var(--space-sm) var(--space-md); font-size: var(--font-size-xs); color: var(--color-muted); border-top: 1px solid var(--color-line); }
+.ab-notes { display: grid; gap: var(--space-md); margin: 0; padding: 0; list-style: none; }
 .ab-notes li { position: relative; display: grid; gap: var(--space-1); padding: var(--space-md) var(--space-lg); background: var(--color-surface); border: 1px solid var(--color-line); border-left: 4px solid var(--color-accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; box-shadow: var(--shadow-sm); }
 .ab-notes li:nth-child(odd) { background: var(--color-card-tint-3); }
 .ab-notes li:nth-child(2) { margin-left: var(--space-lg); }
@@ -195,6 +202,10 @@ foreach ((array) $certifications as $abCert) {
 .ab-owner li { display: grid; grid-template-columns: 1.4rem minmax(0, 1fr); gap: var(--space-xs); align-items: start; }
 .ab-owner li svg { color: var(--color-accent-bright); margin-top: 2px; }
 .ab-owner a { color: var(--color-white); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
+.ab-crew { position: relative; margin: 0; display: grid; justify-items: center; padding: var(--space-lg) var(--space-lg) 0; border-radius: var(--radius-lg); overflow: hidden; background: linear-gradient(160deg, var(--color-card-tint-1) 0%, var(--color-card-tint-3) 100%); border: 1px solid var(--color-line); }
+.ab-crew::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(135deg, transparent 0 14px, color-mix(in srgb, var(--color-ink) 4%, transparent) 14px 15px); pointer-events: none; }
+.ab-crew img { position: relative; width: auto; max-width: 100%; height: auto; max-height: 340px; object-fit: contain; }
+.ab-crew figcaption { position: absolute; left: var(--space-md); top: var(--space-md); font-family: var(--font-accent); font-size: var(--fs-eyebrow); letter-spacing: .14em; text-transform: uppercase; color: var(--color-accent-dark); }
 .ab-values__list { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-md); }
 .ab-values__list li { display: grid; grid-template-columns: 3.25rem minmax(0, 1fr); gap: var(--space-md); padding: var(--space-lg); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: transform var(--transition), box-shadow var(--transition); }
 .ab-values__list li:hover { transform: translateX(4px); box-shadow: var(--shadow); }
@@ -217,6 +228,14 @@ foreach ((array) $certifications as $abCert) {
 .ab-line b { margin-top: var(--space-sm); font-family: var(--font-accent); font-size: var(--font-size-2xl); letter-spacing: .06em; text-transform: uppercase; color: var(--color-white); }
 .ab-line h3 { margin: 0; font-size: var(--font-size-lg); color: var(--color-white); }
 .ab-line p { margin: 0; max-width: 30ch; font-size: var(--fs-small); color: color-mix(in srgb, var(--color-white) 76%, transparent); }
+
+/* ---- At work: three-photo strip ---- */
+.ab-work { background: var(--color-paper); }
+.ab-work__grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.ab-work__intro { display: grid; gap: var(--space-md); }
+.ab-work__intro .answer-block { margin: 0; background: var(--color-surface); }
+.ab-work .sp-gallery-grid { margin: 0; }
+.ab-work .sp-gallery-item { box-shadow: var(--shadow); }
 
 /* ---- Credentials ---- */
 .ab-creds { background: var(--color-surface); }
@@ -241,8 +260,8 @@ foreach ((array) $certifications as $abCert) {
 
 /* ---- Responsive ---- */
 @media (max-width: 1000px) {
-  .ab-story__grid, .ab-values__grid, .cta-band__grid { grid-template-columns: 1fr; }
-  .ab-notes { position: static; }
+  .ab-story__grid, .ab-values__grid, .cta-band__grid, .ab-work__grid { grid-template-columns: 1fr; }
+  .ab-story__side { position: static; }
   .ab-creds__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
@@ -269,8 +288,10 @@ foreach ((array) $certifications as $abCert) {
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php'; ?>
 <div class="about">
 
-<!-- ============ HERO (interior, fact sheet instead of a photo, no form) ============ -->
-<section class="hero hero--interior about-hero" aria-labelledby="about-hero-title">
+<!-- ============ HERO (photo hero + fact sheet, no form) ============ -->
+<section class="hero hero--interior hero--photo about-hero" aria-labelledby="about-hero-title">
+  <div class="hero-bg"><?php echo photoPicture($abHeroPhoto, '100vw', ['eager' => true]); ?></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <span class="about-hero__contours" aria-hidden="true"></span>
   <div class="container">
     <div class="hero-grid">
@@ -321,11 +342,17 @@ foreach ((array) $certifications as $abCert) {
         <p>Those five jobs share the same ground. A septic system, a sea wall and a pier foundation all start with the same questions about soil, ledge and groundwater, and often the same reviews by the Plymouth Board of Health or Conservation Commission. Handling them as one trade keeps a project on one schedule, and a Title 5 inspection that turns up a failed system can lead straight to the replacement without bringing in a second contractor.</p>
         <p>Plymouth lots range from sandy and gravelly soils to clay, fill and exposed ledge, and many sit near wetlands or open water. Two lots on the same street can need different machines and different approvals, which is why every <?php echo h($siteName); ?> job begins with a site visit and a written estimate instead of a number guessed over the phone.</p>
       </div>
-      <ul class="ab-notes reveal-right" aria-label="Company notes">
+      <div class="ab-story__side reveal-right">
+        <figure class="ab-story__fig">
+          <?php echo photoPicture('reviewing-site-plans-laptop-hard-hat', '(max-width: 1000px) 92vw, 420px'); ?>
+          <figcaption>Every job starts on paper: the plan, the soil results and the permit steps before the site visit.</figcaption>
+        </figure>
+        <ul class="ab-notes" aria-label="Company notes">
 <?php foreach ($abNotes as $abNote): ?>
-        <li><b><?php icon($abNote[0], 16); ?><?php echo h($abNote[1]); ?></b><span><?php echo h($abNote[2]); ?></span></li>
+          <li><b><?php icon($abNote[0], 16); ?><?php echo h($abNote[1]); ?></b><span><?php echo h($abNote[2]); ?></span></li>
 <?php endforeach; ?>
-      </ul>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -382,6 +409,10 @@ foreach ((array) $certifications as $abCert) {
             <li><?php icon('map-pin', 16); ?><span><?php echo h($abAddr); ?></span></li>
           </ul>
         </div>
+        <figure class="ab-crew">
+          <?php echo photoPicture('bdpm-crew-member-hard-hat-safety-vest', '(max-width: 1000px) 60vw, 300px'); ?>
+          <figcaption>On site</figcaption>
+        </figure>
       </div>
       <ol class="ab-values__list" aria-label="How BDPM Site Services works">
 <?php foreach ($abValues as $abValI => $abValue): ?>
@@ -409,6 +440,24 @@ foreach ((array) $certifications as $abCert) {
       <li class="is-<?php echo h($abStation['state']); ?>"><i aria-hidden="true"></i><b><?php echo h($abStation['mark']); ?></b><h3><?php echo h($abStation['title']); ?></h3><p><?php echo h($abStation['text']); ?></p></li>
 <?php endforeach; ?>
     </ol>
+  </div>
+</section>
+
+<!-- ============ AT WORK (three registry photos) ============ -->
+<section class="section ab-work" aria-labelledby="ab-work-title">
+  <div class="container-wide">
+    <div class="ab-work__grid">
+      <div class="ab-work__intro reveal-left">
+        <span class="eyebrow-label">At work</span>
+        <h2 id="ab-work-title">What does a job with <span class="text-accent"><?php echo h($siteName); ?></span> look like from the first meeting?</h2>
+        <p class="answer-block">A job with <?php echo h($siteName); ?> starts at a table with the plans, moves to a handshake on the scope and price, and ends with the crew checking the layout beside the machine. These photos show those three points on a Plymouth project.</p>
+      </div>
+      <div class="sp-gallery-grid reveal-right">
+      <figure class="sp-gallery-item reveal-up reveal-delay-1"><?php echo photoPicture('site-team-planning-blueprints-table', '(max-width: 700px) 92vw, 520px'); ?><figcaption>Plans, calculator and tape measure on the table</figcaption></figure>
+      <figure class="sp-gallery-item reveal-up reveal-delay-2"><?php echo photoPicture('contractor-client-handshake-estimate', '(max-width: 700px) 92vw, 380px'); ?><figcaption>Agreeing the scope and the written estimate</figcaption></figure>
+      <figure class="sp-gallery-item reveal-up reveal-delay-3"><?php echo photoPicture('excavation-contractor-blueprints-excavator', '(max-width: 700px) 92vw, 380px'); ?><figcaption>Checking the layout beside the excavator</figcaption></figure>
+      </div>
+    </div>
   </div>
 </section>
 

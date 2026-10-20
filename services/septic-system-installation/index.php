@@ -5,7 +5,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 <?php
 /**
  * /services/septic-system-installation/ — Phase 4 service page (premium editorial structure, warm-human archetype).
- * No client photos exist yet, so the page is typographic; its signature section is a CSS flow diagram of a Title 5 system.
+ * Photos (2026-10-20): photo hero (.hero--photo, LCP preloaded), a three-photo .sp-gallery-grid strip and a registry photo on every
+ * related-service card, all from includes/photos.php. The signature section is a CSS flow diagram of a Title 5 system.
  * Sources (checked 2026-10-19):
  *   110 gpd per bedroom design flow; bedrooms (not bathrooms) change flow — 310 CMR 15.203, https://www.mashpeema.gov/node/208926
  *   4 ft separation to high groundwater, 5 ft where perc rate ≤ 2 min/inch — 310 CMR 15.212
@@ -27,7 +28,8 @@ $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'services';
 $pageType        = 'service';
 $serviceSlug     = 'septic-system-installation';
-$heroPreload     = [];
+$stHeroPhoto = 'septic-tanks-installed-pit-orange-pipe';
+$heroPreload     = photoHeroPreload($stHeroPhoto, '100vw');
 $breadcrumbs     = [
     ['name' => 'Home', 'url' => '/'],
     ['name' => 'Services', 'url' => '/services/'],
@@ -201,6 +203,17 @@ $stCards = serviceCards();
 .st-faq .faq { border-top: 2px solid var(--color-ink); }
 .st-faq .faq summary { min-height: 44px; }
 
+.st-hero .hero-bg img { object-position: 50% 55%; }
+
+/* ---- Photo strip (three registry photos) ---- */
+.st-photos { background: var(--color-surface); }
+.st-photos__grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.st-photos__intro { display: grid; gap: var(--space-md); }
+.st-photos__intro .answer-block { margin: 0; background: var(--color-paper); }
+.st-photos .sp-gallery-grid { margin: 0; }
+.st-photos .sp-gallery-item { box-shadow: var(--shadow); }
+@media (max-width: 1000px) { .st-photos__grid { grid-template-columns: 1fr; } }
+
 /* ---- Other services ---- */
 .st-related { background: var(--color-paper); }
 .st-related .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -236,7 +249,9 @@ $stCards = serviceCards();
 <div class="st">
 
 <!-- ============ HERO (interior, compact form card) ============ -->
-<section class="hero hero--interior st-hero" aria-labelledby="st-hero-title">
+<section class="hero hero--interior hero--photo st-hero" aria-labelledby="st-hero-title">
+  <div class="hero-bg"><?php echo photoPicture($stHeroPhoto, '100vw', ['eager' => true]); ?></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <span class="st-hero__pipe" aria-hidden="true"></span>
   <div class="container">
     <div class="hero-grid hero-grid--form">
@@ -355,6 +370,24 @@ $stCards = serviceCards();
   </div>
 </section>
 
+<!-- ============ PHOTOS (three registry photos) ============ -->
+<section class="section st-photos" aria-labelledby="st-photos-title">
+  <div class="container-wide">
+    <div class="st-photos__grid">
+      <div class="st-photos__intro reveal-left">
+        <span class="eyebrow-label">On the job</span>
+        <h2 id="st-photos-title">What does a <span class="text-accent">septic installation</span> look like before backfill?</h2>
+        <p class="answer-block">A BDPM Site Services septic installation in Plymouth is inspected while the tank, the pipes and the field are still open. These photos show a concrete tank with its riser set, two tanks connected in the trench, and precast riser rings staged beside the hole.</p>
+      </div>
+      <div class="sp-gallery-grid reveal-right">
+      <figure class="sp-gallery-item reveal-up reveal-delay-1"><?php echo photoPicture('concrete-septic-tank-riser-backyard', '(max-width: 700px) 92vw, 520px'); ?><figcaption>Concrete tank set, riser and lid in place</figcaption></figure>
+      <figure class="sp-gallery-item reveal-up reveal-delay-2"><?php echo photoPicture('plastic-septic-tanks-trench-connected', '(max-width: 700px) 92vw, 380px'); ?><figcaption>Tanks connected in the trench before backfill</figcaption></figure>
+      <figure class="sp-gallery-item reveal-up reveal-delay-3"><?php echo photoPicture('precast-concrete-septic-riser-rings', '(max-width: 700px) 92vw, 380px'); ?><figcaption>Precast risers staged beside the excavation</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ SIZING (table) ============ -->
 <section class="section edge-curve-top st-size" aria-labelledby="st-size-title">
   <div class="container">
@@ -428,6 +461,7 @@ if ($stReviews !== ''): ?>
     $stRelSvc = serviceBySlug($stRelSlug);
     $stRelCard = $stCards[$stRelSlug]; ?>
       <article class="service-card-with-image card-tint-<?php echo ($stRelI % 3) + 1; ?> reveal-up reveal-delay-<?php echo ($stRelI % 3) + 1; ?>">
+        <div class="service-card__image"><?php echo photoPicture($stRelCard['photo'], '(max-width: 900px) 92vw, 380px'); ?></div>
         <div class="service-card__body">
           <div class="service-card__icon"><?php icon($stRelCard['icon'], 24); ?></div>
           <h3><?php echo h($stRelSvc['name']); ?></h3>

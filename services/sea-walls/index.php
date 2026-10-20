@@ -5,7 +5,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 <?php
 /**
  * /services/sea-walls/ — Phase 4 service page (premium editorial structure, warm-human archetype).
- * No client photos exist yet, so the page is typographic; its signature section is the 1978 coastal-bank rule.
+ * Photos (2026-10-20): photo hero (.hero--photo, LCP preloaded), a three-photo .sp-gallery-grid strip and a registry photo on every
+ * related-service card, all from includes/photos.php. The signature section is the 1978 coastal-bank rule.
  * Sources (checked 2026-10-19):
  *   New coastal engineering structures on or within 100 ft of a coastal bank only to protect buildings constructed before
  *   Aug 10, 1978 (or under an NOI filed before then); minimize effects on adjacent beaches; no feasible alternative —
@@ -24,7 +25,8 @@ $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'services';
 $pageType        = 'service';
 $serviceSlug     = 'sea-walls';
-$heroPreload     = [];
+$swHeroPhoto = 'concrete-seawall-construction-beach';
+$heroPreload     = photoHeroPreload($swHeroPhoto, '100vw');
 $breadcrumbs     = [
     ['name' => 'Home', 'url' => '/'],
     ['name' => 'Services', 'url' => '/services/'],
@@ -181,6 +183,17 @@ $swCards = serviceCards();
 .sw-faq .faq { border-top: 1px solid var(--color-line); border-bottom: 1px solid var(--color-line); }
 .sw-faq .faq summary { min-height: 44px; }
 
+.sw-hero .hero-bg img { object-position: 50% 50%; }
+
+/* ---- Photo strip (three registry photos) ---- */
+.sw-photos { background: var(--color-surface); }
+.sw-photos__grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.sw-photos__intro { display: grid; gap: var(--space-md); }
+.sw-photos__intro .answer-block { margin: 0; background: var(--color-paper); }
+.sw-photos .sp-gallery-grid { margin: 0; }
+.sw-photos .sp-gallery-item { box-shadow: var(--shadow); }
+@media (max-width: 1000px) { .sw-photos__grid { grid-template-columns: 1fr; } }
+
 /* ---- Other services ---- */
 .sw-related { background: var(--color-surface); }
 .sw-related .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -210,7 +223,9 @@ $swCards = serviceCards();
 <div class="sw">
 
 <!-- ============ HERO (interior, compact form card) ============ -->
-<section class="hero hero--interior sw-hero" aria-labelledby="sw-hero-title">
+<section class="hero hero--interior hero--photo sw-hero" aria-labelledby="sw-hero-title">
+  <div class="hero-bg"><?php echo photoPicture($swHeroPhoto, '100vw', ['eager' => true]); ?></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <span class="sw-hero__tide" aria-hidden="true"></span>
   <div class="container">
     <div class="hero-grid hero-grid--form">
@@ -341,6 +356,24 @@ $swCards = serviceCards();
   </div>
 </section>
 
+<!-- ============ PHOTOS (three registry photos) ============ -->
+<section class="section sw-photos" aria-labelledby="sw-photos-title">
+  <div class="container-wide">
+    <div class="sw-photos__grid">
+      <div class="sw-photos__intro reveal-left">
+        <span class="eyebrow-label">On the job</span>
+        <h2 id="sw-photos-title">What does <span class="text-accent">sea wall work</span> look like on the shoreline?</h2>
+        <p class="answer-block">BDPM Site Services sea wall work in Plymouth is built at the water’s edge on the low tide. These photos show a wall under repair with timber supports, a new stone retaining wall along a muddy shoreline, and a bulldozer grading the bank behind rock armor.</p>
+      </div>
+      <div class="sp-gallery-grid reveal-right">
+      <figure class="sp-gallery-item reveal-up reveal-delay-1"><?php echo photoPicture('seawall-repair-timber-supports-waterfront', '(max-width: 700px) 92vw, 520px'); ?><figcaption>Sea wall repair with timber supports at the water</figcaption></figure>
+      <figure class="sp-gallery-item reveal-up reveal-delay-2"><?php echo photoPicture('stone-retaining-wall-shoreline-construction', '(max-width: 700px) 92vw, 380px'); ?><figcaption>New stone wall on the shoreline</figcaption></figure>
+      <figure class="sp-gallery-item reveal-up reveal-delay-3"><?php echo photoPicture('aerial-bulldozer-grading-rock-shoreline', '(max-width: 700px) 92vw, 380px'); ?><figcaption>Grading behind rock armor at the water’s edge</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PROCESS (tide-scale strip) ============ -->
 <section class="section slant-top sw-process" aria-labelledby="sw-process-title">
   <div class="container">
@@ -393,6 +426,7 @@ if ($swReviews !== ''): ?>
     $swRelSvc = serviceBySlug($swRelSlug);
     $swRelCard = $swCards[$swRelSlug]; ?>
       <article class="service-card-with-image card-tint-<?php echo ($swRelI % 3) + 1; ?> reveal-up reveal-delay-<?php echo ($swRelI % 3) + 1; ?>">
+        <div class="service-card__image"><?php echo photoPicture($swRelCard['photo'], '(max-width: 900px) 92vw, 380px'); ?></div>
         <div class="service-card__body">
           <div class="service-card__icon"><?php icon($swRelCard['icon'], 26); ?></div>
           <h3><?php echo h($swRelSvc['name']); ?></h3>

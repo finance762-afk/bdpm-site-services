@@ -5,10 +5,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 <?php
 /**
  * Homepage — Phase 3 (v7 scaffold, archetype warm-human, editorial section script).
- * The intake supplied NO client photos and NO logo (build-plan assets.images = []), so the hero falls back to
- * .hero-grid--form (copy | form card), service cards are icon cards, the gallery is skipped (< 8 photos) and the
- * about column carries a typographic company card instead of a photo. Every fact below traces to build-plan.json /
- * config.php; facts the page wants but intake does not supply are listed in /content-confirmations.json.
+ * Photos (2026-10-20): the 28 real photos from the client's previous site live in includes/photos.php and render through
+ * photoPicture(). The hero is a photo hero (.hero--photo, LCP preloaded), every service card carries a photo, the about
+ * column is a photo stack and the recent-work gallery (.gallery-track) shows eight more. Every fact below traces to
+ * build-plan.json / config.php; facts the page wants but intake does not supply are listed in /content-confirmations.json.
  */
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/p1-form-helpers.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/blog-data.php';
@@ -19,8 +19,8 @@ $canonicalUrl    = $siteUrl . '/';
 $ogImage         = '/assets/images/og-default.jpg';   // head.php emits og:image only once the file exists
 $currentPage     = 'home';
 $pageType        = 'home';
-$heroPreloadImage = '';                                // no hero photo in the manifest -> no image preload
-$heroPreload     = [];
+$homeHeroPhoto   = 'excavator-foundation-dig-worker-plymouth';   // registry name (includes/photos.php) — the LCP image
+$heroPreload     = photoHeroPreload($homeHeroPhoto, '100vw');      // AVIF imagesrcset preload in head.php
 
 $homeTel   = formatPhone($phone, 'tel');
 $homePlace = $address['city'] . ', ' . $address['state'];
@@ -29,26 +29,31 @@ $homePlace = $address['city'] . ', ' . $address['state'];
 $homeCards = [
     'site-construction-excavation' => [
         'icon'    => 'tractor',
+        'photo'   => 'excavator-bucket-digging-trench',
         'desc'    => 'Excavation, grading and site preparation for residential and commercial lots.',
         'bullets' => ['Site prep and final grading', 'Foundation and footing digs', 'Drainage and utility trenches'],
     ],
     'septic-system-installation' => [
         'icon'    => 'droplets',
+        'photo'   => 'plastic-septic-tanks-set-in-excavation',
         'desc'    => 'New and replacement septic systems installed to the approved design.',
         'bullets' => ['Built to the approved plan', 'Board of Health inspections', 'New and replacement systems'],
     ],
     'sea-walls' => [
         'icon'    => 'waves',
+        'photo'   => 'concrete-seawall-construction-beach',
         'desc'    => 'Sea wall construction for waterfront and coastal property.',
         'bullets' => ['Built for waterfront lots', 'Planned around coastal permits', 'Holds back shoreline erosion'],
     ],
     'helical-piers' => [
         'icon'    => 'building-2',
+        'photo'   => 'helical-pier-auger-drilling-soil',
         'desc'    => 'Steel piers screwed down past loose soil to carry a structure.',
         'bullets' => ['Support for new foundations', 'Additions, decks and porches', 'Far less digging than footings'],
     ],
     'title-5-inspections' => [
         'icon'    => 'clipboard-list',
+        'photo'   => 'title-5-inspector-clipboard-open-septic-tank',
         'desc'    => 'Massachusetts Title 5 septic inspections for sales and system checks.',
         'bullets' => ['Required before most sales', 'Completed state inspection form', 'Same team installs septic systems'],
     ],
@@ -65,6 +70,14 @@ $tickerItems = [
     ['home', 'Residential & Commercial'],
     ['map-pin', 'Plymouth, MA'],
     ['clock', 'Mon–Fri 7am–5pm'],
+];
+
+// Recent-work strip — eight registry photos (includes/photos.php), one tag each; the rest appear on the service pages.
+$homeWork = [
+    ['excavator-backhoe-loader-dirt-site', 'Site work'], ['septic-tanks-installed-pit-orange-pipe', 'Septic'],
+    ['seawall-repair-timber-supports-waterfront', 'Sea walls'], ['foundation-formwork-rebar-site-construction', 'Foundations'],
+    ['concrete-septic-tank-open-lid-yard', 'Septic'], ['stone-retaining-wall-shoreline-construction', 'Shoreline'],
+    ['aerial-bulldozer-grading-rock-shoreline', 'Grading'], ['lifting-septic-tank-cover-inspection', 'Title 5'],
 ];
 
 // FAQs — from the research brief (research_brief.brief.faqs), wording checked against intake.
@@ -94,14 +107,15 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
 /* Headings balance their lines (also set in framework.css) */
 .home h2, .home h3 { text-wrap: balance; }
 
-/* ---- Hero: layered (radial ::before from framework + grain ::after + contour field) ---- */
-.home-hero { background: linear-gradient(180deg, var(--color-paper) 0%, var(--color-paper-2) 100%); }
+/* ---- Hero: photo hero (real job photo is the LCP) + grain ::after + contour field ---- */
+.home-hero .hero-bg img { object-position: 62% 45%; }
+.home-hero .hero-overlay { background: linear-gradient(100deg, color-mix(in srgb, var(--color-dark) 88%, transparent) 0%, color-mix(in srgb, var(--color-dark) 72%, transparent) 42%, color-mix(in srgb, var(--color-dark) 38%, transparent) 72%, color-mix(in srgb, var(--color-dark) 22%, transparent) 100%); }
 .home-hero::after {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .28; mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
 }
 .home-hero__contours {
-  position: absolute; inset: 0 0 0 40%; z-index: -1; pointer-events: none;
+  position: absolute; inset: 0 0 0 40%; z-index: -1; pointer-events: none; opacity: .5;
   background: repeating-radial-gradient(ellipse 60% 48% at 62% 46%, transparent 0 26px, var(--contour) 26px 27px);
   -webkit-mask: radial-gradient(closest-side at 62% 46%, var(--color-black) 55%, transparent 100%);
   mask: radial-gradient(closest-side at 62% 46%, var(--color-black) 55%, transparent 100%);
@@ -109,7 +123,12 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
 .home-hero .hero-title { max-width: 19ch; }
 .home-hero .hero-text { gap: var(--space-md); }
 .home-hero .hero-chips li { box-shadow: var(--shadow-sm); }
-.home-hero .hero-chips svg { color: var(--color-accent-dark); }
+.home-hero .hero-chips li { color: var(--color-white); background: color-mix(in srgb, var(--color-white) 8%, transparent); border-color: color-mix(in srgb, var(--color-white) 22%, transparent); }
+.home-hero .hero-chips svg { color: var(--color-accent-bright); }
+.home-hero .link-call { color: color-mix(in srgb, var(--color-white) 90%, transparent); }
+.home-hero .link-call svg { color: var(--color-accent-bright); }
+.home-hero .hero-form-open { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-ink); }
+.home-hero .hero-form-open:hover { background: var(--color-accent-dark); border-color: var(--color-accent-dark); color: var(--color-white); }
 .home-hero .hero-form-card { position: relative; border-top: 4px solid var(--color-accent); }
 .home-hero .hero-form .consent a { color: var(--color-primary); }
 .home-hero__hours { display: flex; align-items: center; gap: var(--space-xs); margin: 0; font-size: var(--fs-small); color: var(--color-muted); }
@@ -120,7 +139,7 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
 .home-ticker .ticker-track svg { color: var(--color-accent-dark); }
 .home-ticker .ticker-track > span + span::before { content: ""; width: 6px; height: 6px; border-radius: var(--radius-full); background: var(--color-line); margin-right: var(--space-lg); }
 
-/* ---- Services: featured icon cards (no client photos yet) ---- */
+/* ---- Services: featured photo cards (registry photos, 5/3 image row) ---- */
 .home-services { background: var(--color-paper); }
 .home-services .section-title { max-width: 64ch; }
 .home-services .hero-answer { max-width: 60ch; }
@@ -128,14 +147,14 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
 .home-services .service-card__body { padding: var(--space-xl) var(--space-lg) var(--space-lg); }
 .home-services .service-card__icon { width: 52px; height: 52px; border-radius: var(--radius-lg); background: var(--color-surface); color: var(--color-accent-dark); box-shadow: var(--shadow); }
 .home-services .services-grid--featured > :first-child {
-  display: flex; color: var(--color-white); border-color: transparent; isolation: isolate;
+  color: var(--color-white); border-color: transparent; isolation: isolate;
   background: linear-gradient(150deg, var(--color-dark) 0%, var(--color-dark-alt) 60%, var(--color-primary-deep) 120%);
 }
 .home-services .services-grid--featured > :first-child::before {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: repeating-radial-gradient(ellipse 70% 55% at 85% 20%, transparent 0 22px, var(--contour-dark) 22px 23px);
 }
-.home-services .services-grid--featured > :first-child .service-card__body { padding: calc(var(--space-3xl) + var(--space-lg)) var(--space-xl) var(--space-xl); align-content: end; gap: var(--space-sm); }
+.home-services .services-grid--featured > :first-child .service-card__body { padding: var(--space-xl); align-content: end; gap: var(--space-sm); }
 .home-services .services-grid--featured > :first-child h3 { color: var(--color-white); font-size: var(--fs-h2); }
 .home-services .services-grid--featured > :first-child .service-card__desc,
 .home-services .services-grid--featured > :first-child ul li { color: color-mix(in srgb, var(--color-white) 82%, transparent); font-size: var(--fs-body); }
@@ -189,24 +208,20 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
 .home-about .process-steps li { background: var(--color-paper); border-radius: var(--radius); padding: var(--space-md); }
 .home-about .about-right { margin-top: var(--space-4xl); }
 .home-about .about-right::before { content: ""; position: absolute; inset: calc(-1 * var(--space-lg)) var(--space-lg) var(--space-lg) calc(-1 * var(--space-lg)); border: 2px solid var(--color-accent); opacity: .6; border-radius: var(--radius-lg); z-index: 0; }
-.company-card {
-  position: relative; z-index: 1; display: grid; gap: var(--space-md); padding: var(--space-2xl) var(--space-xl) calc(var(--space-3xl) + var(--space-lg));
-  color: var(--color-white); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); isolation: isolate; overflow: hidden;
-  background: linear-gradient(160deg, var(--color-dark) 0%, var(--color-dark-alt) 70%, var(--color-primary-deep) 130%);
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--space-2xl)), calc(100% - var(--space-2xl)) 100%, 0 100%);
-}
-.company-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: repeating-radial-gradient(ellipse 80% 60% at 20% 110%, transparent 0 20px, var(--contour-dark) 20px 21px); }
-.company-card__mark { font-family: var(--font-accent); font-size: clamp(3rem, 2rem + 3vw, 4.5rem); line-height: .9; letter-spacing: .04em; color: var(--color-white); }
-.company-card__mark span { color: var(--color-accent-bright); }
-.company-card h3 { color: var(--color-white); font-size: var(--fs-h3); }
-.company-card dl { display: grid; gap: var(--space-sm); margin: 0; }
-.company-card dl div { display: grid; grid-template-columns: 1.5rem 1fr; gap: var(--space-sm); align-items: start; }
-.company-card dt svg { color: var(--color-accent-bright); margin-top: var(--space-1); }
-.company-card dd { margin: 0; font-size: var(--fs-small); color: color-mix(in srgb, var(--color-white) 84%, transparent); }
-.company-card dd a { color: var(--color-white); text-decoration: none; font-weight: 600; }
+.home-about .photo-stack { position: relative; z-index: 1; }
+.home-about .photo-stack__second { border-color: var(--color-surface); }
+.home-about .photo-stack__tag b { color: var(--color-accent-dark); }
 .home-about .about-stat-card { left: auto; right: calc(-1 * var(--space-md)); bottom: calc(-1 * var(--space-xl)); display: grid; gap: var(--space-1); border-left: 4px solid var(--color-accent); }
 .home-about .about-stat-card b { font-family: var(--font-accent); font-size: var(--fs-h2); line-height: 1; color: var(--color-ink); }
 .home-about .about-stat-card span { font-size: var(--fs-small); color: var(--color-muted); }
+
+/* ---- Recent work: scroll-snap photo strip ---- */
+.home-work { background: var(--color-paper); }
+.home-work__head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-md) var(--space-xl); align-items: end; margin-bottom: var(--space-lg); }
+.home-work__head p { margin: 0; max-width: 62ch; color: var(--color-ink-2); }
+.home-work .gallery-track { margin: 0; padding-left: 0; list-style: none; }
+.home-work .gallery-item__tag { position: absolute; left: .8rem; bottom: .7rem; padding: .25rem .55rem; border-radius: var(--radius-sm); background: color-mix(in srgb, var(--color-dark) 78%, transparent); color: var(--color-white); margin: 0; }
+.home-work .gallery-hint { margin-top: var(--space-sm); }
 
 /* ---- Mid-page CTA band ---- */
 .home-cta { color: var(--color-white); }
@@ -245,13 +260,14 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
 }
 @media (max-width: 900px) {
   .home-hero__contours { inset: 30% 0 0 0; }
+  .home-work__head { grid-template-columns: 1fr; align-items: start; }
   .home-about .about-split { grid-template-columns: 1fr; }
   .home-about .about-right { margin-top: var(--space-xl); }
   .home-about .about-stat-card { right: var(--space-md); }
 }
 @media (max-width: 600px) {
   .strata li { grid-template-columns: 1fr; gap: var(--space-xs); padding: var(--space-md) var(--space-lg); }
-  .home-services .services-grid--featured > :first-child .service-card__body { padding: calc(var(--space-3xl)) var(--space-lg) var(--space-lg); }
+  .home-services .services-grid--featured > :first-child .service-card__body { padding: var(--space-lg); }
   .home-hero .hero-chips li { font-size: var(--font-size-xs); }
 }
 
@@ -265,8 +281,10 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php'; ?>
 <div class="home">
 
-<!-- ============ HERO (warm-human, no client photo yet -> copy | form card) ============ -->
-<section class="hero hero--light home-hero" aria-labelledby="home-hero-title">
+<!-- ============ HERO (photo hero — real job photo is the LCP; copy | form card) ============ -->
+<section class="hero hero--photo home-hero" aria-labelledby="home-hero-title">
+  <div class="hero-bg"><?php echo photoPicture($homeHeroPhoto, '100vw', ['eager' => true]); ?></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <span class="home-hero__contours" aria-hidden="true"></span>
   <div class="container">
     <div class="hero-grid hero-grid--form">
@@ -333,6 +351,7 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
     $cardDelay = ($cardIndex % 3) + 1;
 ?>
       <article class="service-card-with-image card-tint-<?php echo $cardTint; ?> reveal-up reveal-delay-<?php echo $cardDelay; ?>"<?php echo $cardIndex === 0 ? ' data-featured-label="Core service"' : ''; ?>>
+        <div class="service-card__image"><?php echo photoPicture($cardData['photo'], $cardIndex === 0 ? '(max-width: 720px) 92vw, (max-width: 1000px) 92vw, 760px' : '(max-width: 720px) 92vw, (max-width: 1000px) 46vw, 380px'); ?></div>
         <div class="service-card__body">
           <div class="service-card__icon"><?php icon($cardData['icon'], 26); ?></div>
           <h3><?php echo h($cardSvc['name']); ?></h3>
@@ -422,15 +441,10 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
       </div>
 
       <div class="about-right reveal-right">
-        <div class="company-card">
-          <span class="company-card__mark" aria-hidden="true">BD<span>PM</span></span>
-          <h3><?php echo h($siteName); ?></h3>
-          <dl>
-            <div><dt><?php icon('users', 18); ?><span class="sr-only">Owner</span></dt><dd><?php echo h($ownerName); ?>, owner</dd></div>
-            <div><dt><?php icon('map-pin', 18); ?><span class="sr-only">Address</span></dt><dd><?php echo h($address['street'] . ', ' . $homePlace . ' ' . $address['zip']); ?></dd></div>
-            <div><dt><?php icon('clock', 18); ?><span class="sr-only">Hours</span></dt><dd><?php echo h($businessHours); ?></dd></div>
-            <div><dt><?php icon('phone', 18); ?><span class="sr-only">Phone</span></dt><dd><a href="<?php echo h($homeTel); ?>"><?php echo h($phone); ?></a></dd></div>
-          </dl>
+        <div class="photo-stack">
+          <div class="photo-stack__main"><?php echo photoPicture('excavation-contractor-blueprints-excavator', '(max-width: 900px) 92vw, 440px'); ?></div>
+          <div class="photo-stack__second"><?php echo photoPicture('contractor-client-handshake-estimate', '(max-width: 900px) 40vw, 200px'); ?></div>
+          <span class="photo-stack__tag"><b><?php echo h($ownerName); ?></b><span>Owner, <?php echo h($siteName); ?></span></span>
         </div>
         <div class="about-stat-card">
           <b>Est. <?php echo (int) $yearEstablished; ?></b>
@@ -438,6 +452,26 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ RECENT WORK (scroll-snap strip, 8 registry photos) ============ -->
+<section class="section home-work" aria-labelledby="home-work-title">
+  <div class="container-wide">
+    <div class="home-work__head reveal-up">
+      <div>
+        <span class="eyebrow-label">Recent work</span>
+        <h2 id="home-work-title">What does <span class="text-accent">BDPM Site Services</span> work look like on a Plymouth lot?</h2>
+        <p>BDPM Site Services work in Plymouth covers open foundation digs, septic tanks set in the pit before backfill, sea wall and shoreline repairs, and the Title 5 inspections that open a tank lid. Swipe through a few jobs here; each service page shows more.</p>
+      </div>
+      <a href="/services/" class="btn btn-secondary">See the five services</a>
+    </div>
+    <ul class="gallery-track" aria-label="Recent BDPM Site Services excavation, septic and shoreline work">
+<?php foreach ($homeWork as $homeShot): ?>
+      <li class="gallery-item gallery-item--wide"><?php echo photoPicture($homeShot[0], '(max-width: 800px) 300px, 480px'); ?><span class="gallery-item__tag" aria-hidden="true"><?php echo h($homeShot[1]); ?></span></li>
+<?php endforeach; ?>
+    </ul>
+    <p class="gallery-hint"><?php icon('arrow-right', 16); ?>Scroll sideways for more</p>
   </div>
 </section>
 

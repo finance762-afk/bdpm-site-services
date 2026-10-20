@@ -5,7 +5,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 <?php
 /**
  * /service-areas/plymouth/ — Phase 6 city page (premium, warm-human archetype). The only area in build-plan service_areas.
- * No client photos exist yet, so the page is typographic; its signature section is the "ground by part of town" table.
+ * Photos (2026-10-20): photo hero (.hero--photo, LCP preloaded), a three-photo strip and a registry photo on every service card, all
+ * from includes/photos.php. The signature section is the "ground by part of town" table.
  *
  * RESEARCH (checked 2026-10-19). Every named place below is confirmed by at least one of these:
  *   Villages Plymouth Center / North / West / South Plymouth / Manomet / Cedarville; largest municipality in MA by area (96.4 sq mi land,
@@ -40,7 +41,8 @@ $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'service-areas';
 $pageType        = 'city';
 $citySlug        = 'plymouth';
-$heroPreload     = [];
+$paHeroPhoto     = 'stone-retaining-wall-shoreline-construction';
+$heroPreload     = photoHeroPreload($paHeroPhoto, '100vw');
 $breadcrumbs     = [
     ['name' => 'Home', 'url' => '/'],
     ['name' => 'Service Areas', 'url' => '/service-areas/'],
@@ -130,6 +132,7 @@ $schemaMarkup = [
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .26; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
 }
+.pa-hero .hero-bg img { object-position: 50% 60%; }
 .pa-hero__strata { position: absolute; inset: auto 0 0 0; height: 38%; z-index: -1; pointer-events: none; background: repeating-linear-gradient(176deg, transparent 0 26px, var(--pa-strata-2) 26px 28px, transparent 28px 58px, var(--pa-strata-1) 58px 59px); -webkit-mask: linear-gradient(180deg, transparent, var(--color-black) 70%); mask: linear-gradient(180deg, transparent, var(--color-black) 70%); }
 .pa-hero .breadcrumb { color: color-mix(in srgb, var(--color-white) 70%, transparent); margin-bottom: var(--space-sm); }
 .pa-hero .breadcrumb a:hover { color: var(--color-white); }
@@ -188,6 +191,14 @@ $schemaMarkup = [
 .pa-permits__row h3 { font-size: var(--font-size-lg); }
 .pa-permits__row p { margin: 0; font-size: var(--fs-small); color: var(--color-ink-2); line-height: 1.55; }
 
+/* ---- Photo strip (three registry photos) ---- */
+.pa-photos { background: var(--color-paper-2); }
+.pa-photos__grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.pa-photos__intro { display: grid; gap: var(--space-md); }
+.pa-photos__intro .answer-block { margin: 0; background: var(--color-surface); }
+.pa-photos .sp-gallery-grid { margin: 0; }
+.pa-photos .sp-gallery-item { box-shadow: var(--shadow); }
+
 /* ---- Services available (required services component) ---- */
 .pa-services { background: var(--color-paper-2); }
 .pa-services__more { margin-top: var(--space-xl); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md); }
@@ -219,7 +230,7 @@ $schemaMarkup = [
 
 /* ---- Responsive ---- */
 @media (max-width: 1000px) {
-  .pa-local__grid, .pa-why__grid { grid-template-columns: 1fr; }
+  .pa-local__grid, .pa-why__grid, .pa-photos__grid { grid-template-columns: 1fr; }
   .pa-notes { position: static; }
   .pa-permits__row { grid-template-columns: 1fr; }
 }
@@ -228,7 +239,9 @@ $schemaMarkup = [
 <div class="pa">
 
 <!-- ============ HERO (interior, compact form card) ============ -->
-<section class="hero hero--interior pa-hero" aria-labelledby="pa-hero-title">
+<section class="hero hero--interior hero--photo pa-hero" aria-labelledby="pa-hero-title">
+  <div class="hero-bg"><?php echo photoPicture($paHeroPhoto, '100vw', ['eager' => true]); ?></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <span class="pa-hero__strata" aria-hidden="true"></span>
   <div class="container">
     <div class="hero-grid hero-grid--form">
@@ -335,6 +348,24 @@ $schemaMarkup = [
   </div>
 </section>
 
+<!-- ============ PHOTOS (three registry photos) ============ -->
+<section class="section pa-photos" aria-labelledby="pa-photos-title">
+  <div class="container-wide">
+    <div class="pa-photos__grid">
+      <div class="pa-photos__intro reveal-left">
+        <span class="eyebrow-label">On Plymouth lots</span>
+        <h2 id="pa-photos-title">What does <span class="text-accent">BDPM Site Services</span> work look like on a Plymouth lot?</h2>
+        <p class="answer-block">BDPM Site Services work on a Plymouth lot is mostly below grade: septic risers brought to the surface, a tee fitting set in a concrete tank, and a foundation excavation with the crew in the hole. These three photos show that work in progress.</p>
+      </div>
+      <div class="sp-gallery-grid reveal-right">
+      <figure class="sp-gallery-item reveal-up reveal-delay-1"><?php echo photoPicture('excavator-foundation-dig-worker-plymouth', '(max-width: 700px) 92vw, 520px'); ?><figcaption>Foundation excavation with the crew in the hole</figcaption></figure>
+      <figure class="sp-gallery-item reveal-up reveal-delay-2"><?php echo photoPicture('septic-access-covers-concrete-risers', '(max-width: 700px) 92vw, 380px'); ?><figcaption>Septic access covers brought to grade on concrete risers</figcaption></figure>
+      <figure class="sp-gallery-item reveal-up reveal-delay-3"><?php echo photoPicture('installing-septic-tee-fitting-concrete-tank', '(max-width: 700px) 92vw, 380px'); ?><figcaption>Setting a tee fitting in a concrete septic tank</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PERMITS: three approvals on a Plymouth lot ============ -->
 <section class="section pa-permits" aria-labelledby="pa-permits-title">
   <div class="container">
@@ -363,6 +394,7 @@ $schemaMarkup = [
 <?php foreach ($services as $paIdx => $paSvc):
     $paCard = $paCards[$paSvc['slug']]; ?>
       <article class="service-card-with-image card-tint-<?php echo ($paIdx % 3) + 1; ?> reveal-up reveal-delay-<?php echo ($paIdx % 3) + 1; ?>"<?php echo $paIdx === 0 ? ' data-featured-label="Core service"' : ''; ?>>
+        <div class="service-card__image"><?php echo photoPicture($paCard['photo'], $paIdx === 0 ? '(max-width: 1000px) 92vw, 760px' : '(max-width: 720px) 92vw, (max-width: 1000px) 46vw, 380px'); ?></div>
         <div class="service-card__body">
           <div class="service-card__icon"><?php icon($paCard['icon'], 26); ?></div>
           <h3><?php echo h($paSvc['name']); ?></h3>

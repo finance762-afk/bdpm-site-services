@@ -5,7 +5,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 <?php
 /**
  * /services/helical-piers/ — Phase 4 service page (premium editorial structure, warm-human archetype).
- * No client photos exist yet, so the page is typographic; its signature section is a CSS depth diagram of a pier.
+ * Photos (2026-10-20): photo hero (.hero--photo, LCP preloaded), a three-photo .sp-gallery-grid strip and a registry photo on every
+ * related-service card, all from includes/photos.php. The signature section is a CSS depth diagram of a pier.
  * Sources (checked 2026-10-19):
  *   Frost line 48 in — 780 CMR 51.00 (10th ed.) Table R301.2(1), https://www.mass.gov/doc/10th-edition-residential-chapter-3-building-planning/download
  *   Helical piles as an engineered deep foundation — IBC 1810.3.1.5 / 780 CMR chapter 18 (base code)
@@ -22,7 +23,8 @@ $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'services';
 $pageType        = 'service';
 $serviceSlug     = 'helical-piers';
-$heroPreload     = [];
+$hpHeroPhoto = 'helical-pier-auger-drilling-soil';
+$heroPreload     = photoHeroPreload($hpHeroPhoto, '100vw');
 $breadcrumbs     = [
     ['name' => 'Home', 'url' => '/'],
     ['name' => 'Services', 'url' => '/services/'],
@@ -188,6 +190,17 @@ $hpCards = serviceCards();
 .hp-faq .answer-block { margin-bottom: var(--space-lg); background: var(--color-surface); }
 .hp-faq .faq summary { min-height: 44px; }
 
+.hp-hero .hero-bg img { object-position: 50% 50%; }
+
+/* ---- Photo strip (three registry photos) ---- */
+.hp-photos { background: var(--color-surface); }
+.hp-photos__grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.hp-photos__intro { display: grid; gap: var(--space-md); }
+.hp-photos__intro .answer-block { margin: 0; background: var(--color-paper); }
+.hp-photos .sp-gallery-grid { margin: 0; }
+.hp-photos .sp-gallery-item { box-shadow: var(--shadow); }
+@media (max-width: 1000px) { .hp-photos__grid { grid-template-columns: 1fr; } }
+
 /* ---- Other services ---- */
 .hp-related { background: var(--color-paper); }
 .hp-related .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -220,7 +233,9 @@ $hpCards = serviceCards();
 <div class="hp">
 
 <!-- ============ HERO (interior, compact form card) ============ -->
-<section class="hero hero--interior hp-hero" aria-labelledby="hp-hero-title">
+<section class="hero hero--interior hero--photo hp-hero" aria-labelledby="hp-hero-title">
+  <div class="hero-bg"><?php echo photoPicture($hpHeroPhoto, '100vw', ['eager' => true]); ?></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <span class="hp-hero__threads" aria-hidden="true"></span>
   <div class="container">
     <div class="hero-grid hero-grid--form">
@@ -325,6 +340,24 @@ $hpCards = serviceCards();
   </div>
 </section>
 
+<!-- ============ PHOTOS (three registry photos) ============ -->
+<section class="section hp-photos" aria-labelledby="hp-photos-title">
+  <div class="container-wide">
+    <div class="hp-photos__grid">
+      <div class="hp-photos__intro reveal-left">
+        <span class="eyebrow-label">On the job</span>
+        <h2 id="hp-photos-title">What does <span class="text-accent">foundation work</span> look like on a BDPM Site Services job?</h2>
+        <p class="answer-block">BDPM Site Services foundation work in Plymouth runs from the engineer’s layout to the formwork on top of the piers or footings. These photos show footing forms and rebar ready for a pour, the layout checked against the plans beside the excavator, and a foundation dig in progress.</p>
+      </div>
+      <div class="sp-gallery-grid reveal-right">
+      <figure class="sp-gallery-item reveal-up reveal-delay-1"><?php echo photoPicture('foundation-formwork-rebar-site-construction', '(max-width: 700px) 92vw, 520px'); ?><figcaption>Footing forms and rebar ready for the pour</figcaption></figure>
+      <figure class="sp-gallery-item reveal-up reveal-delay-2"><?php echo photoPicture('excavation-contractor-blueprints-excavator', '(max-width: 700px) 92vw, 380px'); ?><figcaption>Pier layout checked against the plan</figcaption></figure>
+      <figure class="sp-gallery-item reveal-up reveal-delay-3"><?php echo photoPicture('excavator-foundation-dig-worker-plymouth', '(max-width: 700px) 92vw, 380px'); ?><figcaption>Foundation excavation with the crew in the hole</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ COMPARE (table) ============ -->
 <section class="section edge-curve-top hp-compare" aria-labelledby="hp-compare-title">
   <div class="container">
@@ -410,6 +443,7 @@ if ($hpReviews !== ''): ?>
     $hpRelSvc = serviceBySlug($hpRelSlug);
     $hpRelCard = $hpCards[$hpRelSlug]; ?>
       <article class="service-card-with-image card-tint-<?php echo ($hpRelI % 3) + 1; ?> reveal-up reveal-delay-<?php echo ($hpRelI % 3) + 1; ?>">
+        <div class="service-card__image"><?php echo photoPicture($hpRelCard['photo'], '(max-width: 900px) 92vw, 380px'); ?></div>
         <div class="service-card__body">
           <div class="service-card__icon"><?php icon($hpRelCard['icon'], 26); ?></div>
           <h3><?php echo h($hpRelSvc['name']); ?></h3>

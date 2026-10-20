@@ -17,7 +17,7 @@ $navOnServices = isActivePage('services');
     <div class="navbar-inner container">
       <a class="site-logo" href="/" aria-label="<?php echo h($siteName); ?> — home">
 <?php if ($navLogo): ?>
-        <img src="<?php echo h($navLogo['src']); ?>" alt="<?php echo h($siteName); ?>" width="<?php echo (int) $navLogo['width']; ?>" height="<?php echo (int) $navLogo['height']; ?>"<?php echo $navLogo['class'] ? ' class="' . h($navLogo['class']) . '"' : ''; ?> decoding="async">
+        <img src="<?php echo h($navLogo['src']); ?>" alt="<?php echo h($siteName); ?>" width="<?php echo (int) $navLogo['width']; ?>" height="<?php echo (int) $navLogo['height']; ?>"<?php echo $navLogo['class'] ? ' class="' . h($navLogo['class']) . '"' : ''; ?> loading="eager" decoding="async">
 <?php else: ?>
         <span class="logo-mark" aria-hidden="true"><?php echo h($navMark); ?></span>
         <span class="logo-text">

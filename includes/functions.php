@@ -137,6 +137,83 @@ if (!function_exists('siteLogo')) {
     }
 }
 
+/* ---- Real photos (registry: includes/photos.php; variants on disk in /assets/images/) ------------------- */
+
+if (!function_exists('photoRegistry')) {
+    /** The $sitePhotos array from includes/photos.php (loaded once). */
+    function photoRegistry(): array {
+        static $fnPhotos = null;
+        if ($fnPhotos === null) {
+            $sitePhotos = [];
+            include rtrim((string) ($_SERVER['DOCUMENT_ROOT'] ?? ''), '/') . '/includes/photos.php';
+            $fnPhotos = $sitePhotos;
+        }
+        return $fnPhotos;
+    }
+}
+
+if (!function_exists('photo')) {
+    /** Registry entry for a photo (+ 'name'), or null when the name is not in includes/photos.php. */
+    function photo(string $name): ?array {
+        $fnPhotos = photoRegistry();
+        return isset($fnPhotos[$name]) ? ['name' => $name] + $fnPhotos[$name] : null;
+    }
+}
+
+if (!function_exists('photoNames')) {
+    /** Every photo name in registry order, optionally filtered to the given categories. */
+    function photoNames(array $cats = []): array {
+        return array_keys(array_filter(photoRegistry(), fn($fnP) => !$cats || in_array($fnP['cat'], $cats, true)));
+    }
+}
+
+if (!function_exists('photoSrcset')) {
+    /** "…-480.avif 480w, …" for the variants that exist on disk ($ext = 'avif' | 'webp'). */
+    function photoSrcset(string $name, string $ext = 'webp'): string {
+        $fnP = photo($name);
+        if (!$fnP) return '';
+        return implode(', ', array_map(fn($fnW) => '/assets/images/' . $name . '-' . $fnW . '.' . $ext . ' ' . $fnW . 'w', $fnP['sizes']));
+    }
+}
+
+if (!function_exists('photoPicture')) {
+    /**
+     * <picture> for a registry photo: AVIF source + WebP srcset, registry alt, intrinsic width/height.
+     * $opt: 'eager' => true for the hero/LCP (loading="eager" fetchpriority="high"; only one per page),
+     *       'class' => <img> class. Everything else is loading="lazy" decoding="async".
+     */
+    function photoPicture(string $name, string $sizes, array $opt = []): string {
+        $fnP = photo($name);
+        if (!$fnP) return '';
+        $fnSrcW = max(array_filter($fnP['sizes'], fn($fnW) => $fnW <= 960) ?: [min($fnP['sizes'])]);
+        $fnImg = !empty($opt['eager'])
+            ? '<img src="%s" srcset="%s" sizes="%s" alt="%s" width="%d" height="%d" loading="eager" fetchpriority="high"%s>'
+            : '<img src="%s" srcset="%s" sizes="%s" alt="%s" width="%d" height="%d" loading="lazy" decoding="async"%s>';
+        return '<picture>'
+            . sprintf('<source type="image/avif" srcset="%s" sizes="%s">', h(photoSrcset($name, 'avif')), h($sizes))
+            . sprintf($fnImg, h('/assets/images/' . $name . '-' . $fnSrcW . '.webp'), h(photoSrcset($name, 'webp')), h($sizes), h($fnP['alt']),
+                (int) $fnP['w'], (int) $fnP['h'], !empty($opt['class']) ? ' class="' . h($opt['class']) . '"' : '')
+            . '</picture>';
+    }
+}
+
+if (!function_exists('photoHeroPreload')) {
+    /** $heroPreload value for head.php (AVIF imagesrcset preload of the hero photo). */
+    function photoHeroPreload(string $name, string $sizes = '100vw'): array {
+        return ['srcset' => photoSrcset($name, 'avif'), 'sizes' => $sizes];
+    }
+}
+
+if (!function_exists('photoFigure')) {
+    /** <figure> wrapper: photoPicture() + optional figcaption. $opt as photoPicture plus 'figclass'. */
+    function photoFigure(string $name, string $sizes, string $caption = '', array $opt = []): string {
+        $fnPic = photoPicture($name, $sizes, $opt);
+        if ($fnPic === '') return '';
+        return '<figure' . (!empty($opt['figclass']) ? ' class="' . h($opt['figclass']) . '"' : '') . '>' . $fnPic
+            . ($caption !== '' ? '<figcaption>' . h($caption) . '</figcaption>' : '') . '</figure>';
+    }
+}
+
 /* ---- SEO: meta tags ----------------------------------------------------------------------------- */
 
 if (!function_exists('requestCanonical')) {
@@ -332,22 +409,22 @@ if (!function_exists('servicePageSchema')) {
 }
 
 if (!function_exists('serviceCards')) {
-    /** Card copy for the required services-grid component (services hub + "other services" rows). Keyed by slug. */
+    /** Card copy for the required services-grid component (home, services hub, area page, "other services" rows). Keyed by slug; 'photo' is a registry name (includes/photos.php). */
     function serviceCards(): array {
         return [
-            'site-construction-excavation' => ['icon' => 'tractor',
+            'site-construction-excavation' => ['icon' => 'tractor', 'photo' => 'excavator-bucket-digging-trench',
                 'desc' => 'Excavation, grading and site preparation for residential and commercial lots.',
                 'bullets' => ['Site prep and final grading', 'Foundation and footing digs', 'Drainage and utility trenches']],
-            'septic-system-installation' => ['icon' => 'droplets',
+            'septic-system-installation' => ['icon' => 'droplets', 'photo' => 'plastic-septic-tanks-set-in-excavation',
                 'desc' => 'New and replacement septic systems installed to the approved design.',
                 'bullets' => ['Built to the approved plan', 'Board of Health inspections', 'New and replacement systems']],
-            'sea-walls' => ['icon' => 'waves',
+            'sea-walls' => ['icon' => 'waves', 'photo' => 'concrete-seawall-construction-beach',
                 'desc' => 'Sea wall construction for waterfront and coastal property.',
                 'bullets' => ['Built for waterfront lots', 'Planned around coastal permits', 'Holds back shoreline erosion']],
-            'helical-piers' => ['icon' => 'building-2',
+            'helical-piers' => ['icon' => 'building-2', 'photo' => 'helical-pier-auger-drilling-soil',
                 'desc' => 'Steel piers screwed down past loose soil to carry a structure.',
                 'bullets' => ['Support for new foundations', 'Additions, decks and porches', 'Far less digging than footings']],
-            'title-5-inspections' => ['icon' => 'clipboard-list',
+            'title-5-inspections' => ['icon' => 'clipboard-list', 'photo' => 'title-5-inspector-clipboard-open-septic-tank',
                 'desc' => 'Massachusetts Title 5 septic inspections for sales and system checks.',
                 'bullets' => ['Required before most sales', 'Completed state inspection form', 'Same team installs septic systems']],
         ];
