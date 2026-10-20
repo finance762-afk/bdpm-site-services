@@ -3,7 +3,7 @@
  * includes/head.php — doctype, <head> and <body> open. Include once per page, before header.php.
  *
  * Pages set (all optional — defaults come from config.php) BEFORE including this file:
- *   $pageTitle, $pageDescription, $canonicalUrl, $ogImage, $noindex, $currentPage, $pageType, $serviceSlug,
+ *   $pageTitle, $pageDescription, $canonicalUrl, $ogImage, $noindex, $robotsContent ('noindex, follow' placeholders), $currentPage, $pageType, $serviceSlug,
  *   $citySlug, $breadcrumbs [['name'=>'Home','url'=>'/'], ...], $schemaMarkup (JSON string, array, or list of either),
  *   $heroPreload ['srcset' => '...avif 480w, ...', 'sizes' => '100vw'] (photo-hero pages only).
  */
@@ -47,7 +47,7 @@ $headGaLive = !empty($googleAnalyticsId) && $googleAnalyticsId !== 'G-XXXXXXXXXX
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<?php echo generateMetaTags($pageTitle, $pageDescription, $canonicalUrl, ['image' => $headOg, 'noindex' => $noindex]); ?>
+<?php echo generateMetaTags($pageTitle, $pageDescription, $canonicalUrl, ['image' => $headOg, 'noindex' => $noindex, 'robots' => $robotsContent ?? '']); ?>
 <meta name="theme-color" content="<?php echo h($colors['primary']); ?>">
 <?php if (!empty($gscVerification)): ?>
 <meta name="google-site-verification" content="<?php echo h($gscVerification); ?>">

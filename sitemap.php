@@ -1,13 +1,13 @@
 <?php
 /**
  * sitemap.php — dynamic XML sitemap, served at /sitemap.xml by the .htaccess rewrite.
- * Page registry below is the only hand-kept list; blog posts come from the $blogPosts registry (includes/blog-data.php), service pages from
- * config.php $services and area pages from config.php $areaPages (only when the page exists on disk, so the sitemap never lists a 404).
- * Excluded on purpose: /thank-you (noindex), /404.
+ * Page registry below is the only hand-kept list; service pages come from config.php $services and area pages from config.php $areaPages
+ * (only when the page exists on disk, so the sitemap never lists a 404).
+ * Excluded on purpose: /thank-you (noindex), /404, and /blog/ (a noindex,follow placeholder since 2026-10-20 — re-add /blog/ and the
+ * $blogPosts loop from includes/blog-data.php once the first client-approved article is live).
  */
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/blog-data.php';
 
 header('Content-Type: application/xml; charset=UTF-8');
 
@@ -36,10 +36,6 @@ foreach ($areaPages as $smArea) {
 $smUrls[] = ['/about/',   '/about/index.php',   'monthly', '0.6'];
 $smUrls[] = ['/faq/',     '/faq/index.php',     'monthly', '0.6'];
 $smUrls[] = ['/contact/', '/contact/index.php', 'yearly',  '0.7'];
-$smUrls[] = ['/blog/',    '/blog/index.php',    'weekly',  '0.7'];
-foreach ($blogPosts as $smPost) {
-    $smUrls[] = ['/blog/' . $smPost['slug'] . '/', '/blog/' . $smPost['slug'] . '/index.php', 'monthly', '0.6', $smPost['dateISO'], $smPost];
-}
 foreach (['privacy-policy', 'terms', 'cookie-policy', 'accessibility'] as $smLegal) {
     $smUrls[] = ['/' . $smLegal . '/', '/' . $smLegal . '/index.php', 'yearly', '0.3'];
 }
@@ -53,13 +49,6 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
     <lastmod><?php echo htmlspecialchars($smRow[4] ?? $smMod($smRow[1]), ENT_XML1); ?></lastmod>
     <changefreq><?php echo $smRow[2]; ?></changefreq>
     <priority><?php echo $smRow[3]; ?></priority>
-<?php if (!empty($smRow[5]) && blogImageExists($smRow[5])): ?>
-    <image:image>
-      <image:loc><?php echo htmlspecialchars($smBase . $smRow[5]['image'], ENT_XML1); ?></image:loc>
-      <image:title><?php echo htmlspecialchars($smRow[5]['title'], ENT_XML1); ?></image:title>
-      <image:caption><?php echo htmlspecialchars($smRow[5]['alt'], ENT_XML1); ?></image:caption>
-    </image:image>
-<?php endif; ?>
   </url>
 <?php endforeach; ?>
 </urlset>

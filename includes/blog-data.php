@@ -4,35 +4,11 @@
  * Newest post FIRST. The blog index, the homepage "From the Blog" card, the related-articles blocks and sitemap.php all read
  * this array. Never hardcode a post list anywhere else. Adding a post = one entry here + one /blog/{slug}/index.php.
  *
- * 'image' is '' on both launch posts: the intake supplied no client photos (build-plan assets.images = []), so there is no
- * /assets/images/ file to point at. blogCard() prints a typographic header instead. When photos arrive, set 'image' to the
- * -960.webp path and 'alt' to a description; the cards, the post hero and the sitemap pick it up with no other change.
+ * 'image' should point at a -960.webp under /assets/images/ (registry photos in includes/photos.php) with 'alt' set; blogCard()
+ * prints a typographic header when it is empty. The registry is EMPTY on purpose (2026-10-20) — see the note on $blogPosts.
  */
 
-$blogPosts = [
-    [
-        'slug'     => 'what-drives-excavation-cost-plymouth-ma',
-        'title'    => 'What Drives Excavation Costs on a Plymouth, MA Lot?',
-        'excerpt'  => 'Soil, ledge, access, haul-away, wetlands review and the Dig Safe wait all move an excavation price in Plymouth. Here is how each one works.',
-        'image'    => '',
-        'alt'      => '',
-        'date'     => 'October 19, 2026',
-        'dateISO'  => '2026-10-19',
-        'category' => 'Excavation',
-        'readtime' => '6 min read',
-    ],
-    [
-        'slug'     => 'nor-easter-season-plymouth-coastal-bank',
-        'title'    => "Nor'easter Season: Check Your Plymouth Coastal Bank",
-        'excerpt'  => 'Four warning signs to look for on a Plymouth sea wall or coastal bank, and why the repair has to start with the Conservation Commission.',
-        'image'    => '',
-        'alt'      => '',
-        'date'     => 'October 19, 2026',
-        'dateISO'  => '2026-10-19',
-        'category' => 'Waterfront',
-        'readtime' => '6 min read',
-    ],
-];
+$blogPosts = [];   // 2026-10-20: the two auto-written launch posts were removed pending client-approved articles; /blog/ is a noindex,follow placeholder until the first approved post is added here.
 
 if (!function_exists('blogPostBySlug')) {
     /** The registry entry for a slug, or null. */

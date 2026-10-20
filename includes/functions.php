@@ -231,16 +231,18 @@ if (!function_exists('requestCanonical')) {
 if (!function_exists('generateMetaTags')) {
     /**
      * <title>, meta description, robots, canonical and Open Graph tags. Emits no keywords meta and no X/Twitter card tags (both forbidden).
-     * $opts: image (absolute URL), type (default website), site_name, noindex (bool).
+     * $opts: image (absolute URL), type (default website), site_name, noindex (bool), robots (explicit content, e.g. 'noindex, follow' — overrides noindex).
      */
     function generateMetaTags(string $title, string $description, string $canonical, array $opts = []): string {
         $type = $opts['type'] ?? 'website';
         $siteName = $opts['site_name'] ?? ($GLOBALS['siteName'] ?? '');
         $out  = '<title>' . h($title) . "</title>\n";
         $out .= '<meta name="description" content="' . h($description) . "\">\n";
-        $out .= !empty($opts['noindex'])
+        $out .= !empty($opts['robots'])
+            ? '<meta name="robots" content="' . h($opts['robots']) . "\">\n"
+            : (!empty($opts['noindex'])
             ? "<meta name=\"robots\" content=\"noindex,nofollow\">\n"
-            : "<meta name=\"robots\" content=\"index,follow,max-image-preview:large\">\n";
+            : "<meta name=\"robots\" content=\"index,follow,max-image-preview:large\">\n");
         $out .= '<link rel="canonical" href="' . h($canonical) . "\">\n";
         $out .= '<meta property="og:type" content="' . h($type) . "\">\n";
         $out .= '<meta property="og:title" content="' . h($title) . "\">\n";
