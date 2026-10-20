@@ -142,7 +142,7 @@ $schemaMarkup = [
 .pa-hero .link-call { color: color-mix(in srgb, var(--color-white) 90%, transparent); }
 .pa-hero .link-call svg { color: var(--color-accent-bright); }
 .pa-hero .link-call:hover { color: var(--color-white); }
-.pa-hero .hero-form-open { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-white); }
+.pa-hero .hero-form-open { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-ink); }
 .pa-hero .hero-form-open:hover { background: var(--color-accent-dark); border-color: var(--color-accent-dark); }
 .pa-hero .hero-chips li { background: var(--pa-strata-2); border-color: color-mix(in srgb, var(--color-white) 20%, transparent); color: var(--color-white); }
 .pa-hero .hero-chips svg { color: var(--color-accent-bright); }
@@ -211,7 +211,7 @@ $schemaMarkup = [
 .pa-why__list { counter-reset: pawhy; display: grid; gap: var(--space-sm); margin: 0; padding: 0; list-style: none; }
 .pa-why__list li { counter-increment: pawhy; display: grid; grid-template-columns: 2.75rem minmax(0, 1fr); gap: var(--space-xs) var(--space-md); padding: var(--space-md) var(--space-lg); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-line); box-shadow: var(--shadow-sm); }
 .pa-why__list li::before { content: counter(pawhy); grid-row: span 2; width: 2.75rem; height: 2.75rem; display: grid; place-items: center; border-radius: var(--radius); background: var(--color-primary); color: var(--color-white); font-family: var(--font-accent); font-size: var(--font-size-xl); font-weight: 700; }
-.pa-why__list li:nth-child(odd)::before { background: var(--color-accent); }
+.pa-why__list li:nth-child(odd)::before { background: var(--color-accent); color: var(--color-ink); }
 .pa-why__list b { font-family: var(--font-heading); font-size: var(--font-size-lg); color: var(--color-ink); }
 .pa-why__list p { margin: 0; font-size: var(--fs-small); color: var(--color-ink-2); line-height: 1.55; }
 

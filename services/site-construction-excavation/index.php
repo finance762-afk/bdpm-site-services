@@ -115,7 +115,7 @@ $exCards = serviceCards();
 .ex-hero .link-call { color: color-mix(in srgb, var(--color-white) 90%, transparent); }
 .ex-hero .link-call svg { color: var(--color-accent-bright); }
 .ex-hero .link-call:hover { color: var(--color-white); }
-.ex-hero .hero-form-open { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-white); }
+.ex-hero .hero-form-open { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-ink); }
 .ex-hero .hero-form-open:hover { background: var(--color-accent-dark); border-color: var(--color-accent-dark); }
 .ex-hero .hero-title { max-width: 18ch; }
 .ex-hero .hero-answer { max-width: 36rem; }
@@ -161,7 +161,7 @@ $exCards = serviceCards();
 .ex-week .is-skip b { color: color-mix(in srgb, var(--color-white) 55%, transparent); }
 .ex-week .is-start { border-color: var(--color-accent-bright); }
 .ex-week .is-go { background: var(--color-accent); border-color: var(--color-accent); box-shadow: var(--shadow-lg); }
-.ex-week .is-go span { color: var(--color-white); font-weight: 600; }
+.ex-week .is-go b, .ex-week .is-go span { color: var(--color-ink); font-weight: 600; }
 .ex-digsafe__body { display: grid; gap: var(--space-md); margin-top: var(--space-2xl); grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: start; }
 .ex-digsafe__body p { margin: 0; }
 .ex-marks { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin: 0; padding: 0; list-style: none; }
@@ -184,7 +184,7 @@ $exCards = serviceCards();
 .ex-steps li { counter-increment: exstep; position: relative; padding: 0 0 var(--space-2xl) var(--space-2xl); }
 .ex-steps li:last-child { padding-bottom: 0; }
 .ex-steps li::before { content: counter(exstep, decimal-leading-zero); position: absolute; left: calc(-1 * var(--space-lg) - 1px); top: 0; width: var(--space-2xl); height: var(--space-2xl); display: grid; place-items: center; font-family: var(--font-accent); font-size: var(--font-size-lg); color: var(--color-white); background: var(--color-dark); border-radius: var(--radius-full); box-shadow: 0 0 0 6px var(--color-surface); }
-.ex-steps li:last-child::before { background: var(--color-accent); }
+.ex-steps li:last-child::before { background: var(--color-accent); color: var(--color-ink); }
 .ex-steps h3 { font-size: var(--fs-h3); margin-bottom: var(--space-xs); padding-top: var(--space-xs); }
 .ex-steps p { margin: 0; color: var(--color-ink-2); }
 .ex-steps p + p { margin-top: var(--space-xs); }

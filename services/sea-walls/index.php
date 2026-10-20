@@ -104,7 +104,7 @@ $swCards = serviceCards();
 .sw-hero .link-call { color: color-mix(in srgb, var(--color-white) 90%, transparent); }
 .sw-hero .link-call svg { color: var(--color-accent-bright); }
 .sw-hero .link-call:hover { color: var(--color-white); }
-.sw-hero .hero-form-open { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-white); }
+.sw-hero .hero-form-open { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-ink); }
 .sw-hero .hero-form-open:hover { background: var(--color-accent-dark); border-color: var(--color-accent-dark); }
 .sw-hero .hero-title { max-width: 16ch; }
 .sw-hero .hero-chips li { background: var(--sw-tide); border-color: color-mix(in srgb, var(--color-white) 20%, transparent); color: var(--color-white); }
@@ -134,7 +134,7 @@ $swCards = serviceCards();
 .sw-rule .answer-block { background: var(--sw-tide); border-left-color: var(--color-accent-bright); color: color-mix(in srgb, var(--color-white) 88%, transparent); margin: var(--space-md) 0 0; }
 .sw-gate { counter-reset: swgate; display: grid; gap: var(--space-md); margin: 0; padding: 0; list-style: none; }
 .sw-gate li { counter-increment: swgate; display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: var(--space-xs) var(--space-md); padding: var(--space-lg); border-radius: var(--radius-lg); background: color-mix(in srgb, var(--color-white) 6%, transparent); border: 1px solid color-mix(in srgb, var(--color-white) 14%, transparent); }
-.sw-gate li::before { content: counter(swgate); grid-row: span 2; width: 3rem; height: 3rem; display: grid; place-items: center; border-radius: var(--radius); background: var(--color-accent); color: var(--color-white); font-family: var(--font-accent); font-size: var(--font-size-xl); font-weight: 700; }
+.sw-gate li::before { content: counter(swgate); grid-row: span 2; width: 3rem; height: 3rem; display: grid; place-items: center; border-radius: var(--radius); background: var(--color-accent); color: var(--color-ink); font-family: var(--font-accent); font-size: var(--font-size-xl); font-weight: 700; }
 .sw-gate b { color: var(--color-white); font-family: var(--font-heading); font-size: var(--font-size-lg); }
 .sw-gate p { margin: 0; font-size: var(--fs-small); }
 .sw-rule__more { margin-top: var(--space-xl); display: grid; gap: var(--space-sm); }

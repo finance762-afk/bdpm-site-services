@@ -141,7 +141,7 @@ if (!function_exists('blogPostStyles')) {
 .bp-hero .breadcrumb li { display: inline-flex; align-items: center; min-height: 44px; }
 .bp-hero .text-accent { color: var(--color-accent-bright); }
 .bp-hero .hero-title { max-width: 24ch; }
-.bp-hero .btn-primary { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-white); }
+.bp-hero .btn-primary { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-ink); }
 .bp-hero .btn-primary:hover { background: var(--color-accent-dark); border-color: var(--color-accent-dark); }
 .bp-hero .link-call { color: color-mix(in srgb, var(--color-white) 90%, transparent); }
 .bp-hero .link-call svg { color: var(--color-accent-bright); }

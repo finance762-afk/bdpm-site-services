@@ -79,7 +79,7 @@ $schemaMarkup = [[
 .sa-hero .text-accent { color: var(--color-accent-bright); }
 .sa-hero .hero-title { max-width: 40ch; }
 .sa-hero .hero-answer { max-width: 62ch; }
-.sa-hero .btn-primary { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-white); }
+.sa-hero .btn-primary { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-ink); }
 .sa-hero .btn-primary:hover { background: var(--color-accent-dark); border-color: var(--color-accent-dark); }
 .sa-hero .link-call { color: color-mix(in srgb, var(--color-white) 90%, transparent); }
 .sa-hero .link-call svg { color: var(--color-accent-bright); }

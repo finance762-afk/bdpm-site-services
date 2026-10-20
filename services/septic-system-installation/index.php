@@ -114,7 +114,7 @@ $stCards = serviceCards();
 .st-hero .link-call { color: color-mix(in srgb, var(--color-white) 90%, transparent); }
 .st-hero .link-call svg { color: var(--color-accent-bright); }
 .st-hero .link-call:hover { color: var(--color-white); }
-.st-hero .hero-form-open { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-white); }
+.st-hero .hero-form-open { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-ink); }
 .st-hero .hero-form-open:hover { background: var(--color-accent-dark); border-color: var(--color-accent-dark); }
 .st-hero .hero-title { max-width: 17ch; }
 .st-hero .hero-chips li { background: var(--st-soft); border-color: color-mix(in srgb, var(--color-white) 20%, transparent); color: var(--color-white); }

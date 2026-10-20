@@ -118,7 +118,7 @@ $svChain = [
 .sv-services .services-grid--featured > :first-child ul li { color: color-mix(in srgb, var(--color-white) 82%, transparent); font-size: var(--fs-body); }
 .sv-services .services-grid--featured > :first-child ul { border-top-color: color-mix(in srgb, var(--color-white) 16%, transparent); }
 .sv-services .services-grid--featured > :first-child ul li::before { color: var(--color-accent-bright); }
-.sv-services .services-grid--featured > :first-child .service-card__icon { width: 64px; height: 64px; background: var(--color-accent); color: var(--color-white); }
+.sv-services .services-grid--featured > :first-child .service-card__icon { width: 64px; height: 64px; background: var(--color-accent); color: var(--color-ink); }
 .sv-services .services-grid--featured > :first-child .service-card__cta { color: var(--color-white); }
 .sv-services .services-grid--featured > :first-child .service-card__cta:hover { color: var(--color-accent-bright); }
 .sv-services .services-grid--featured > :first-child[data-featured-label]::after { color: var(--color-white); }

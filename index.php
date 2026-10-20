@@ -160,7 +160,7 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
 .home-services .services-grid--featured > :first-child ul li { color: color-mix(in srgb, var(--color-white) 82%, transparent); font-size: var(--fs-body); }
 .home-services .services-grid--featured > :first-child ul { border-top-color: color-mix(in srgb, var(--color-white) 16%, transparent); }
 .home-services .services-grid--featured > :first-child ul li::before { color: var(--color-accent-bright); }
-.home-services .services-grid--featured > :first-child .service-card__icon { width: 64px; height: 64px; background: var(--color-accent); color: var(--color-white); }
+.home-services .services-grid--featured > :first-child .service-card__icon { width: 64px; height: 64px; background: var(--color-accent); color: var(--color-ink); }
 .home-services .services-grid--featured > :first-child .service-card__icon svg { width: 30px; height: 30px; }
 .home-services .services-grid--featured > :first-child .service-card__cta { color: var(--color-white); }
 .home-services .services-grid--featured > :first-child .service-card__cta:hover { color: var(--color-accent-bright); }

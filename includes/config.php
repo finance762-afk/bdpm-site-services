@@ -104,7 +104,7 @@ $openingHours = [
 // ---- Brand ------------------------------------------------------------------------------------
 // build-plan design.colors holds no hex values and assets.logo is null; these match the tokens the scaffold wrote into
 // framework.css (:root --color-primary/secondary/accent). Replace with logo-analysis values once a logo is supplied.
-$colors = ['primary' => '#1f2428', 'secondary' => '#5a6570', 'accent' => '#c8461a'];
+$colors = ['primary' => '#4f8a8b', 'secondary' => '#222831', 'accent' => '#fbd46d'];   // old-site palette (2026-10-20): teal, charcoal, yellow; light gray #eeeeee + white in framework.css
 // build-plan content.years = 5 (as of 2026-10-19) -> established 2021. SEO brief: confirm with the owner before
 // publishing years-in-business claims.
 $yearEstablished = 2021;
@@ -159,7 +159,7 @@ $textUsNumber   = '';   // integrations.text_us_number is null (accepts_sms fals
 $financing      = [];   // integrations.financing is null
 $serviceZips    = [];   // integrations.service_zips not provided
 
-$cssVersion = '5';      // the SINGLE framework.css cache-bust; bump here on every framework.css / critical.css change
+$cssVersion = '6';      // the SINGLE framework.css cache-bust; bump here on every framework.css / critical.css change
 
 // ---- Lead attribution (first-touch cookie + p1_attribution_fields()) — must stay last, before any output ----
 require_once __DIR__ . '/attribution.php';

@@ -104,7 +104,7 @@ $hpCards = serviceCards();
 .hp-hero .link-call { color: color-mix(in srgb, var(--color-white) 90%, transparent); }
 .hp-hero .link-call svg { color: var(--color-accent-bright); }
 .hp-hero .link-call:hover { color: var(--color-white); }
-.hp-hero .hero-form-open { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-white); }
+.hp-hero .hero-form-open { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-ink); }
 .hp-hero .hero-form-open:hover { background: var(--color-accent-dark); border-color: var(--color-accent-dark); }
 .hp-hero .hero-title { max-width: 17ch; }
 .hp-hero .hero-chips li { background: var(--hp-thread); border-color: color-mix(in srgb, var(--color-white) 20%, transparent); color: var(--color-white); }
@@ -181,7 +181,7 @@ $hpCards = serviceCards();
 .hp-tags svg { color: var(--color-accent-dark); }
 .hp-steps { counter-reset: hpstep; display: grid; gap: var(--space-md); margin: 0; padding: 0; list-style: none; }
 .hp-steps li { counter-increment: hpstep; position: relative; padding: var(--space-lg) var(--space-lg) var(--space-lg) calc(var(--space-3xl) + var(--space-sm)); border-radius: var(--radius-lg); border: 1px solid var(--color-line); background: var(--color-paper); }
-.hp-steps li::before { content: counter(hpstep); position: absolute; left: var(--space-lg); top: var(--space-lg); width: var(--space-2xl); height: var(--space-2xl); display: grid; place-items: center; font-family: var(--font-accent); font-weight: 700; font-size: var(--font-size-xl); color: var(--color-white); background: var(--color-accent); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
+.hp-steps li::before { content: counter(hpstep); position: absolute; left: var(--space-lg); top: var(--space-lg); width: var(--space-2xl); height: var(--space-2xl); display: grid; place-items: center; font-family: var(--font-accent); font-weight: 700; font-size: var(--font-size-xl); color: var(--color-ink); background: var(--color-accent); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
 .hp-steps h3 { font-size: var(--font-size-lg); margin-bottom: var(--space-1); }
 .hp-steps p { margin: 0; font-size: var(--fs-small); color: var(--color-ink-2); }
 
