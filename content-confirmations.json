@@ -15,9 +15,9 @@
           "where": "header and footer"
         },
         {
-          "fact": "Established 2021 / 5 years in business",
-          "question": "Intake lists 5 years in business, so the site says 'Est. 2021'. Is 2021 the correct founding year?",
-          "where": "about section stat card"
+          "fact": "Founding year / years in business (currently NOT shown anywhere)",
+          "question": "Your previous site says 1993 in one place and 35 years in another, and intake said 5 years. What year did BDPM Site Services start? The site makes no founding-year or years-in-business claim until you confirm.",
+          "where": "homepage hero and about stat card, about page fact sheet and timeline, FAQ owner answer"
         },
         {
           "fact": "Estimates are free",

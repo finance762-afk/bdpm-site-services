@@ -105,9 +105,10 @@ $openingHours = [
 // build-plan design.colors holds no hex values and assets.logo is null; these match the tokens the scaffold wrote into
 // framework.css (:root --color-primary/secondary/accent). Replace with logo-analysis values once a logo is supplied.
 $colors = ['primary' => '#4f8a8b', 'secondary' => '#222831', 'accent' => '#fbd46d'];   // old-site palette (2026-10-20): teal, charcoal, yellow; light gray #eeeeee + white in framework.css
-// Founded 1993 per the client's previous site (2026-10-20 revision; build-plan content.years = 5 was a placeholder guess).
-$yearEstablished = 1993;
-$yearsInBusiness = (int) date('Y') - $yearEstablished;
+// Founding year UNCONFIRMED: the previous site says 1993 but elsewhere claims 35 years, and build-plan content.years = 5 was a
+// placeholder. Confirm with the client before any page renders a founding year, "since", "Est." or years-in-business claim.
+$yearEstablished = null;
+$yearsInBusiness = null;
 
 // ---- Credentials ------------------------------------------------------------------------------
 $licenseNumber  = '';                                  // none in build-plan — never invent

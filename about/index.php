@@ -8,7 +8,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
  * Photos (2026-10-20): photo hero (.hero--photo, LCP preloaded), a plans photo beside the story, a crew figure beside the owner card and an
  * "at work" three-photo strip, all real photos from includes/photos.php. Intake supplies NO license / insurance / certifications and no team
  * names beyond the owner, so nothing is invented about the people in the photos. Every fact traces to build-plan.json / config.php or repeats a claim the homepage
- * already makes (owner-run, Est. 2021, residential + commercial, site visit -> written estimate -> Dig Safe/approvals -> dig/build/grade). Anything
+ * already makes (owner-run, residential + commercial, no founding year — unconfirmed, site visit -> written estimate -> Dig Safe/approvals -> dig/build/grade). Anything
  * the page wants but intake lacks (founder story, milestones, license, insurance, crew, photos) is listed in /content-confirmations.json.
  * The Credentials section is data-driven: licence / insurance / certification rows print only when config.php holds a value, so nothing is invented
  * and the section fills in by itself once the client supplies them.
@@ -61,7 +61,6 @@ $schemaMarkup = [
 $abFacts = [
     ['users', 'Owner', $ownerName],
     ['map-pin', 'Based in', $abPlace . ' ' . $address['zip']],
-    ['calendar-check', 'Working in Plymouth since', (string) (int) $yearEstablished],
     ['tractor', 'Services', count($services) . ': excavation to Title 5'],
     ['clock', 'Office hours', $businessHours],
 ];
@@ -83,7 +82,7 @@ $abValues = [
 
 // Timeline stations
 $abStations = [
-    ['mark' => (string) (int) $yearEstablished, 'title' => 'Founded in Plymouth', 'text' => $siteName . ' begins working in ' . $abPlace . ', led by ' . $ownerName . '.', 'state' => 'start'],
+    ['mark' => 'Base', 'title' => 'Based in Plymouth', 'text' => $siteName . ' works from ' . $address['street'] . ' in ' . $abPlace . ', run by its owner, ' . $ownerName . '.', 'state' => 'start'],
     ['mark' => 'Today', 'title' => count($services) . ' services, one contractor', 'text' => 'Site construction and excavation, septic system installation, Title 5 inspections, sea walls and helical piers.', 'state' => 'now'],
     ['mark' => 'Next', 'title' => 'Your site visit', 'text' => 'A walk across your lot, then a written estimate with the scope, price and schedule.', 'state' => 'next'],
 ];
@@ -110,7 +109,7 @@ foreach ((array) $certifications as $abCert) {
 <style>
 /* ==========================================================================
    About — page composition (tokens only). Motif: the survey tag and the
-   station line — a fact sheet in the hero, a founded-to-your-lot line below.
+   station line — a fact sheet in the hero, a today-to-your-lot line below.
    ========================================================================== */
 .about h1, .about h2, .about h3 { text-wrap: balance; }
 .about p { text-wrap: pretty; }
@@ -337,7 +336,7 @@ foreach ((array) $certifications as $abCert) {
       <div class="ab-story__copy reveal-left">
         <span class="eyebrow-label">Our story</span>
         <h2 id="ab-story-title">Who is <span class="text-accent"><?php echo h($siteName); ?></span> and what does the company do in Plymouth?</h2>
-        <p class="answer-block"><?php echo h($siteName); ?> is an excavation contractor based in <?php echo h($abPlace); ?> and owned by <?php echo h($ownerName); ?>. The company has worked in Plymouth since <?php echo (int) $yearEstablished; ?> on the ground work most property projects start with: digging and grading, septic systems, sea walls, helical piers and Title 5 inspections.</p>
+        <p class="answer-block"><?php echo h($siteName); ?> is an excavation contractor based in <?php echo h($abPlace); ?> and owned by <?php echo h($ownerName); ?>. The company takes on the ground work most property projects start with: digging and grading, septic systems, sea walls, helical piers and Title 5 inspections.</p>
         <p><?php echo h($siteName); ?> works from <?php echo h($address['street']); ?> in <?php echo h($abPlace); ?> and is run by its owner, <?php echo h($ownerName); ?>. The company takes on five kinds of work: <a href="/services/site-construction-excavation/">site construction and excavation</a>, <a href="/services/septic-system-installation/">septic system installation</a>, <a href="/services/title-5-inspections/">Title 5 inspections</a>, <a href="/services/sea-walls/">sea walls</a> and <a href="/services/helical-piers/">helical piers</a>, for residential and commercial properties.</p>
         <p>Those five jobs share the same ground. A septic system, a sea wall and a pier foundation all start with the same questions about soil, ledge and groundwater, and often the same reviews by the Plymouth Board of Health or Conservation Commission. Handling them as one trade keeps a project on one schedule, and a Title 5 inspection that turns up a failed system can lead straight to the replacement without bringing in a second contractor.</p>
         <p>Plymouth lots range from sandy and gravelly soils to clay, fill and exposed ledge, and many sit near wetlands or open water. Two lots on the same street can need different machines and different approvals, which is why every <?php echo h($siteName); ?> job begins with a site visit and a written estimate instead of a number guessed over the phone.</p>
@@ -432,8 +431,8 @@ foreach ((array) $certifications as $abCert) {
   <div class="container">
     <div class="section-head reveal-up">
       <span class="eyebrow-label">Timeline</span>
-      <h2 id="ab-time-title">When did <?php echo h($siteName); ?> start, and where does it stand today?</h2>
-      <p class="answer-block"><?php echo h($siteName); ?> started working in Plymouth, MA in <?php echo (int) $yearEstablished; ?> and now handles <?php echo count($services); ?> kinds of ground work: excavation, septic systems, Title 5 inspections, sea walls and helical piers. The next station on the line is a site visit to your property.</p>
+      <h2 id="ab-time-title">Where does BDPM Site Services stand today, and what comes next for your lot?</h2>
+      <p class="answer-block">BDPM Site Services works from <?php echo h($address['street']); ?> in Plymouth, MA and handles <?php echo count($services); ?> kinds of ground work: excavation, septic systems, Title 5 inspections, sea walls and helical piers. The next station on the line is a site visit to your property.</p>
     </div>
     <ol class="ab-line reveal-up" aria-label="BDPM Site Services timeline">
 <?php foreach ($abStations as $abStation): ?>

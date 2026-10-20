@@ -290,7 +290,7 @@ $homeFaqs = [
       <div class="hero-text">
         <span class="eyebrow"><?php echo h($homePlace); ?> · <?php echo h($primaryCounty); ?></span>
         <h1 class="hero-title" id="home-hero-title"><span class="text-accent">Site excavation</span> and septic work in Plymouth, MA</h1>
-        <p class="hero-answer">Founded in <?php echo (int) $yearEstablished; ?>, BDPM Site Services brings <?php echo (int) $yearsInBusiness; ?> years of experience to site excavation, septic system installation, Title 5 inspections, sea walls and helical piers for homes and businesses in Plymouth, MA. The company is licensed, bonded and insured, locally owned, and gives free estimates.</p>
+        <p class="hero-answer">BDPM Site Services is a locally owned contractor handling site excavation, septic system installation, Title 5 inspections, sea walls and helical piers for homes and businesses in Plymouth, MA, with free estimates after a site visit.</p>
         <div class="hero-actions">
           <button type="button" class="btn btn-primary btn-lg hero-form-open" data-open-estimate>Get a free estimate</button>
           <a class="link-call" href="<?php echo h($homeTel); ?>"><?php icon('phone', 18); ?>or call <?php echo h($phone); ?></a>
@@ -446,8 +446,8 @@ $homeFaqs = [
           <span class="photo-stack__tag"><b><?php echo h($ownerName); ?></b><span>Owner, <?php echo h($siteName); ?></span></span>
         </div>
         <div class="about-stat-card">
-          <b>Est. <?php echo (int) $yearEstablished; ?></b>
-          <span><?php echo (int) $yearsInBusiness; ?> years working in <?php echo h($address['city']); ?></span>
+          <b><?php echo h($address['city']); ?></b>
+          <span>Based at <?php echo h($address['street']); ?></span>
         </div>
       </div>
     </div>
