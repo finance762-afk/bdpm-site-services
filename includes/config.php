@@ -136,7 +136,7 @@ $gbp = [
     'url'           => 'https://maps.google.com/?cid=16000072889164023170',
     'directions'    => 'https://www.google.com/maps/dir/?api=1&destination=place_id:ChIJnTb84wix5IkRgsX6SoWtC94',
     'review_url'    => 'https://search.google.com/local/writereview?placeid=ChIJnTb84wix5IkRgsX6SoWtC94',
-    'embed_src'     => '',                             // integrations.gbp_map_embed is null — no map embed
+    'embed_src'     => 'https://maps.google.com/maps?q=place_id:ChIJnTb84wix5IkRgsX6SoWtC94&output=embed',   // GBP map embed (place_id form), set 2026-10-20
     'reviews_count' => 0,                              // build-plan reviews[] is empty: no ratings, never AggregateRating
 ];
 $geo = [];                                             // integrations.geo is null — omit GeoCoordinates

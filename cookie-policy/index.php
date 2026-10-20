@@ -8,7 +8,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
  * Verified against the code: p1_ft first-party cookie (includes/attribution.php: 30 days, httponly, SameSite=Lax, holds landing page,
  * referrer, UTM, gclid, session id, device); cookie-bar flag cookieBannerDismissed_v1 in localStorage (assets/js/main.js); GA4 loads only
  * once $googleAnalyticsId is set (head.php); fonts are self-hosted (no font-provider request); the local-business map is a link, not an embed,
- * until a GBP embed exists ($gbp['embed_src']). The policy describes GA4 as in use because it goes live at launch.
+ * ($gbp['embed_src'] holds the GBP map embed, so the Google Maps iframe on /contact/ is live). The policy describes GA4 as in use because it goes live at launch.
  */
 $lastUpdated     = 'October 19, 2026';   // fixed on purpose: bump when the text changes
 $pageTitle       = 'Cookie Policy | ' . $companyName . ' | ' . $address['city'] . ', ' . $address['state'];
