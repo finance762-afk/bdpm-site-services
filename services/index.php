@@ -25,6 +25,23 @@ $breadcrumbs     = [
 
 $svTel   = formatPhone($phone, 'tel');
 $svCards = serviceCards();
+// Hub-only card summaries, drawn from facts on each service page, so this grid does not repeat the shared card copy verbatim
+$svCardCopy = [
+    'site-construction-excavation' => ['Foundation holes, utility and sewer trenches and drainage fixes, priced in writing after a visit to check soil, ledge and access.',
+        ['Dig Safe wait built in', 'Sand, clay, fill or ledge', 'Backfill and final grade']],
+    'septic-system-installation'   => ['Tank, distribution box and field installed to the approved design and inspected while everything is still open.',
+        ['Sized by bedroom count', 'Inspected before backfill', 'Replaces a failed system']],
+    'title-5-inspections'          => ['The tank, distribution box and absorption system checked, then the state form completed and filed with the Board of Health.',
+        ['Two-year window before sale', 'Four possible results', 'Report filed within 30 days']],
+    'sea-walls'                    => ['Work on failing walls and eroding coastal banks, scheduled around Conservation Commission review and the tides.',
+        ['Storm damage and scoured toes', 'Tide-timed construction', 'Backfill and drainage behind']],
+    'helical-piers'                => ['Steel shafts turned down by a hydraulic drive head until the torque reading confirms firm soil, then capped at elevation.',
+        ['Loose, wet or filled soil', 'No concrete cure time', 'Torque-checked on every pier']],
+];
+foreach ($svCardCopy as $svSlug => $svCopy) {
+    $svCards[$svSlug]['desc']    = $svCopy[0];
+    $svCards[$svSlug]['bullets'] = $svCopy[1];
+}
 
 // ItemList of the five service pages (each page carries its own Service node)
 $svItems = [];
@@ -195,8 +212,8 @@ $svChain = [
           <a class="link-call" href="<?php echo h($svTel); ?>"><?php icon('phone', 18); ?>Call <?php echo h($phone); ?></a>
         </div>
         <ul class="hero-chips" aria-label="At a glance">
-          <li><?php icon('map-pin', 16); ?>Based on Beaver Dam Rd</li>
-          <li><?php icon('clipboard-list', 16); ?>Written estimates</li>
+          <li><?php icon('map-pin', 16); ?>168 Beaver Dam Rd, Plymouth</li>
+          <li><?php icon('layers', 16); ?>One contractor, five trades</li>
           <li><?php icon('clock', 16); ?>Mon–Fri 7am–5pm</li>
         </ul>
       </div>
@@ -218,9 +235,8 @@ $svChain = [
     <div class="section-title reveal-up">
       <span class="eyebrow-label">What We Do</span>
       <h2>Which <span class="text-accent">BDPM Site Services</span> job fits your Plymouth project?</h2>
-      <p class="hero-answer">BDPM Site Services offers five jobs in Plymouth, MA: site construction and excavation, septic system installation, Title 5 inspections, sea walls and helical piers. Most projects start with one and lead into another, because they share the same ground, the same soil questions and often the same permit reviews.</p>
+      <p class="hero-answer">BDPM Site Services projects in Plymouth, MA usually start with one of these jobs and lead into another, because they share the same ground, the same soil questions and often the same permit reviews. Each card opens a page with the process, the Massachusetts rules that apply and what changes the price.</p>
       <span class="section-subtitle">Dig · Install · Inspect · Protect · Support</span>
-      <p class="prose">Each card opens a page with the process, the Massachusetts rules that apply and what changes the price on a Plymouth lot.</p>
     </div>
 
     <div class="services-grid services-grid--featured">
@@ -296,7 +312,7 @@ $svChain = [
     <div>
       <span class="eyebrow-label">Free estimate</span>
       <h2 id="sv-cta-title">Not sure which service fits your Plymouth project?</h2>
-      <p>Describe the job in the estimate form or call during office hours. BDPM Site Services will tell you where to start and set up a site visit.</p>
+      <p>Describe what is happening on the property, or call Monday to Friday between 7 and 5. BDPM Site Services will point you to the first step and book a look at the lot.</p>
     </div>
     <div class="actions">
       <button type="button" class="btn btn-accent btn-lg" data-open-estimate>Request an estimate</button>
