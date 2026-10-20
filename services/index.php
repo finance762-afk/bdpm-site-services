@@ -299,7 +299,7 @@ $svChain = [
       <p>Describe the job in the estimate form or call during office hours. BDPM Site Services will tell you where to start and set up a site visit.</p>
     </div>
     <div class="actions">
-      <button type="button" class="btn btn-accent btn-lg" data-open-estimate>Get a free estimate</button>
+      <button type="button" class="btn btn-accent btn-lg" data-open-estimate>Request an estimate</button>
       <a class="link-call" href="<?php echo h($svTel); ?>"><?php icon('phone', 18); ?>Call <?php echo h($phone); ?></a>
     </div>
   </div>

@@ -270,7 +270,7 @@ $schemaMarkup = [
       </div>
 
       <aside class="hero-form-card" id="estimate-form" aria-labelledby="hero-form-title">
-        <h2 id="hero-form-title">Free estimate in Plymouth</h2>
+        <h2 id="hero-form-title">Request an estimate in Plymouth</h2>
         <p class="hero-form-tagline">Tell us where the property is and what the ground needs.</p>
         <form action="<?php echo h($formAction); ?>" method="POST" class="hero-form">
           <input type="hidden" name="_next" value="<?= htmlspecialchars($siteUrl) ?>/thank-you">
@@ -283,7 +283,7 @@ $schemaMarkup = [
           <div class="form-row"><label class="sr-only" for="hero-phone">Phone</label><input id="hero-phone" type="tel" name="phone" placeholder="Phone" autocomplete="tel" required></div>
           <div class="form-row"><label class="sr-only" for="hero-service">Service</label><select id="hero-service" name="service"><?php echo p1_service_options(); ?></select></div>
           <label class="consent" for="hero-terms"><input id="hero-terms" type="checkbox" name="terms_accepted" value="yes" required><span>I agree to the <a href="/terms/" target="_blank" rel="noopener">Terms</a> and <a href="/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> and consent to be contacted. *</span></label>
-          <button type="submit" class="btn btn-primary btn-block">Get my free estimate</button>
+          <button type="submit" class="btn btn-primary btn-block">Send my request</button>
         </form>
         <p class="form-footnote">Office hours <?php echo h($businessHours); ?>.</p>
       </aside>
@@ -462,13 +462,13 @@ if ($paReviews !== ''): ?>
   <span class="grain-layer" aria-hidden="true"></span>
   <div class="container">
     <div>
-      <span class="eyebrow-label">Free estimate</span>
+      <span class="eyebrow-label">Written estimate</span>
       <h2 id="pa-cta-title">Get a Free Estimate in Plymouth</h2>
       <p>Send the address and a few lines about the job. BDPM Site Services will walk the lot and send a written estimate with the scope, price and schedule.</p>
       <a class="pa-cta__dir" href="<?php echo h($gbp['directions']); ?>" target="_blank" rel="noopener">Get directions to 168 Beaver Dam Rd</a>
     </div>
     <div class="actions">
-      <button type="button" class="btn btn-accent btn-lg" data-open-estimate>Get a free estimate in Plymouth</button>
+      <button type="button" class="btn btn-accent btn-lg" data-open-estimate>Request an estimate in Plymouth</button>
       <a class="link-call" href="<?php echo h($paTel); ?>"><?php icon('phone', 18); ?>Call <?php echo h($phone); ?></a>
     </div>
   </div>

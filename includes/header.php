@@ -53,7 +53,7 @@ $navOnServices = isActivePage('services');
 
       <div class="navbar-cta">
         <a class="btn btn-secondary navbar-phone" href="<?php echo h($navPhone); ?>" aria-label="Call <?php echo h($siteName . ' at ' . $phone); ?>"><?php icon('phone', 18); ?><span><?php echo h($phone); ?></span></a>
-        <a class="btn btn-primary" href="/contact/" data-open-estimate>Free Estimate</a>
+        <a class="btn btn-primary" href="/contact/" data-open-estimate>Get an Estimate</a>
       </div>
 
       <button class="hamburger" type="button" aria-label="Menu" aria-controls="mobile-menu" aria-expanded="false">
@@ -94,7 +94,7 @@ $navOnServices = isActivePage('services');
     </nav>
     <div class="mobile-menu-cta">
       <a class="btn btn-accent btn-lg" href="<?php echo h($navPhone); ?>"><?php icon('phone', 20); ?>Call <?php echo h($phone); ?></a>
-      <a class="btn btn-outline-white btn-lg" href="/contact/">Free Estimate</a>
+      <a class="btn btn-outline-white btn-lg" href="/contact/">Get an Estimate</a>
     </div>
   </div>
 </div>

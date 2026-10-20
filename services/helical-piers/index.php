@@ -280,7 +280,7 @@ $hpCards = serviceCards();
           </div>
           <div class="form-row"><label class="sr-only" for="hero-service">Service</label><select id="hero-service" name="service"><?php echo p1_service_options($svc['name']); ?></select></div>
           <label class="consent" for="hero-terms"><input id="hero-terms" type="checkbox" name="terms_accepted" value="yes" required><span>I agree to the <a href="/terms/" target="_blank" rel="noopener">Terms</a> and <a href="/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> and consent to be contacted. *</span></label>
-          <button type="submit" class="btn btn-primary btn-block">Get my free estimate</button>
+          <button type="submit" class="btn btn-primary btn-block">Send my request</button>
         </form>
         <p class="form-footnote">Office hours <?php echo h($businessHours); ?>.</p>
       </aside>

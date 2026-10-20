@@ -100,6 +100,14 @@
   --photo-grade: saturate(1.05) contrast(1.04) brightness(.98);
 }
 
+/* === Before/after slider (includes/before-after.php) — no-JS fallback: until main.js adds html.js-anim and the component
+   adds .is-js, both panels sit side by side as plain images (slider, handle and range input are hidden). === */
+.ba-slider .p1-ba__stage, .before-after .p1-ba__stage { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+html:not(.js-anim) .ba-slider .p1-ba__stage, .ba-slider:not(.is-js) .p1-ba__stage { display: grid !important; grid-template-columns: 1fr 1fr; aspect-ratio: auto; }
+html:not(.js-anim) .ba-slider .ba-panel, .ba-slider:not(.is-js) .ba-panel { position: static; inset: auto; clip-path: none; }
+html:not(.js-anim) .ba-slider .ba-panel img, .ba-slider:not(.is-js) .ba-panel img { position: static; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+html:not(.js-anim) .ba-slider .p1-ba__handle, html:not(.js-anim) .ba-slider .p1-ba__range, .ba-slider:not(.is-js) .p1-ba__handle, .ba-slider:not(.is-js) .p1-ba__range { display: none; }
+
 /* === Reset + type engine === */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }

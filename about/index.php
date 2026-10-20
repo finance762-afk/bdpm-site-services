@@ -380,7 +380,7 @@ foreach ((array) $certifications as $abCert) {
           <div class="field"><label for="cta-phone">Phone *</label><input id="cta-phone" type="tel" name="phone" autocomplete="tel" required></div>
           <div class="field"><label for="cta-email">Email *</label><input id="cta-email" type="email" name="email" autocomplete="email" required></div>
           <div class="field"><label for="cta-service">Service needed</label><select id="cta-service" name="service"><?php echo p1_service_options(); ?></select></div>
-          <div class="field field--btn"><button type="submit" class="btn btn-primary btn-lg">Get my free estimate</button></div>
+          <div class="field field--btn"><button type="submit" class="btn btn-primary btn-lg">Send my request</button></div>
           <label class="consent" for="cta-terms"><input id="cta-terms" type="checkbox" name="terms_accepted" value="yes" required><span>I agree to the <a href="/terms/" target="_blank" rel="noopener">Terms</a> and <a href="/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> and consent to be contacted. *</span></label>
           <p class="cta-band__note">Office hours <?php echo h($businessHours); ?>.</p>
         </form>

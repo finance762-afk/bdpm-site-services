@@ -291,7 +291,7 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
       <div class="hero-text">
         <span class="eyebrow"><?php echo h($homePlace); ?> · <?php echo h($primaryCounty); ?></span>
         <h1 class="hero-title" id="home-hero-title"><span class="text-accent">Site excavation</span> and septic work in Plymouth, MA</h1>
-        <p class="hero-answer">Excavation, septic and Title 5 work for Plymouth homes and businesses.</p>
+        <p class="hero-answer">Founded in 1993, BDPM Site Services brings 35 years of experience to excavation, demolition, land clearing, septic system installation, Title 5 inspections, helical piers and seawalls for homes and businesses in Plymouth, Marshfield, Bourne and across Southeast and South Coast Massachusetts. The company is licensed, bonded and insured, locally owned, and gives free estimates.</p>
         <div class="hero-actions">
           <button type="button" class="btn btn-primary btn-lg hero-form-open" data-open-estimate>Get a free estimate</button>
           <a class="link-call" href="<?php echo h($homeTel); ?>"><?php icon('phone', 18); ?>or call <?php echo h($phone); ?></a>
@@ -304,7 +304,7 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
       </div>
 
       <aside class="hero-form-card" id="estimate-form" aria-labelledby="hero-form-title">
-        <h2 id="hero-form-title">Get a free estimate</h2>
+        <h2 id="hero-form-title">Request an estimate</h2>
         <p class="hero-form-tagline">No obligation. Tell us what the ground needs.</p>
         <form action="<?php echo h($formAction); ?>" method="POST" class="hero-form">
           <input type="hidden" name="_next" value="<?= htmlspecialchars($siteUrl) ?>/thank-you">
@@ -317,7 +317,7 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
           <div class="form-row"><label class="sr-only" for="hero-phone">Phone</label><input id="hero-phone" type="tel" name="phone" placeholder="Phone" autocomplete="tel" required></div>
           <div class="form-row"><label class="sr-only" for="hero-service">Service</label><select id="hero-service" name="service"><?php echo p1_service_options(); ?></select></div>
           <label class="consent" for="hero-terms"><input id="hero-terms" type="checkbox" name="terms_accepted" value="yes" required><span>I agree to the <a href="/terms/" target="_blank" rel="noopener">Terms</a> and <a href="/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> and consent to be contacted. *</span></label>
-          <button type="submit" class="btn btn-primary btn-block">Get my free estimate</button>
+          <button type="submit" class="btn btn-primary btn-block">Send my request</button>
         </form>
         <p class="home-hero__hours"><?php icon('clock', 14); ?>Office hours <?php echo h($businessHours); ?></p>
       </aside>
@@ -545,7 +545,7 @@ if ($homeReviews !== ''): ?>
   <div class="container">
     <div class="estimate">
       <div class="card reveal-scale">
-        <span class="eyebrow-label">Free estimate</span>
+        <span class="eyebrow-label">Written estimate</span>
         <h2 id="home-estimate-title">Tell us about the job</h2>
         <p>Send the address and a few lines about the work. BDPM Site Services will call to set up a site visit.</p>
 <?php echo renderEstimateForm('estimate-section', 'est', 'Request my estimate'); ?>

@@ -92,7 +92,7 @@ $footHasSms = strlen($footSms) >= 10;
               </ul>
             </div>
           </div>
-          <a class="btn btn-accent footer-cta" href="/contact/">Free Estimate</a>
+          <a class="btn btn-accent footer-cta" href="/contact/">Request an Estimate</a>
         </div>
 
       </div>
@@ -152,7 +152,7 @@ $footHasSms = strlen($footSms) >= 10;
 <dialog class="estimate-dialog" id="estimate-dialog" aria-labelledby="estimate-dialog-title">
   <div class="dialog-head">
     <div>
-      <h3 id="estimate-dialog-title">Get a free estimate</h3>
+      <h3 id="estimate-dialog-title">Request an estimate</h3>
       <p class="footnote">We reply during business hours, <?php echo h($businessHours); ?>.</p>
     </div>
     <button type="button" class="dialog-close" aria-label="Close" data-close-estimate><?php icon('x', 20); ?></button>
@@ -167,7 +167,7 @@ $footHasSms = strlen($footSms) >= 10;
 <?php if ($footHasSms): ?>
   <a class="mobile-cta-bar__text" href="sms:<?php echo h($footSms); ?>"><?php icon('mail', 18); ?>Text Us</a>
 <?php endif; ?>
-  <a class="mobile-cta-bar__estimate" href="/contact/" data-open-estimate>Free Estimate</a>
+  <a class="mobile-cta-bar__estimate" href="/contact/" data-open-estimate>Get Estimate</a>
 </div>
 
 <button class="back-to-top" type="button" aria-label="Back to top"><?php icon('chevron-down', 20, 'rot-180'); ?></button>

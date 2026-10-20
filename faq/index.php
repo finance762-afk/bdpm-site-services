@@ -7,7 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
  * /faq/ — Phase 5 FAQ page (directory + index.php; linked from the footer "Company" column and the homepage "All FAQs" button).
  * 18 questions in 4 categories. The six customer questions in build-plan research_brief.faqs are reused with the same facts as the homepage
  * and service pages; the rest repeat facts those pages already publish and source (Title 5 windows, 110 gpd per bedroom, 1978 coastal rule,
- * helical-pier use). Owner/year/residential-commercial/"free estimate" statements match the homepage and are listed for confirmation in
+ * helical-pier use). Owner/year/residential-commercial/no-cost-estimate statements match the homepage and are listed for confirmation in
  * /content-confirmations.json. No prices, license, insurance or response-time claims because intake holds none.
  * Lead form: ONE mid-page .cta-band after the first category (v6.3 placement rule), form id `cta-band`; no hero form on FAQ.
  */
@@ -99,7 +99,7 @@ $faqCats = [
 
 // Flat list for the FAQPage schema — every visible question, same wording
 $faqAll = [];
-// 'Are estimates ... free?' is left out of the schema: intake does not confirm free estimates yet (content-confirmations.json). Visible copy is unchanged.
+// 'Are estimates ... free?' is left out of the schema: intake does not confirm the no-cost estimate yet (content-confirmations.json). Visible copy is unchanged.
 foreach ($faqCats as $faqCatRow) foreach ($faqCatRow['items'] as $faqItemRow) {
     if (preg_match('/estimates?\b.*\bfree\b/i', $faqItemRow['q'])) continue;
     $faqAll[] = ['q' => $faqItemRow['q'], 'a' => $faqItemRow['a']];
@@ -282,7 +282,7 @@ $schemaMarkup = [
   <div class="container">
     <div class="cta-band__grid">
       <div class="cta-band__copy">
-        <span class="eyebrow-label">Free estimate</span>
+        <span class="eyebrow-label">Written estimate</span>
         <h2 id="cta-band-title">Have a question about your lot?</h2>
         <p>Send the basics and <?php echo h($siteName); ?> will call you back during office hours.</p>
         <a class="link-call" href="<?php echo h($faqTel); ?>"><?php icon('phone', 18); ?>or call <?php echo h($phone); ?></a>
@@ -299,7 +299,7 @@ $schemaMarkup = [
           <div class="field"><label for="cta-phone">Phone *</label><input id="cta-phone" type="tel" name="phone" autocomplete="tel" required></div>
           <div class="field"><label for="cta-email">Email *</label><input id="cta-email" type="email" name="email" autocomplete="email" required></div>
           <div class="field"><label for="cta-service">Service needed</label><select id="cta-service" name="service"><?php echo p1_service_options(); ?></select></div>
-          <div class="field field--btn"><button type="submit" class="btn btn-primary btn-lg">Get my free estimate</button></div>
+          <div class="field field--btn"><button type="submit" class="btn btn-primary btn-lg">Send my request</button></div>
           <label class="consent" for="cta-terms"><input id="cta-terms" type="checkbox" name="terms_accepted" value="yes" required><span>I agree to the <a href="/terms/" target="_blank" rel="noopener">Terms</a> and <a href="/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> and consent to be contacted. *</span></label>
           <p class="cta-band__note">Office hours <?php echo h($businessHours); ?>.</p>
         </form>

@@ -221,12 +221,12 @@ $schemaMarkup = [[
   <span class="grain-layer" aria-hidden="true"></span>
   <div class="container">
     <div>
-      <span class="eyebrow-label">Free estimate</span>
+      <span class="eyebrow-label">Written estimate</span>
       <h2 id="sa-cta-title">Ready for a free estimate in Plymouth?</h2>
       <p>Send the address and a few lines about the job. BDPM Site Services will walk the lot and send a written estimate with the scope, price and schedule.</p>
     </div>
     <div class="actions">
-      <button type="button" class="btn btn-accent btn-lg" data-open-estimate>Get a free estimate</button>
+      <button type="button" class="btn btn-accent btn-lg" data-open-estimate>Request an estimate</button>
       <a class="link-call" href="<?php echo h($saTel); ?>"><?php icon('phone', 18); ?>Call <?php echo h($phone); ?></a>
     </div>
   </div>
