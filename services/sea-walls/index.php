@@ -451,7 +451,7 @@ if ($swReviews !== ''): ?>
     <div>
       <span class="eyebrow-label">Free estimate</span>
       <h2 id="sw-cta-title">Ready for a free sea wall estimate in Plymouth?</h2>
-      <p>Send the address and a few lines about the bank or the wall. BDPM Site Services will walk the shoreline and send a written estimate with the scope, price and schedule.</p>
+      <p>Send the address and a few lines about the bank or the wall. BDPM Site Services will walk the shoreline, look at the bank and access, and price the wall work in writing.</p>
     </div>
     <div class="actions">
       <button type="button" class="btn btn-accent btn-lg" data-open-estimate>Get a free sea wall estimate</button>

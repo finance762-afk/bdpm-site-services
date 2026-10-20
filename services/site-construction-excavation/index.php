@@ -515,7 +515,7 @@ if ($exReviews !== ''): ?>
     <div>
       <span class="eyebrow-label">Free estimate</span>
       <h2 id="ex-cta-title">Ready for a free excavation estimate in Plymouth?</h2>
-      <p>Tell us the address and what you are building. BDPM Site Services will set up a site visit and send a written estimate with the scope, price and schedule.</p>
+      <p>Tell us the address and what you are building. BDPM Site Services will visit to check the soil, ledge and access, then put the dig, the grading and the dates in writing.</p>
     </div>
     <div class="actions">
       <button type="button" class="btn btn-accent btn-lg" data-open-estimate>Get a free excavation estimate</button>

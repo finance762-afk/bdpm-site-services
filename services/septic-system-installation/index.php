@@ -487,7 +487,7 @@ if ($stReviews !== ''): ?>
     <div>
       <span class="eyebrow-label">Free estimate</span>
       <h2 id="st-cta-title">Ready for a free septic installation estimate in Plymouth?</h2>
-      <p>Send the address and, if you have it, the approved septic plan. BDPM Site Services will look at the lot and send a written estimate with the scope, price and schedule.</p>
+      <p>Send the address and, if you have it, the approved septic plan. BDPM Site Services will check the lot against the design and price the tank, field and backfill in writing.</p>
     </div>
     <div class="actions">
       <button type="button" class="btn btn-accent btn-lg" data-open-estimate>Get a free septic estimate</button>
