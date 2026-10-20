@@ -7,8 +7,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
  * /cookie-policy/ — legal page (legal-compliance.md cookie template, rewritten to what this site actually sets).
  * Verified against the code: p1_ft first-party cookie (includes/attribution.php: 30 days, httponly, SameSite=Lax, holds landing page,
  * referrer, UTM, gclid, session id, device); cookie-bar flag cookieBannerDismissed_v1 in localStorage (assets/js/main.js); GA4 loads only
- * once $googleAnalyticsId is set (head.php); fonts are self-hosted (no font-provider request); the local-business map is a link, not an embed,
- * ($gbp['embed_src'] holds the GBP map embed, so the Google Maps iframe on /contact/ is live). The policy describes GA4 as in use because it goes live at launch.
+ * once $googleAnalyticsId is set (head.php); fonts are self-hosted (no font-provider request); the contact page embeds a Google Maps iframe
+ * ($gbp['embed_src'], set 2026-10-20), disclosed under "Third-party content". The policy describes GA4 as in use because it goes live at launch.
  */
 $lastUpdated     = 'October 19, 2026';   // fixed on purpose: bump when the text changes
 $pageTitle       = 'Cookie Policy | ' . $companyName . ' | ' . $address['city'] . ', ' . $address['state'];
@@ -101,7 +101,7 @@ $schemaMarkup    = [legalPageSchema('Cookie Policy', $pageDescription, $canonica
       <p>We use Google Analytics 4 to understand how visitors use the site. It reports pages viewed, approximate location, device and browser, and referring site. Google processes this data under its own <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy policy</a>.</p>
 
       <h3>Third-party content</h3>
-      <p>This site links to our Google Business Profile and may show content from Google, such as reviews or a map. Content loaded from Google can set its own cookies, which we do not control. Our fonts are hosted on this site, so no font provider receives your request.</p>
+      <p>This site links to our Google Business Profile, embeds a Google Maps view of our location on the contact page, and may show other content from Google, such as reviews. Content loaded from Google can set its own cookies, which we do not control. Our fonts are hosted on this site, so no font provider receives your request.</p>
 
       <h2>3. How to Control Cookies</h2>
       <p>Most browsers let you view, delete or block cookies. You can block third-party cookies only, or block all cookies, though some features of other websites may stop working. Instructions are available from Google Chrome, Mozilla Firefox, Apple Safari and Microsoft Edge. To clear the local-storage setting for the cookie notice, clear this site&rsquo;s data in your browser.</p>
