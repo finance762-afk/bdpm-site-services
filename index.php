@@ -526,7 +526,7 @@ if ($homeReviews !== ''): ?>
     <div class="section-title reveal-up">
       <span class="eyebrow-label">From the Blog</span>
       <h2 id="home-blog-title">What do Plymouth property owners need to know before they dig?</h2>
-      <p>Plain answers on excavation costs, permits and coastal banks from BDPM Site Services' Plymouth blog.</p>
+      <p>Plymouth property owners need three things before they dig: a Dig Safe request at least 72 hours ahead, a check for Conservation Commission or Board of Health review, and a site visit that reads the soil and ledge. The BDPM Site Services blog covers each one in plain terms.</p>
     </div>
     <div class="home-blog__feature">
 <?php echo blogCard($blogPosts[0], ['featured' => true, 'tint' => 3, 'delay' => 1, 'heading' => 'h3']); ?>

@@ -448,8 +448,8 @@ foreach ((array) $certifications as $abCert) {
     <div class="ab-work__grid">
       <div class="ab-work__intro reveal-left">
         <span class="eyebrow-label">At work</span>
-        <h2 id="ab-work-title">What does a job with <span class="text-accent"><?php echo h($siteName); ?></span> look like from the first meeting?</h2>
-        <p class="answer-block">A job with <?php echo h($siteName); ?> starts at a table with the plans, moves to a handshake on the scope and price, and ends with the crew checking the layout beside the machine. These photos show those three points on a Plymouth project.</p>
+        <h2 id="ab-work-title">What does a job with <span class="text-accent">BDPM Site Services</span> look like from the first meeting?</h2>
+        <p class="answer-block">A job with BDPM Site Services starts at the first meeting, at a table with the plans, moves to a handshake on the written scope and price, and reaches the site with the crew checking the layout beside the machine. These photos show those three points on a Plymouth project.</p>
       </div>
       <div class="sp-gallery-grid reveal-right">
       <figure class="sp-gallery-item reveal-up reveal-delay-1"><?php echo photoPicture('site-team-planning-blueprints-table', '(max-width: 700px) 92vw, 520px'); ?><figcaption>Plans, calculator and tape measure on the table</figcaption></figure>
