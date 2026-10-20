@@ -97,16 +97,11 @@ $faqCats = [
      ]],
 ];
 
-// Flat list for the FAQPage schema — every visible question, same wording
-$faqAll = [];
-// 'Are estimates ... free?' is left out of the schema: intake does not confirm the no-cost estimate yet (content-confirmations.json). Visible copy is unchanged.
-foreach ($faqCats as $faqCatRow) foreach ($faqCatRow['items'] as $faqItemRow) {
-    if (preg_match('/estimates?\b.*\bfree\b/i', $faqItemRow['q'])) continue;
-    $faqAll[] = ['q' => $faqItemRow['q'], 'a' => $faqItemRow['a']];
-}
+// Visible question count for the hero (no FAQPage JSON-LD on this site — the visible Q&A is the content)
+$faqCount = 0;
+foreach ($faqCats as $faqCatRow) $faqCount += count($faqCatRow['items']);
 
 $schemaMarkup = [
-    generateFAQSchema($faqAll),
     [
         '@context' => 'https://schema.org',
         '@type' => 'WebPage',
@@ -234,7 +229,7 @@ $schemaMarkup = [
       </nav>
       <span class="eyebrow">FAQ · <?php echo h($faqPlace); ?></span>
       <h1 class="hero-title" id="faq-hero-title">Plymouth <span class="text-accent">excavation, septic and Title 5</span> questions, answered</h1>
-      <p class="hero-answer">Answers from <?php echo h($siteName); ?> to <?php echo count($faqAll); ?> common questions about excavation, septic systems, Title 5 inspections, sea walls and helical piers in Plymouth, MA.</p>
+      <p class="hero-answer">Answers from <?php echo h($siteName); ?> to <?php echo $faqCount; ?> common questions about excavation, septic systems, Title 5 inspections, sea walls and helical piers in Plymouth, MA.</p>
       <div class="hero-actions">
         <a class="btn btn-accent btn-lg" href="<?php echo h($faqTel); ?>"><?php icon('phone', 20); ?>Call <?php echo h($phone); ?></a>
         <a class="link-call" href="/contact/"><?php icon('send', 18); ?>Ask your own question</a>

@@ -94,7 +94,6 @@ $homeFaqs = [
      'a' => 'Plymouth sites vary widely, from sandy and gravelly soils to clay, fill and exposed ledge. BDPM Site Services assesses each site during the estimate so the right equipment, drainage and disposal plan are included in the quote before work begins.'],
 ];
 
-$schemaMarkup = [generateFAQSchema($homeFaqs)];
 ?>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/head.php'; ?>
 <style>

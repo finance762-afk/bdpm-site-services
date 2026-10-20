@@ -357,26 +357,11 @@ if (!function_exists('generateServiceSchema')) {
     }
 }
 
-if (!function_exists('generateFAQSchema')) {
-    /** $faqs: [['q' => '...', 'a' => '...'], ...]. FAQPage is an AI comprehension aid only, never a rich-result claim. */
-    function generateFAQSchema(array $faqs): array {
-        $entities = [];
-        foreach ($faqs as $faq) {
-            $question = $faq['q'] ?? $faq['question'] ?? '';
-            $answer = $faq['a'] ?? $faq['answer'] ?? '';
-            if ($question === '' || $answer === '') continue;
-            $entities[] = ['@type' => 'Question', 'name' => strip_tags($question),
-                           'acceptedAnswer' => ['@type' => 'Answer', 'text' => strip_tags($answer)]];
-        }
-        return ['@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $entities];
-    }
-}
-
 if (!function_exists('servicePageSchema')) {
     /**
      * Schema list for a /services/{slug}/ page (head.php echoes each item; BreadcrumbList comes from $breadcrumbs):
      * Service (@id {url}#service-{slug}, provider = the homepage #organization entity), WebPage with Speakable
-     * (h1, .hero-answer, .answer-block). Pages with real FAQs add generateFAQSchema($faqs) themselves.
+     * (h1, .hero-answer, .answer-block). No FAQPage JSON-LD on this site — visible FAQ copy only.
      */
     function servicePageSchema(array $service, string $summary): array {
         global $siteUrl, $address, $primaryCounty, $pageTitle;

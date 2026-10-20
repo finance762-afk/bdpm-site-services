@@ -41,9 +41,8 @@ $swFaqs = [
      'a' => 'Almost certainly. Work within coastal and wetland resource areas or their buffer zones is regulated under the Massachusetts Wetlands Protection Act and local bylaws, which usually means review by the Plymouth Conservation Commission. Tell BDPM Site Services about the property during the estimate and we will explain what review is likely before any work is scheduled.'],
 ];
 
-$schemaMarkup = array_merge(servicePageSchema($svc,
-    'Sea wall construction for waterfront property in Plymouth, MA, planned around the coastal bank, tide windows, the Massachusetts Wetlands Protection Act and Plymouth Conservation Commission review.'),
-    [generateFAQSchema($swFaqs)]);
+$schemaMarkup = servicePageSchema($svc,
+    'Sea wall construction for waterfront property in Plymouth, MA, planned around the coastal bank, tide windows, the Massachusetts Wetlands Protection Act and Plymouth Conservation Commission review.');
 
 $swSigns = [
     ['icon' => 'waves', 'title' => 'Scour at the toe', 'text' => 'Waves pull sand away from the base. Once the toe is exposed, a wall can rotate or slide forward.'],

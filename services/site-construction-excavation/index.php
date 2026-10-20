@@ -43,9 +43,8 @@ $exFaqs = [
      'a' => 'Excavation cost in Plymouth depends on the size of the job, soil and ledge conditions, site access, how much material has to be hauled away and the timeline. BDPM Site Services gives a written estimate after a site visit, with the scope, price and schedule itemized so there are no surprises once the work starts.'],
 ];
 
-$schemaMarkup = array_merge(servicePageSchema($svc,
-    'Site construction and excavation in Plymouth, MA: foundation and footing digs, utility and drainage trenches, site preparation and final grading, scheduled around Dig Safe, permits and soil conditions.'),
-    [generateFAQSchema($exFaqs)]);
+$schemaMarkup = servicePageSchema($svc,
+    'Site construction and excavation in Plymouth, MA: foundation and footing digs, utility and drainage trenches, site preparation and final grading, scheduled around Dig Safe, permits and soil conditions.');
 
 $exSigns = [
     ['icon' => 'home', 'title' => 'Foundations and footings',

@@ -39,9 +39,8 @@ $hpFaqs = [
      'a' => 'Plymouth sites vary widely, from sandy and gravelly soils to clay, old fill and exposed ledge. BDPM Site Services assesses each site during the estimate so the right equipment, drainage and disposal plan are in the quote before work begins. For a pier job, that visit also shows whether helical piers or a poured footing suits the ground better.'],
 ];
 
-$schemaMarkup = array_merge(servicePageSchema($svc,
-    'Helical pier installation in Plymouth, MA: steel piers turned down to load-bearing soil for new foundations, additions, decks and porches, with installation torque tracked on each pier.'),
-    [generateFAQSchema($hpFaqs)]);
+$schemaMarkup = servicePageSchema($svc,
+    'Helical pier installation in Plymouth, MA: steel piers turned down to load-bearing soil for new foundations, additions, decks and porches, with installation torque tracked on each pier.');
 
 $hpReasons = [
     ['icon' => 'layers', 'title' => 'Loose sand or old fill', 'text' => 'A footing sits on whatever is at its depth. A pier passes through soft layers to the firm soil below.'],

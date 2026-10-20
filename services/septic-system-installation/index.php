@@ -44,9 +44,8 @@ $stFaqs = [
      'a' => 'Yes. BDPM Site Services installs septic systems in Plymouth and does the excavation for them, working to the plan drawn by the septic designer and approved by the Plymouth Board of Health. Soil testing and the design itself are handled by licensed professionals, and the installation follows their plan and the town\'s inspection schedule.'],
 ];
 
-$schemaMarkup = array_merge(servicePageSchema($svc,
-    'Septic system installation in Plymouth, MA: excavation, septic tank, distribution box and soil absorption system built to the Title 5 design approved by the Plymouth Board of Health, inspected before backfill.'),
-    [generateFAQSchema($stFaqs)]);
+$schemaMarkup = servicePageSchema($svc,
+    'Septic system installation in Plymouth, MA: excavation, septic tank, distribution box and soil absorption system built to the Title 5 design approved by the Plymouth Board of Health, inspected before backfill.');
 
 $stSigns = [
     ['icon' => 'clipboard-list', 'title' => 'A failed Title 5 inspection',

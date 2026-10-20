@@ -108,7 +108,6 @@ $schemaMarkup = [
         'isPartOf' => ['@type' => 'WebSite', 'url' => $paBase . '/'],
         'speakable' => ['@type' => 'SpeakableSpecification', 'cssSelector' => ['h1', '.hero-answer', '.answer-block']],
     ],
-    generateFAQSchema($paFaqs),
 ];
 ?>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/head.php'; ?>
