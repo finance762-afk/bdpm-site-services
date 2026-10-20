@@ -12,7 +12,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
  */
 $lastUpdated     = 'October 19, 2026';   // fixed on purpose: bump when the text changes (never date('F j, Y'), which would re-date the policy on every visit)
 $pageTitle       = 'Privacy Policy | ' . $companyName . ' | ' . $address['city'] . ', ' . $address['state'];
-$pageDescription = 'How ' . $companyName . ' in ' . $address['city'] . ', ' . $address['state'] . ' collects, uses and protects information from its website and estimate forms, plus your privacy rights.';
+$pageDescription = 'How ' . $companyName . ' in ' . $address['city'] . ', ' . $address['state'] . ' collects, uses and protects information from its website and estimate forms, and privacy rights. Call ' . $phone . '.';
 $canonicalUrl    = $siteUrl . '/privacy-policy/';
 $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'legal';

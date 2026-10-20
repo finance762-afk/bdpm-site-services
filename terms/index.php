@@ -12,7 +12,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
  */
 $lastUpdated     = 'October 19, 2026';   // fixed on purpose: bump when the text changes
 $pageTitle       = 'Terms of Service | ' . $companyName . ' | ' . $address['city'] . ', ' . $address['state'];
-$pageDescription = 'Terms for using the ' . $companyName . ' website and for estimates and excavation, septic, sea wall and helical pier work in ' . $address['city'] . ', ' . $address['state'] . '.';
+$pageDescription = 'Terms for using the ' . $companyName . ' website and for estimates and excavation, septic, sea wall and helical pier work in ' . $address['city'] . ', ' . $address['state'] . '. Call ' . $phone . '.';
 $canonicalUrl    = $siteUrl . '/terms/';
 $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'legal';

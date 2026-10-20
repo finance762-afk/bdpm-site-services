@@ -11,7 +11,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/blog-data.php';
  * When the first approved post lands in includes/blog-data.php, restore the registry-driven index (cards via blogCard()).
  */
 $pageTitle       = 'Blog | ' . $siteName . ' | Plymouth, MA';
-$pageDescription = 'Articles from ' . $siteName . ' on excavation, septic systems, Title 5 inspections, sea walls and helical piers in Plymouth, MA are coming soon. Call ' . $phone . ' with a question now.';
+$pageDescription = 'Articles from ' . $siteName . ' on excavation, septic, Title 5, sea walls and helical piers in Plymouth, MA are coming soon. Call ' . $phone . '.';
 $canonicalUrl    = $siteUrl . '/blog/';
 $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'blog';

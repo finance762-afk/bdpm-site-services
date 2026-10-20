@@ -1,10 +1,10 @@
 <?php
-// deploy/build-sitemap.php — BDPM Site Services. Regenerates the static /sitemap.xml from sitemap.php and keeps the Sitemap
+// references/build-sitemap.php — BDPM Site Services. Regenerates the static /sitemap.xml from sitemap.php and keeps the Sitemap
 // line in /robots.txt pointed at $siteUrl (includes/config.php). nginx serves static files and does not apply the .htaccess
 // /sitemap.xml -> sitemap.php rewrite, so the static file is what the preview/nginx host serves; Apache/Hostinger keeps
 // using the rewrite. Re-run after adding a page or changing $siteUrl. The blog is excluded on purpose (2026-10-20:
 // /blog/ is a noindex,follow placeholder), and the guard below refuses to write a sitemap that lists any /blog URL.
-// Usage (repo root): php deploy/build-sitemap.php
+// Usage (repo root): php references/build-sitemap.php
 $root = dirname(__DIR__);
 $_SERVER['DOCUMENT_ROOT'] = $root;
 ob_start();

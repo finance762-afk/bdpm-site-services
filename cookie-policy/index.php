@@ -12,7 +12,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
  */
 $lastUpdated     = 'October 19, 2026';   // fixed on purpose: bump when the text changes
 $pageTitle       = 'Cookie Policy | ' . $companyName . ' | ' . $address['city'] . ', ' . $address['state'];
-$pageDescription = 'The cookies and similar technologies the ' . $companyName . ' website uses, why, and how to control or opt out of them.';
+$pageDescription = 'The cookies and similar technologies the ' . $companyName . ' website uses, why, and how to control or opt out of them. Questions? Call us at ' . $phone . '.';
 $canonicalUrl    = $siteUrl . '/cookie-policy/';
 $ogImage         = '/assets/images/og-default.jpg';
 $currentPage     = 'legal';

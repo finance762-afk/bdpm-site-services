@@ -291,7 +291,7 @@ $schemaMarkup = [generateFAQSchema($homeFaqs)];
       <div class="hero-text">
         <span class="eyebrow"><?php echo h($homePlace); ?> · <?php echo h($primaryCounty); ?></span>
         <h1 class="hero-title" id="home-hero-title"><span class="text-accent">Site excavation</span> and septic work in Plymouth, MA</h1>
-        <p class="hero-answer">Founded in 1993, BDPM Site Services brings 35 years of experience to excavation, demolition, land clearing, septic system installation, Title 5 inspections, helical piers and seawalls for homes and businesses in Plymouth, Marshfield, Bourne and across Southeast and South Coast Massachusetts. The company is licensed, bonded and insured, locally owned, and gives free estimates.</p>
+        <p class="hero-answer">Founded in <?php echo (int) $yearEstablished; ?>, BDPM Site Services brings <?php echo (int) $yearsInBusiness; ?> years of experience to site excavation, septic system installation, Title 5 inspections, sea walls and helical piers for homes and businesses in Plymouth, MA. The company is licensed, bonded and insured, locally owned, and gives free estimates.</p>
         <div class="hero-actions">
           <button type="button" class="btn btn-primary btn-lg hero-form-open" data-open-estimate>Get a free estimate</button>
           <a class="link-call" href="<?php echo h($homeTel); ?>"><?php icon('phone', 18); ?>or call <?php echo h($phone); ?></a>
