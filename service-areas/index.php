@@ -172,11 +172,6 @@ $schemaMarkup = [[
         <span class="sa-card__tag">Home base</span>
         <h3><?php echo h($saRow['name'] . ', ' . $saRow['state']); ?></h3>
         <p>The largest town in Massachusetts by area, from the sandy pinelands in the west to the harbor in the center and the high coastal banks in the south. The Plymouth page covers the ground, the permits and the five services BDPM Site Services offers there.</p>
-        <ul aria-label="Villages in <?php echo h($saRow['name']); ?>">
-<?php foreach ($saVillages as $saVillage): ?>
-          <li><?php echo h($saVillage); ?></li>
-<?php endforeach; ?>
-        </ul>
 <?php if ($saRow['built']): ?>
         <a class="btn btn-primary" href="<?php echo h($saRow['href']); ?>">Excavation in <?php echo h($saRow['name']); ?>, <?php echo h($saRow['state']); ?></a>
 <?php endif; ?>
@@ -199,7 +194,7 @@ $schemaMarkup = [[
     <div class="section-head reveal-up">
       <span class="eyebrow-label">Plymouth, village by village</span>
       <h2 id="sa-cover-title">Which parts of Plymouth does an estimate visit cover?</h2>
-      <p class="answer-block">An estimate visit from BDPM Site Services covers the whole town of Plymouth, which has six named villages: Plymouth Center, North Plymouth, West Plymouth, South Plymouth, Manomet and Cedarville. The crew drives to the lot, looks at the soil, ledge, access and water, and sends a written estimate.</p>
+      <p class="answer-block">An estimate visit from BDPM Site Services covers the whole town of Plymouth and all six of its named villages, shown in the tiles below. The crew drives to the lot, looks at the soil, ledge, access and water, and sends a written estimate.</p>
     </div>
     <div class="sa-cover__grid">
       <ul class="sa-tiles reveal-scale" aria-label="Villages of Plymouth, Massachusetts">
@@ -221,9 +216,9 @@ $schemaMarkup = [[
   <span class="grain-layer" aria-hidden="true"></span>
   <div class="container">
     <div>
-      <span class="eyebrow-label">Written estimate</span>
-      <h2 id="sa-cta-title">Ready for a free estimate in Plymouth?</h2>
-      <p>Send the address and a few lines about the job. BDPM Site Services will walk the lot and send a written estimate with the scope, price and schedule.</p>
+      <span class="eyebrow-label">Check your address</span>
+      <h2 id="sa-cta-title">Is your property in Plymouth or a neighboring town?</h2>
+      <p>Call or use the estimate form and include the address. BDPM Site Services will confirm the job is within reach, then book a site visit and follow it with a written estimate.</p>
     </div>
     <div class="actions">
       <button type="button" class="btn btn-accent btn-lg" data-open-estimate>Request an estimate</button>

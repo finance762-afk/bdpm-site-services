@@ -51,10 +51,27 @@ $breadcrumbs     = [
 
 $paTel   = formatPhone($phone, 'tel');
 $paCards = serviceCards();
+// Plymouth-specific card copy (facts from this page), so the grid does not repeat the hub and homepage descriptions word for word
+$paCardCopy = [
+    'site-construction-excavation' => ['Planned for the part of town the lot sits in: pinelands sand, harbor-side fill or ground near a coastal bank.',
+        ['Trench support in loose sand', 'Dig Safe markings confirmed first', 'Drainage planned before the dig']],
+    'septic-system-installation'   => ['Built to the approved design, with the Plymouth Board of Health inspecting before the trench is backfilled.',
+        ['Plymouth Title 5 supplement applies', 'Scheduled around the inspector', 'New and replacement systems']],
+    'sea-walls'                    => ['For the harbor edge and the high banks along the southern shore, with Conservation Commission review on the schedule.',
+        ['Coastal bank and harbor lots', 'Conservation Commission review first', 'Bank drainage behind the wall']],
+    'helical-piers'                => ['Support for decks, porches and additions where a Plymouth lot turns up loose sand, wet ground or buried fill.',
+        ['Wet ground near ponds', 'Old fill on older lots', 'Decks, porches and additions']],
+    'title-5-inspections'          => ['Septic inspections for Plymouth home sales, with the completed state form going to the Board of Health.',
+        ['Before a Plymouth home sale', 'Report to the Board of Health', 'Same team installs septic systems']],
+];
+foreach ($paCardCopy as $paSlug => $paCopy) {
+    $paCards[$paSlug]['desc']    = $paCopy[0];
+    $paCards[$paSlug]['bullets'] = $paCopy[1];
+}
 
 $paFaqs = [
     ['q' => 'Does BDPM Site Services work in all of Plymouth, including Manomet and the other villages?',
-     'a' => 'BDPM Site Services is based at ' . $address['street'] . ' in Plymouth and serves the town, which includes Plymouth Center, North Plymouth, West Plymouth, South Plymouth, Manomet and Cedarville. Call ' . $phone . ' with the address and the crew will confirm the job is within reach before booking a site visit.'],
+     'a' => 'BDPM Site Services is based at ' . $address['street'] . ' in Plymouth and serves the whole town, Manomet and Cedarville included. Call ' . $phone . ' with the address and the crew will confirm the job is within reach before booking a site visit.'],
     ['q' => 'Will my project need a wetlands or conservation permit in Plymouth?',
      'a' => 'It may. Work within wetland resource areas or their buffer zones is regulated under the Massachusetts Wetlands Protection Act and local bylaws, which often means review by the Plymouth Conservation Commission. Tell BDPM Site Services about the property during the estimate and we will explain what review is likely before any work is scheduled.'],
     ['q' => 'Do I need to call Dig Safe before digging in Plymouth?',
@@ -387,7 +404,7 @@ $schemaMarkup = [
     <div class="section-title reveal-up">
       <span class="eyebrow-label">What We Do</span>
       <h2>What ground work can <span class="text-accent">BDPM Site Services</span> do on a Plymouth property?</h2>
-      <p class="hero-answer">BDPM Site Services does five kinds of ground work in Plymouth, MA: site construction and excavation, septic system installation, Massachusetts Title 5 inspections, sea walls and helical piers. One contractor covers the dig, the septic system and the support underneath it, on one schedule.</p>
+      <p class="hero-answer">BDPM Site Services does five kinds of ground work in Plymouth, MA, and each card below says what that work means on a Plymouth lot, from pinelands sand to the coastal banks. One contractor covers the dig, the septic system and the support underneath it, on one schedule.</p>
     </div>
     <div class="services-grid services-grid--featured">
 <?php foreach ($services as $paIdx => $paSvc):
@@ -462,8 +479,8 @@ if ($paReviews !== ''): ?>
   <div class="container">
     <div>
       <span class="eyebrow-label">Written estimate</span>
-      <h2 id="pa-cta-title">Get a Free Estimate in Plymouth</h2>
-      <p>Send the address and a few lines about the job. BDPM Site Services will walk the lot and send a written estimate with the scope, price and schedule.</p>
+      <h2 id="pa-cta-title">Where in Plymouth is your lot, and what does the ground need?</h2>
+      <p>Tell us the street, whether the lot is in the pinelands, on the harbor side or near a coastal bank, and what you plan to build or fix. BDPM Site Services will see the ground on a site visit, then put the scope, price and schedule in writing.</p>
       <a class="pa-cta__dir" href="<?php echo h($gbp['directions']); ?>" target="_blank" rel="noopener">Get directions to 168 Beaver Dam Rd</a>
     </div>
     <div class="actions">
