@@ -312,8 +312,8 @@ $schemaMarkup = [
   <div class="container">
     <div>
       <span class="eyebrow-label">Still have a question?</span>
-      <h2 id="faq-cta-title">Ask BDPM Site Services about your Plymouth property</h2>
-      <p>Every lot is different. Call or send the contact form and BDPM Site Services will answer for your lot, not a generic one.</p>
+      <h2 id="faq-cta-title">What if your Plymouth property question is not answered here?</h2>
+      <p>Ask BDPM Site Services directly by phone or through the contact form. Soil, ledge, water and permits change from lot to lot in Plymouth, so the answer you get is for your property, not a generic one.</p>
     </div>
     <div class="actions">
       <a class="btn btn-accent btn-lg" href="/contact/">Contact BDPM Site Services</a>
