@@ -59,7 +59,7 @@ $headGaLive = !empty($googleAnalyticsId) && $googleAnalyticsId !== 'G-XXXXXXXXXX
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
 
-<link rel="preload" href="/assets/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/unbounded.woff2" as="font" type="font/woff2" crossorigin>
 <style><?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/critical.css'; ?></style>
 <link rel="preload" href="/assets/css/framework.css?v=<?php echo h($cssVersion); ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="/assets/css/framework.css?v=<?php echo h($cssVersion); ?>"></noscript>

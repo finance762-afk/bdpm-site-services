@@ -10,11 +10,11 @@
 
 /* === Self-hosted fonts (v6.2 — no Google Fonts CDN) === */
 @font-face {
-  font-family: 'Bricolage Grotesque';
+  font-family: 'Unbounded';
   font-style: normal;
-  font-weight: 400 800;
+  font-weight: 200 900;
   font-display: swap;
-  src: url('/assets/fonts/bricolage-grotesque.woff2') format('woff2');
+  src: url('/assets/fonts/unbounded.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Figtree';
@@ -70,7 +70,7 @@
   --color-neutral-warm: var(--color-paper-2);
 
   /* Type — 3-font system */
-  --font-heading: "Bricolage Grotesque", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-heading: "Unbounded", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   --font-body: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   --font-accent: "Barlow Condensed", 'Arial Narrow', 'Roboto Condensed', sans-serif;
 
