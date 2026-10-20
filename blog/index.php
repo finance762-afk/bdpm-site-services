@@ -7,7 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/blog-data.php';
 /**
  * /blog/ — "Articles are coming soon" placeholder (2026-10-20). The two auto-written launch posts were removed pending
  * client-approved articles; deploy/nginx-redirects.conf 301s their old URLs here. The page is noindex,follow (robots meta
- * via $robotsContent), is left out of sitemap.php / llms.txt, and keeps its nav/footer links so nothing 404s.
+ * via $robotsContent), is left out of sitemap.php, and keeps its nav/footer links so nothing 404s.
  * When the first approved post lands in includes/blog-data.php, restore the registry-driven index (cards via blogCard()).
  */
 $pageTitle       = 'Blog | ' . $siteName . ' | Plymouth, MA';
